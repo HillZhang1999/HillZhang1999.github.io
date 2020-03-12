@@ -1,2 +1,2 @@
-https://godweiyang.com/2020/03/13/hello-world/
-https://godweiyang.com/2020/02/16/sort-algorithms/
+http://yoursite.com/2020/03/13/hello-world/
+http://yoursite.com/2020/02/16/sort-algorithms/
