@@ -1,3 +1,4 @@
+http://yoursite.com/2020/03/17/kmp-suan-fa/
 http://yoursite.com/2020/03/13/leetcode-mei-ri-liang-ti/
 http://yoursite.com/2020/03/13/hello-world/
 http://yoursite.com/2020/02/16/sort-algorithms/

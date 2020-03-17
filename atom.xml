@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-13T08:25:12.879Z</updated>
+  <updated>2020-03-17T12:01:26.409Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>LeetCode每日两题</title>
-    <link href="http://yoursite.com/2020/03/13/leetcode-mei-ri-liang-ti/"/>
-    <id>http://yoursite.com/2020/03/13/leetcode-mei-ri-liang-ti/</id>
-    <published>2020-03-13T02:58:03.000Z</published>
-    <updated>2020-03-13T08:25:12.879Z</updated>
+    <title>KMP算法</title>
+    <link href="http://yoursite.com/2020/03/17/kmp-suan-fa/"/>
+    <id>http://yoursite.com/2020/03/17/kmp-suan-fa/</id>
+    <published>2020-03-17T09:04:10.000Z</published>
+    <updated>2020-03-17T12:01:26.409Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h1 id=&quot;从2020-3-2日开始的LeetCode刷题总结，初步计划每日两道，酌情增减题量&quot;&gt;&lt;a href=&quot;#从2020-3-2日开始的LeetCode刷题总结，初步计划每日两道，酌情增减题量&quot; class=&quot;headerlink&quot;
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文整理了KMP算法的原理及代码，可以使用LEETCODE上的题目进行测试：&lt;a
         
       
     
@@ -38,9 +38,35 @@
       <category term="编程算法" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode每日两题</title>
+    <link href="http://yoursite.com/2020/03/13/leetcode-mei-ri-liang-ti/"/>
+    <id>http://yoursite.com/2020/03/13/leetcode-mei-ri-liang-ti/</id>
+    <published>2020-03-13T02:58:03.000Z</published>
+    <updated>2020-03-17T12:06:09.565Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;每日算法-LEETCODE-PYTHON3&quot;&gt;&lt;a href=&quot;#每日算法-LEETCODE-PYTHON3&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="编程算法" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
+    
     
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
     
   </entry>
   
@@ -88,9 +114,9 @@
       <category term="编程算法" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
     
   </entry>
   
