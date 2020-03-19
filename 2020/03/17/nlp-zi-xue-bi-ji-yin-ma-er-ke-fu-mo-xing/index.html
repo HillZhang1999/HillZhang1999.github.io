@@ -4,11 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, 章岳 学习笔记 计算机 算法 程序">
+    <meta name="keywords" content="NLP自学笔记：隐马尔可夫模型, 章岳 学习笔记 计算机 算法 程序">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
+    <meta name="description" content="前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于隐马尔可夫模型的一些个人见解和思考，同时参考了一些书籍和网上的资料">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Hello World | HillZhang的博客</title>
+    <title>NLP自学笔记：隐马尔可夫模型 | HillZhang的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -212,13 +212,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Hello World
+                        NLP自学笔记：隐马尔可夫模型
                     </div>
                 </div>
             </div>
@@ -328,11 +328,32 @@
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        <span class="chip bg-color">无标签</span>
+                        
+                        <a href="/tags/算法/" target="_blank">
+                            <span class="chip bg-color">算法</span>
+                        </a>
+                        
+                        <a href="/tags/机器学习/" target="_blank">
+                            <span class="chip bg-color">机器学习</span>
+                        </a>
+                        
+                        <a href="/tags/自然语言处理/" target="_blank">
+                            <span class="chip bg-color">自然语言处理</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/机器学习/" class="post-category" target="_blank">
+                            机器学习
+                        </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -340,7 +361,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-13
+                    2020-03-17
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -354,14 +375,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    8 分
                 </div>
                 
                 
@@ -372,15 +393,79 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是我在学习苏州大学李正华老师的中文信息处理课程（<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/" target="_blank" rel="noopener">中文信息处理（Chinese Information Processing）Course Resources</a>）时，对于隐马尔可夫模型的一些个人见解和思考，同时参考了一些书籍和网上的资料编写而成。写这篇文章的主要目的是加深自己对于该模型的理解，如有错误欢迎在评论区指出，非常感谢！</p>
+<h2 id="从问题出发"><a href="#从问题出发" class="headerlink" title="从问题出发"></a>从问题出发</h2><p>隐马尔可夫模型是一个序列化标注模型，也能被看作是一种seq2seq模型。在对隐马尔可夫模型进行学习时，我们引入一个自然语言处理领域的经典序列化问题：<strong>词性标注任务</strong>。接下来的讲解中，将围绕这个问题进行讨论。</p>
+<ul>
+<li>给定一个句子X，输出句子中每一个单词对应的词性。</li>
+</ul>
+<p><img src="1.png" alt="词性标注任务"></p>
+<h2 id="什么是隐马尔可夫模型"><a href="#什么是隐马尔可夫模型" class="headerlink" title="什么是隐马尔可夫模型"></a>什么是隐马尔可夫模型</h2><p>《统计学习方法》中对于隐马尔可夫模型有着如下的定义：</p>
+<blockquote>
+<p>隐马尔科夫是关于时序的概率模型，描述由一个隐藏的马尔科夫链随机生成不可观测的状态随机序列，再由各个状态生成一个观测而产生观测随机序列的过程，隐藏的马尔科夫链生成的随机状态的序列被称为状态序列(state sequence)，每个状态生成一个观测，由此而产生的观测的随机序列，称之为观测序列(observation sequence) ,序列的每一个位置都可以看作是一个时刻。</p>
+</blockquote>
+<p>上述定义初看比较晦涩难懂，我们需要逐步进行解释。</p>
+<ul>
+<li><p>首先，什么是观测序列和状态序列呢？观测序列通常指可以直接获得的序列，状态序列则是我们无法直接获得的序列，HMM模型的目的就是为了通过可观测到的数据，预测不可观测到的数据。我们结合词性标注问题来看，在此问题中，<strong>观测序列指的是句子的单词序列，而状态序列则指的是句子的词性序列</strong>。</p>
+</li>
+<li><p>那么，什么是马尔可夫链？马尔可夫链是具有马尔可夫性质的随机变量的一个数列，描述了一个状态序列。马尔可夫性质指的是每个状态值取决于前面有限个状态，这在HMM模型中称为<strong>齐次马尔科夫链假设</strong>。需要注意的是<strong>马尔可夫链并没有限定后一个状态的变化仅仅取决于前一个状态，而是说取决于前面有限个状态</strong>。不过为了简化模型，我们在HMM中使用一阶（二元）马尔可夫链，即每个状态仅依赖于前一个状态。带入到词性标注问题中，他指的是<strong>当前的词性仅依赖于前一个词性是什么</strong>。例如，动词后常接名词，很少再接一个动词。那么，根据齐次马尔科夫链假设，如果前一个词性是动词，我们可以推测出当前词倾向于是名词而非动词。</p>
+</li>
+<li><p>接下来，我们要解决的问题是观测序列如何生成状态序列。HMM模型中对于状态序列至观测序列的发射有着这样的假设：<strong>任意时刻的观察状态只仅仅依赖于当前时刻的隐藏状态</strong>。这也叫做<strong>观测独立性假设</strong>，与齐次马尔科夫链假设一样，它也是为了简化模型。带入到词性标注问题中，它指的是<strong>当前词仅与当前词性有关</strong>。举例来说，当给定一个词“苹果”，我们根据训练集统计得知名词词性发射至“苹果”的概率远大于其它词性，所以我们可以预测当前词倾向于是名词。</p>
+</li>
+<li><p>根据齐次马尔可夫假设和观测独立性假设，对于一个长度为$L$的句子，我们用$X=x(0),x(1)……x(L-1)$表示词序列（观测序列），$Y=y(0),y(1)…y(L-1)$表示词性序列（状态序列），那么词性序列的转移过程可以表示为：<br>$$<br>p(y_i|y_0…y_i-1)=p(y_i|y_i-1)（一阶马尔可夫性质）<br>$$</p>
+</li>
+</ul>
+<p>  由词性序列$Y$产生词序列$X$的发射过程可以表示为：<br>  $$<br>  p(x_0…x_L|y_0…y_L)= \prod_{i=0}^L{p(x_i|y_i)}(观测独立性假设)<br>  $$</p>
+<p>  这里，我们补充一个HMM的例子：</p>
+<blockquote>
+<p>例子：病情转化<br>假设：某一时刻只有一种疾病，且只依赖于上一时刻疾病，一种疾病只有一种症状，且只依赖于当时的疾病<br>症状（观察值）：发烧，咳嗽，咽喉肿痛，流涕<br>疾病（状态值）：感冒，肺炎，扁桃体炎，猝死<br>转移概率：从一种疾病转变到另一种疾病的概率<br>输出概率：某一疾病呈现出某一症状的概率<br>初始分布：初始疾病的概率</p>
+</blockquote>
+<h2 id="生成模型OR判别模型"><a href="#生成模型OR判别模型" class="headerlink" title="生成模型OR判别模型"></a>生成模型OR判别模型</h2><ul>
+<li>由生成方法学习到的模型称之为生成模型，生成方法是由数据学习联合分布$P(X,Y)$，然后求出条件概率分布$P(Y∣X)$作为预测的模型：</li>
+</ul>
+<p>$$<br>P(Y∣X)=\frac{P(X,Y)}{P(X)}<br>$$</p>
+<p>​        典型的生成模型有：朴素贝叶斯模型，<strong>隐马尔可夫模型</strong>，生成对抗网络（GAN），变分自编码器（VAE）。</p>
+<ul>
+<li>由判别方法学习到的模型称之为判别模型，判别方法是由数据直接学习决策函数或者条件概率分布$P(Y∣X) $作为预测的模型。典型的判别模型有：k近邻模型，感知机模型，决策树，逻辑回归模型，最大熵模型，支持向量机，提升方法和条件随机场等。</li>
+<li>总结： 生成模型是指对联合概率建模，判别模型是对条件概率建模 ，HMM模型属于生成模型。</li>
+</ul>
+<h2 id="隐马尔可夫模型的三个参数："><a href="#隐马尔可夫模型的三个参数：" class="headerlink" title="隐马尔可夫模型的三个参数："></a>隐马尔可夫模型的三个参数：</h2><p>简单来说，HMM模型主要使用了两个特征，分别是<strong>发射特征</strong>（词性到词的概率）和<strong>转移特征</strong>（前一个词性到当前词性的概率）。特别的，我们还会引入第三个特征，即<strong>初始特征</strong>，它主要指的是句子中第一个词性是什么的概率。它本质上来说仍然是一个转移特征，只不过是从第0个词性（也就是空）转移而来。</p>
+<p>在实际参数学习过程中，这三个特征都是以矩阵的形式存储。</p>
+<p>为了简化模型，HMM定义了两个假设，即我们前面提到的齐次马尔可夫假设和观测独立性假设，根据前者，我们使用了转移特征和初始特征，根据后者，我们使用了发射特征。实际上，这也正是HMM模型的缺陷，由于这两个强力的假设，导致其只能使用三类特征，无法考虑句子中的更多信息。在我的接下来的文章中，将探讨线性模型和对数线性模型，他们虽然无法解决序列标注问题，但是能够无限制的使用特征。特别的，CRF结合了LR模型与HMM模型的优点，实现了可以使用无限制的特征模板进行序列化标注。</p>
+<h2 id="隐马尔可夫模型的五个要素"><a href="#隐马尔可夫模型的五个要素" class="headerlink" title="隐马尔可夫模型的五个要素"></a>隐马尔可夫模型的五个要素</h2><p>总结一下，隐马尔可夫模型的核心就是五个要素： </p>
+<ul>
+<li>两个序列：<ul>
+<li>观测序列：词序序列</li>
+<li>状态序列：词性序列</li>
+</ul>
+</li>
+<li>三个矩阵：<ul>
+<li>初始概率矩阵：第一个词性的概率，实际上是一个一维向量</li>
+<li>发射概率矩阵：词性发射到词的概率，维度为[训练集中的词性数,训练集中的词数]</li>
+<li>状态转移概率矩阵：从一个词性变化到另一个词性的概率，维度为[训练集中的词性数,训练集中的词性数]</li>
+</ul>
+</li>
+</ul>
+<h2 id="隐马尔可夫模型解决序列标注问题的过程"><a href="#隐马尔可夫模型解决序列标注问题的过程" class="headerlink" title="隐马尔可夫模型解决序列标注问题的过程"></a>隐马尔可夫模型解决序列标注问题的过程</h2><ol>
+<li><strong>训练过程</strong>：利用训练数据，统计得到HMM模型的三个参数，也就是上一节提到的三个矩阵。主要的方法有：<strong>极大似然估计法（有监督学习）</strong>和</li>
+<li>。 <strong>Baum-Welch算法（无监督学习）</strong>。</li>
+<li><strong>预测过程</strong>：给定一个句子的词序列，通过我们训练好的模型预测出最有可能的词性序列。主要的方法为<strong>维特比算法</strong>。</li>
+</ol>
+<h2 id="隐马尔可夫模型的训练过程"><a href="#隐马尔可夫模型的训练过程" class="headerlink" title="隐马尔可夫模型的训练过程"></a>隐马尔可夫模型的训练过程</h2><h3 id="极大似然估计法（有监督学习）"><a href="#极大似然估计法（有监督学习）" class="headerlink" title="极大似然估计法（有监督学习）"></a>极大似然估计法（有监督学习）</h3><p>机器学习中，有监督学习指的是训练数据给出了标签。在词性标注问题中，即指的是训练数据给出了词性序列。</p>
+<p>在有监督学习的参数学习过程中， <strong>参数的计算频率近似于参数的概率</strong> ，我们可以利用极大似然估计法进行证明。具体证明的过程参考李老师的讲义<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/7-hmm-tagging-MLE/main.pdf" target="_blank" rel="noopener"> HMM模型中极大似然估计的由来 </a> 。通过对训练数据进行统计，我们便可计算出模型的三个基本参数矩阵，并可以使用他们进行预测。</p>
+<p>具体的<strong>训练过程</strong>如下：</p>
+<ol>
+<li>统计状态的概率分布，也就是初始概率矩阵pi </li>
+</ol>
+<h2 id="参考资料（部分）"><a href="#参考资料（部分）" class="headerlink" title="参考资料（部分）"></a>参考资料（部分）</h2><ul>
+<li><p><a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/7-hmm-tagging/main.pdf" target="_blank" rel="noopener">李正华老师的课件</a></p>
+</li>
+<li><p>李航老师的《统计学习方法》第10章</p>
+</li>
+<li><p><a href="https://blog.csdn.net/lukabruce/article/details/82380511" target="_blank" rel="noopener">隐马尔科夫模型（Hidden Markov Model，HMM）</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/85454896" target="_blank" rel="noopener">一站式解决：隐马尔可夫模型（HMM）全过程推导及实现</a></p>
+</li>
+</ul>
 
             </div>
             <hr />
@@ -415,9 +500,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Hello World》
+                    《NLP自学笔记：隐马尔可夫模型》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/13/hello-world/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/" property="cc:attributionName"
                rel="cc:attributionURL">
                 HillZhang
             </a> 采用
@@ -723,48 +808,29 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/">
+                <a href="/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="LeetCode每日两题">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="NLP自学笔记：线性模型和对数线性模型">
                         
-                        <span class="card-title">LeetCode每日两题</span>
+                        <span class="card-title">NLP自学笔记：线性模型和对数线性模型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Leetcode的刷题总结
+                            
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-13
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/编程算法/" class="post-category" target="_blank">
-                                    编程算法
-                                </a>
-                            
-                            
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -776,24 +842,25 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/16/sort-algorithms/">
+                <a href="/2020/03/17/kmp-suan-fa/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（附代码）">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="KMP算法">
                         
-                        <span class="card-title">十大经典排序算法整理汇总（附代码）</span>
+                        <span class="card-title">KMP算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文整理并总结了十大经典的排序算法（冒泡排序、选择排序、插入排序、快速排序、归并排序、希尔排序、计数排序、基数排序、桶排序、堆排序）的时间复杂度、空间复杂度等性质。
+                            前言本文整理了KMP算法的原理及代码，可以使用LEETCODE上的题目进行测试：28. 实现 strStr()。
+从Brute-Force算法说起BF算法是最为简单的一种字符串匹配算法，它采用纯暴力匹配的思想。对于目标串S和模式串P，其基本
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-16
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
                             </span>
                         <span class="publish-author">
                             
@@ -812,10 +879,6 @@
                     
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
-                    </a>
-                    
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -961,6 +1024,25 @@
     
 
 </main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<!-- 代码语言 -->
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+<!-- 代码块复制 -->
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+<!-- 代码块收缩 -->
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script> 
+<!-- 代码块折行 -->
+<style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style>
 
 
     <footer class="page-footer bg-color">
