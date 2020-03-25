@@ -4,11 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="NLP自学笔记：线性模型和对数线性模型, 章岳 学习笔记 计算机 算法 程序">
+    <meta name="keywords" content="NLP自学笔记：线性模型, 章岳 学习笔记 计算机 算法 程序">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于线性模型和对数线性模型的一些个人见解和思考，同时参考了一些书籍和网">
+    <meta name="description" content="前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于线性模型的一些个人见解和思考，同时参考了一些书籍和网上的资料编写而">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>NLP自学笔记：线性模型和对数线性模型 | HillZhang的博客</title>
+    <title>NLP自学笔记：线性模型 | HillZhang的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -212,13 +212,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        NLP自学笔记：线性模型和对数线性模型
+                        NLP自学笔记：线性模型
                     </div>
                 </div>
             </div>
@@ -361,7 +361,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-03-25
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -375,7 +375,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.4k
+                    6.6k
                 </div>
                 
 
@@ -393,7 +393,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是我在学习苏州大学李正华老师的中文信息处理课程（<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/" target="_blank" rel="noopener">中文信息处理（Chinese Information Processing）Course Resources</a>）时，对于线性模型和对数线性模型的一些个人见解和思考，同时参考了一些书籍和网上的资料编写而成。写这篇文章的主要目的是加深自己对于该模型的理解，如有错误欢迎在评论区指出，非常感谢！</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是我在学习苏州大学李正华老师的中文信息处理课程（<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/" target="_blank" rel="noopener">中文信息处理（Chinese Information Processing）Course Resources</a>）时，对于线性模型的一些个人见解和思考，同时参考了一些书籍和网上的资料编写而成。写这篇文章的主要目的是加深自己对于该模型的理解，如有错误欢迎在评论区指出，非常感谢！</p>
 <h2 id="从问题出发"><a href="#从问题出发" class="headerlink" title="从问题出发"></a>从问题出发</h2><p>与隐马尔可夫模型的讲解类似，我们在这里依旧围绕自然语言处理中的经典问题<strong>词性标注问题</strong>进行讨论和解释。</p>
 <ul>
 <li>给定一个句子X，输出句子中每一个单词对应的词性。</li>
@@ -437,8 +437,8 @@
 <li><strong>代价函数（Cost Function ）</strong>：<strong>整个训练集所有样本</strong>的预测值和真实值（标签）的误差，也就是损失函数的平均。</li>
 <li><strong>目标函数（Object Function）</strong>：<strong>最终需要优化的函数</strong>。等于经验风险+结构风险（也就是代价函数 + 正则化项）。</li>
 </ol>
-<p><strong>这里，我们先不讲解正则化的知识，假设我们的目标函数即为代价函数</strong>。那么线性模型的优化问题即为最小化所有样本的误差的平均值。线性模型的误差可以用许多函数来表示，其中比较常用的一种是<strong>均方误差</strong>(Mean squared error) ，这里我们使用均方误差来描述我们的模型误差（PS：更多损失函数可以参考<a href="https://www.jiqizhixin.com/articles/091202" target="_blank" rel="noopener">机器学习中常用的损失函数你知多少？</a>）</p>
-<p>假设训练集中样本的标签为$y$，样本的数量为$m$，预测值为假设函数的输出$h_{w}(x)$，则需要优化的目标函数为：<br>$$<br>J(w)=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2<br>$$<br>我们的目标便是<strong>选择出可以使得建模误差的平方和能够最小的模型参数</strong>，即<strong>找到合适的模型权重$\vec w$，使$J(w)$取得最小值</strong>。需要注意的是，目标函数中的1/2仅仅是为了方便求导。</p>
+<p><strong>这里，我们先不讲解正则化的知识，假设我们的目标函数即为代价函数</strong>。那么线性模型的优化问题即为最小化所有样本的误差的平均值。线性模型的误差可以用许多函数来表示，其中比较常用的一种是<strong>均方误差</strong>（Mean squared error），这里我们使用均方误差来描述我们的模型误差（PS：更多损失函数可以参考<a href="https://www.jiqizhixin.com/articles/091202" target="_blank" rel="noopener">机器学习中常用的损失函数你知多少？</a>）</p>
+<p>假设训练集中样本的标签为$y$，样本的数量为$m$，预测值为假设函数的输出$h_{w}(x)$，则需要优化的目标函数为：<br>$$<br>J(w)=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2<br>$$<br>我们的目标便是<strong>选择出可以使得模型的均方误差能够最小的模型参数</strong>，即<strong>找到合适的模型权重$\vec w$，使$J(w)$取得最小值</strong>。需要注意的是，目标函数中的1/2仅仅是为了方便求导。</p>
 <h3 id="从极大似然估计到损失函数"><a href="#从极大似然估计到损失函数" class="headerlink" title="从极大似然估计到损失函数"></a>从极大似然估计到损失函数</h3><p>在隐马尔可夫模型的讲解中，我曾经说过损失函数和极大似然估计有着紧密的联系，例如<strong>我们在逻辑回归模型里使用的交叉熵损失函数其实就是似然函数加上负号</strong>。也就是说，<strong>最优化问题既可以理解为最大化模型的似然估计，也可以理解为最小化模型的损失函数</strong>。</p>
 <p>为什么会出现这样的现象呢？其实这并不是巧合，是可以通过数学公式进行推导的。具体推导内容可以参考这篇讲义<a href="https://wenku.baidu.com/view/78d16462c9d376eeaeaad1f34693daef5ff713d2.html" target="_blank" rel="noopener">各损失函数与最大似然</a>。</p>
 <h3 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h3><h4 id="正规方程法"><a href="#正规方程法" class="headerlink" title="正规方程法"></a>正规方程法</h4><p>正规方程法可以用于求解线性模型的目标函数取得最小值时，权重$w$的准确值。但在机器学习中，我们很少使用这种方法求解模型的权重，我在这里简单提一下它的弊端：</p>
@@ -469,7 +469,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>我们的算法不一定能达到最优解</strong>。 但是由于线性回归模型中的函数都是<strong>凸函数</strong>,所以利用梯度下降法，是可以找到全局最优解的，在这里不详细阐述。 </p>
+<li><p><strong>我们的算法不一定能达到最优解</strong>。 但是由于此问题中的目标函数是<strong>凸函数</strong>，所以利用梯度下降法，是可以找到全局最优解的。关于凸优化的问题，我在这里不详细阐述。 </p>
 </li>
 <li><p>我们这里得到的是<strong>数值解</strong>而非解析解，存在着一定误差。</p>
 </li>
@@ -477,7 +477,7 @@
 <p>顺便说一下，我这里举例的是<strong>批量梯度下降（batch gradient descent,BGD）</strong>，即尝试将<strong>所有样本</strong>的误差优化到最小。这种方法的优点是每次下降都是朝着全局最优的方向前进。但是，我们发现它每次都要计算所有样本的损失，这在大批量数据的情况下会非常缓慢。</p>
 <p>还有一种梯度下降的方法叫做<strong>随机梯度下降法（ Stochastic gradient descent）</strong>，它每次选取<strong>一个随机样本</strong>，尝试优化它的损失函数。虽然随机梯度下降法每次下降是朝着局部最优的方向前进，无法保证全局的优化，但整体而言，它的下降方向还是朝着全局最优点前进的。与此同时，它的计算量相较于批量梯度下降大大减少了。</p>
 <p>此外，还有一种方法叫做<strong>小批量梯度下降法（mini-batch gradient descent）</strong>，这是现在最为常用的一种梯度下降学习法，它是BGD和SGD的折中。它每次尝试优化一个mini-batch-size数量的样本，即减少了运算量，又降低了梯度下降方向出错的可能性。</p>
-<h3 id="过拟合与正则化"><a href="#过拟合与正则化" class="headerlink" title="过拟合与正则化"></a>过拟合与正则化</h3><p>在前面我们提到了可以通过引入<strong>幂次项特征和多项式特征</strong>来增加模型的拟合能力。但是，模型的拟合能力过强有时候并不是一件好事。下面，我将介绍线性回归模型中的<strong>过拟合 (over-fitting) 问题</strong>。</p>
+<h3 id="过拟合与正则化"><a href="#过拟合与正则化" class="headerlink" title="过拟合与正则化"></a>过拟合与正则化</h3><p>在前面我们提到了可以通过引入<strong>幂次项特征和多项式特征</strong>来增加模型的拟合能力。但是，模型的拟合能力过强有时候并不是一件好事。下面，我将介绍线性回归模型中的<strong>过拟合（over-fitting） 问题</strong>。</p>
 <p>首先，我们给出过拟合的定义：</p>
 <blockquote>
 <p>在统计学中，过拟合（英语：overfitting，或称过度拟合）现象是指在拟合一个统计模型时，使用过多参数。对比于可获取的数据总量来说，一个荒谬的模型只要足够复杂，是可以完美地适应数据。过拟合一般可以视为违反奥卡姆剃刀原则。当可选择的参数的自由度超过数据所包含信息内容时，这会导致最后（拟合后）模型使用任意的参数，这会减少或破坏模型一般化的能力更甚于适应数据。过拟合的可能性不只取决于参数个数和数据，也跟模型架构与数据的一致性有关。此外对比于数据中预期的噪声或错误数量，跟模型错误的数量也有关。 </p>
@@ -492,10 +492,10 @@
 <p>为了解决过拟合的问题，我们应该引入一个<strong>参数项</strong>，<strong>在进行梯度下降的时候尽可能使得参数变小</strong>，这样可以使得很多额外的特征的权重接近于0。 这个方法也叫做<strong>正则化</strong>（regularization）。此外，还有一些防止过拟合的办法，例如神经网络中的dropout等，我会在接下来的博客中继续为大家介绍。</p>
 <p>正则化中的参数项一般也叫做正则项，常用的正则项有以下两种：</p>
 <ul>
-<li>L1正则项：各个权重的<strong>绝对值之和</strong>，可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于<strong>特征选择</strong> 。同时，一定程度上 也可以防止过拟合 。</li>
-<li>L2正则项：各个权重的<strong>平方和</strong>，可以防止模型过拟合（overfitting）。</li>
+<li>L1正则项：各个权重的<strong>绝对值之和</strong>，可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于<strong>特征选择</strong> 。同时，一定程度上也可以防止过拟合 。</li>
+<li>L2正则项：各个权重的<strong>平方和</strong>，可以防止模型过拟合。</li>
 </ul>
-<p>线性模型和对数线性模型中，我们通常采用的是L2正则项。加入正则项后，模型的代价函数变为：<br>$$<br>J(w)=\frac{1}{2m}[\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2+\lambda\sum_{j=1}^{n}w^2]<br>$$<br>梯度下降的公式变为：<br>$$<br>w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}[(h_w(x^{(i)})-y^{(i)})x_j^{(i)}+\lambda w_j]<br>$$<br>我们可以发现，通过引入正则化项，可以使模型的所有参数在梯度下降时多下降一些，从而尽可能地减小。上式中，$\lambda$是一个用于控制正则化程度的超参数，我们一般称其为<strong>正则化系数</strong>，如果$\lambda$过大，则所有权重将趋近于0， 这样我们所得到的只能是一条平行于x轴的直线 。 所以对于正则化，我们要取一个合理的$\lambda$的值 。超参数的选择是机器学习中最为常见的问题，我们一般使用<strong>开发集</strong>进行调参。</p>
+<p>线性模型和对数线性模型中，我们通常采用的是L2正则项。加入正则项后，模型的代价函数变为：<br>$$<br>J(w)=\frac{1}{2m}[\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2+\lambda\sum_{j=1}^{n}w^2]<br>$$<br>梯度下降的公式变为：<br>$$<br>w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}[(h_w(x^{(i)})-y^{(i)})x_j^{(i)}+\lambda w_j]<br>$$<br>我们发现，通过引入正则化项，可以使模型的所有参数在梯度下降时多下降一些，从而尽可能地减小。上式中，$\lambda$是一个用于控制正则化程度的超参数，我们一般称其为<strong>正则化系数</strong>，如果$\lambda$过大，则所有权重将趋近于0， 这样我们所得到的只能是一条平行于x轴的直线 。 所以对于正则化，我们要取一个合理的$\lambda$的值 。超参数的选择是机器学习中最为常见的问题，我们一般使用<strong>开发集</strong>进行调参。</p>
 <p>顺便提一下，过拟合的情况下，增加训练集的样本数量将会使模型的性能得到提升。在当今这个海量数据的时代，数据是容易获得的，所以深度学习的常见做法是训练出一个拟合能力很强（层数深、神经元多）的神经网络，加上大规模的训练样本，再加上一些正则化的方法，所得出的模型通常性能最好。</p>
 <h2 id="回到词性标注问题上来"><a href="#回到词性标注问题上来" class="headerlink" title="回到词性标注问题上来"></a>回到词性标注问题上来</h2><p>相信通过前面的介绍，你已经对线性模型有了基本的认识，下面我们回到词性标注任务上，简单地介绍一下如何基于多元分类的思想使用线性回归模型进行词性标注。</p>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>在我们之前的介绍中，你可能会发现，线性模型主要是用于解决机器学习中的<strong>回归（regression）问题</strong>。也就是说，它预测的最终结果通常是连续值。虽然与对数线性模型相比，线性模型不常用于<strong>分类（classification）</strong>，但在介绍对数线性模型之前，我们仍可以通过一些方法使其运用在分类标注词性上。</p>
@@ -504,13 +504,20 @@
 <p><img src="5.png" alt="特征模板"></p>
 <p>可以看到，我们一共使用了14种特征模板，其中包含了许多有用的信息，例如词信息，字信息，词缀信息等等。</p>
 <p>在实际训练过程中，我们需要先构建<strong>特征空间（feature space）</strong>。它是训练集中所有特征的集合。<strong>构建的方式是：我们每次选取一个词，根据特征模板抽取相应的14种特征，并将其加入到特征空间内。需要注意的是特征空间中不能出现重复的特征。</strong></p>
-<p>在这里，我们还可以对特征抽取进行优化。我们观察特征模板可以发现，<strong>对于每个样本，每一种特征的模板都需要抽取每一种词性的特征，而对于所有不同的词性，其特征模板的后缀都是相同的</strong>。通过计算机中经常使用的<strong>段加偏移</strong>的思想，我们可以大大减少构建特征空间所耗费的时间，将时间复杂度由$O(N^2)$降为$O(N)$。具体的优化操作不再赘述，大家可以参考<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/9-linear-model/main2.pdf" target="_blank" rel="noopener">李老师的讲义</a>。</p>
+<p>在这里，我们还可以对特征抽取进行优化。我们观察特征模板可以发现，<strong>对于每个样本，每一种特征的模板都需要抽取每一种词性的特征，而对于所有不同的词性，其特征模板的后缀都是相同的</strong>。通过计算机中经常使用的<strong>段加偏移</strong>的思想，我们可以大大减少构建特征空间所耗费的时间，将时间复杂度由$O(MN)$降为$O(M+N)$。具体的优化操作不再赘述，大家可以参考<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/9-linear-model/main2.pdf" target="_blank" rel="noopener">李老师的讲义</a>。</p>
 <p>我在这里画出了这个线性模型的示意图，你应该就能理解为什么它的特征空间可以用二维矩阵的方式来存储，以及它是如何工作的。</p>
 <p><img src="6.png" alt="词性标注的线性模型"></p>
 <h3 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h3><p>对于模型的训练，我们将采用一种叫做<strong>在线学习（Online training）</strong>的方式。这是一种经常用于<strong>推荐系统</strong>的学习算法，方便对模型进行实时训练。你可以把它看作是一种近似于我们之前所提到的随机梯度下降法的学习算法。它每次选取<strong>一个实例</strong>进行训练。由于样本的标签是经过one-hot处理的离散值，而我们模型的输出是取值范围在负无穷到正无穷的连续值，所以我们在这里无法使用前述的梯度下降算法进行参数的训练。取而代之的是如下的算法。</p>
 <p><img src="7.png" alt="Online Training"></p>
 <p>简单的讲解一下，可以看到，我们每次选取一个样本进行训练，如果该样本预测正确，那么不修改模型的参数，否则，将该样本与正确词性关联的特征权重全部加1，与错误词性关联的特征权重全部减1。你可以看作是<strong>给预测正确词性的特征一个激励，而给预测错误词性的特征一个惩罚</strong>。</p>
-<p>特别地，我们在这里还可以使用上图中$v$作为模型特征权重，这叫做<strong>averaged perceptron</strong>。有关学习算法的优化问题我将专门撰写一篇博客，介绍常见的优化算法，如momentum算法，RMsprop算法和Adam算法的数学原理等。</p>
+<p>特别地，我们在这里还可以使用上图中$v$作为模型特征权重，这叫做<strong>averaged perceptron</strong>。有关学习算法的优化问题我将专门撰写一篇博客，介绍常见的优化算法，如momentum算法，RMsprop算法和Adam算法等。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是线性回归模型的基础知识，我本来只想对它做一下简略的介绍，将梯度下降、正则化这些方法留到对数线性模型的博客中进行总结，但考虑到叙述的连贯性，一并在线性模型中进行了介绍。下面，我将介绍传统机器学习中的大杀器——逻辑回归模型（Logistic Regression Model），也就是我们所说的对数线性模型，并按照惯例，给出其解决词性标注问题的基本思想。</p>
+<h2 id="参考资料（部分）"><a href="#参考资料（部分）" class="headerlink" title="参考资料（部分）"></a>参考资料（部分）</h2><ul>
+<li><a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/" target="_blank" rel="noopener">苏州大学李正华老师的课件</a></li>
+<li>李航老师《统计学习方法》的第六章</li>
+<li>Andrew Ng的机器学习课程</li>
+<li>Andrew Ng的深度学习课程</li>
+</ul>
 
             </div>
             <hr />
@@ -545,9 +552,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《NLP自学笔记：线性模型和对数线性模型》
+                    《NLP自学笔记：线性模型》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/25/nlp-zi-xue-bi-ji-xian-xing-mo-xing/" property="cc:attributionName"
                rel="cc:attributionURL">
                 HillZhang
             </a> 采用
@@ -849,62 +856,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/17/nlp-zi-xue-bi-ji-cong-hmm-dao-tiao-jian-sui-ji-chang/">
+                <a href="/2020/03/25/nlp-zi-xue-bi-ji-xian-xing-mo-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="NLP自学笔记：从HMM到条件随机场">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="NLP自学笔记：线性模型">
                         
-                        <span class="card-title">NLP自学笔记：从HMM到条件随机场</span>
+                        <span class="card-title">NLP自学笔记：线性模型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
-                        </span>
-                        <span class="publish-author">
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="NLP自学笔记：隐马尔可夫模型">
-                        
-                        <span class="card-title">NLP自学笔记：隐马尔可夫模型</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于隐马尔可夫模型的一些个人见解和思考，同时参考了一些书籍和网上的资料
+                            前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于线性模型的一些个人见解和思考，同时参考了一些书籍和网上的资料编写而
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-25
                             </span>
                         <span class="publish-author">
                             
@@ -918,6 +892,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -931,6 +906,60 @@
                     
                     <a href="/tags/自然语言处理/" target="_blank">
                         <span class="chip bg-color">自然语言处理</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/03/21/jian-zhi-offer-ti-jie/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="剑指Offer题解">
+                        
+                        <span class="card-title">剑指Offer题解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前言最近随便投了字节跳动的暑期实习生，没想到简历过关了，4.12日先去笔试。考虑到Leetcode上面的题目比较多，决定先把《剑指Offer》上的所有题目都刷一遍。
+1. 数组中重复的数字思路：使用哈希表或者集合等数据结构，遍历数组中的数字
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/编程算法/" class="post-category" target="_blank">
+                                    编程算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/剑指Offer/" target="_blank">
+                        <span class="chip bg-color">剑指Offer</span>
                     </a>
                     
                 </div>

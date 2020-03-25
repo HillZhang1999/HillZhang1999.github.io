@@ -213,7 +213,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -372,14 +372,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.9k
+                    9.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    43 分
                 </div>
                 
                 
@@ -622,6 +622,818 @@
                 <span class="token keyword">if</span> backtrack<span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
                     <span class="token keyword">return</span> <span class="token boolean">True</span>
         <span class="token keyword">return</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="11-机器人的运动范围"><a href="#11-机器人的运动范围" class="headerlink" title="11. 机器人的运动范围"></a>11.<a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/" target="_blank" rel="noopener"> 机器人的运动范围</a></h2><p>思路：DFS，有点类似于二叉树的节点数统计。判断当前位置是否可以到达的条件是：</p>
+<ol>
+<li>没有越界；</li>
+<li>数位和小于k；</li>
+<li>未访问过。</li>
+</ol>
+<p>一旦该位置不可到达，立刻返回0；如果该位置可达，那么返回1+dfs(row+1,col)+dfs(row,col+1)，表示当前节点可达且继续向右、下方遍历。</p>
+<p>注意，此处机器人虽然可以向上、下、左、右进行遍历，但是我们发现一个地图上所有的格子都可以通过向右走和向下走到达，那么为了防止重复的判断，我们只向下和向右走。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">movingCount</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> m<span class="token punctuation">:</span> int<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">,</span> k<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        visited<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">False</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token number">0</span><span class="token operator">&lt;=</span>row<span class="token operator">&lt;</span>m <span class="token operator">and</span> <span class="token number">0</span><span class="token operator">&lt;=</span>col<span class="token operator">&lt;</span>n <span class="token operator">and</span> <span class="token punctuation">(</span>row<span class="token operator">//</span><span class="token number">10</span><span class="token operator">+</span>row<span class="token operator">%</span><span class="token number">10</span><span class="token operator">+</span>col<span class="token operator">//</span><span class="token number">10</span><span class="token operator">+</span>col<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token operator">&lt;=</span>k <span class="token operator">and</span> visited<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token operator">==</span><span class="token boolean">False</span><span class="token punctuation">:</span>
+                visited<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">True</span>
+                <span class="token keyword">return</span> <span class="token number">1</span><span class="token operator">+</span>dfs<span class="token punctuation">(</span>row<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>col<span class="token punctuation">)</span><span class="token operator">+</span>dfs<span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+        <span class="token keyword">return</span> dfs<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>时间复杂度：$O(mn)$</p>
+<p>空间复杂度：$O(mn)$</p>
+<h2 id="12-剪绳子"><a href="#12-剪绳子" class="headerlink" title="12.剪绳子"></a>12.<a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/" target="_blank" rel="noopener">剪绳子</a></h2><p>思路：动态规划，dp[i]为整数i可以拆分得到的最大乘积。转移方程为：从1到i-1遍历分解因子j，选择分解后乘积最大的结果，作为当前的状态值。需要注意的是max(dp[i-j],i-j)这一步，因为整数i拆分后的最大乘积不一定大于i，所以要进行比较，例如dp[2]=1&lt;2，所以2并不需要拆分。</p>
+<ul>
+<li>时间复杂度：$O(N^2)$，两侧 <code>for</code> 循环。</li>
+<li>空间复杂度：$O(N)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">integerBreak</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        dp<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        dp<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span>n<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token operator">-</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>i<span class="token operator">-</span>j<span class="token punctuation">)</span><span class="token operator">*</span>j<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> dp<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>特别地，我们通过<a href="https://leetcode-cn.com/problems/integer-break/solution/zheng-shu-chai-fen-shu-xue-fang-fa-han-wan-zheng-t/" target="_blank" rel="noopener">数学证明</a>可以得知，只要尽量把整数i分解为更多的3或2即可，省去了许多分解因子的比较。</p>
+<p>同时，我们还可以使用滚动数组的方法减少状态矩阵的空间占用。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">integerBreak</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            dp<span class="token punctuation">[</span>i <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> max<span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                            <span class="token number">3</span> <span class="token operator">*</span> max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> dp<span class="token punctuation">[</span>n <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间复杂度：$O(N)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h2 id="13-剪绳子-II"><a href="#13-剪绳子-II" class="headerlink" title="13.剪绳子 II"></a>13.<a href="https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof/" target="_blank" rel="noopener">剪绳子 II</a></h2><p>思路：和上一题一样，由于我们求导得到的极大值点为e，所以我们要尽量把整数分解为更多的3或者2。最后结果取余1000000007即可（python没有溢出的问题），否则要用快速幂取余法求余数。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">integerBreak</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            dp<span class="token punctuation">[</span>i <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> max<span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                            <span class="token number">3</span> <span class="token operator">*</span> max<span class="token punctuation">(</span>dp<span class="token punctuation">[</span><span class="token punctuation">(</span>i <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">-</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> dp<span class="token punctuation">[</span>n <span class="token operator">%</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">%</span><span class="token number">1000000007</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="14-二进制中1的个数"><a href="#14-二进制中1的个数" class="headerlink" title="14.二进制中1的个数"></a>14.<a href="https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/" target="_blank" rel="noopener">二进制中1的个数</a></h2><p>思路：根据十进制数与二进制数进行转换的方法，按位判断。</p>
+<ul>
+<li>时间复杂度：$O(logN)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">hammingWeight</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        count<span class="token operator">=</span><span class="token number">0</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>n<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>n<span class="token operator">%</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">:</span>
+                count<span class="token operator">+=</span><span class="token number">1</span>
+            n<span class="token operator">//=</span><span class="token number">2</span>
+        <span class="token keyword">return</span> count<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>优化的思路：根据以下事实：</p>
+<ul>
+<li>一个数 n与一个比它小 1 的数（n - 1）进行与运算（&amp;）之后，得到的结果会消除 n中最低位的 1.</li>
+</ul>
+<pre><code>示例1: 7 &amp; 6
+00111
+      &amp;   =》 00110
+00110
+
+示例2: 8 &amp; 7
+01000
+      &amp;   =》 00000
+00111</code></pre><p>可以看到，通过与运算不断地消去1，直到 n==0 即可。统计消去的次数，即为n中1的个数。</p>
+<ul>
+<li>时间复杂度：$O(M)$。M为1的个数。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">hammingWeight</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        count<span class="token operator">=</span><span class="token number">0</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>n<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            n<span class="token operator">&amp;</span><span class="token operator">=</span>n<span class="token number">-1</span>
+            count<span class="token operator">+=</span><span class="token number">1</span>
+        <span class="token keyword">return</span> count<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="15-数值的整数次方"><a href="#15-数值的整数次方" class="headerlink" title="15.数值的整数次方"></a>15.<a href="https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/" target="_blank" rel="noopener">数值的整数次方</a></h2><p>思路：快速幂算法，曾经在我的另一篇博客中有提到，第50题。基本思想是二分递归。</p>
+<ul>
+<li>时间复杂度：$O(logN)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">myPow</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">:</span> float<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> float<span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">fastpow</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> n<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token number">1</span>
+            half<span class="token operator">=</span>fastpow<span class="token punctuation">(</span>x<span class="token punctuation">,</span>n<span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> n<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> half<span class="token operator">*</span>half
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> x<span class="token operator">*</span>half<span class="token operator">*</span>half
+        <span class="token keyword">if</span> n<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">:</span>
+            n<span class="token operator">=</span><span class="token operator">-</span>n
+            x<span class="token operator">=</span><span class="token number">1</span><span class="token operator">/</span>x
+        <span class="token keyword">return</span> fastpow<span class="token punctuation">(</span>x<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="16-打印从1到最大的n位数"><a href="#16-打印从1到最大的n位数" class="headerlink" title="16.打印从1到最大的n位数"></a>16.<a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/" target="_blank" rel="noopener">打印从1到最大的n位数</a></h2><p>思路：这道题没什么好说的，如果用python的列表很好做。但如果是其他语言的话，数字可能在后期会溢出。当可能溢出时，需要把问题转化为大数加法，应考虑进位和最高位是否进位的问题。此外，还可以将其转化为0-9在n个位置上的全排列问题。后两种解法都需要考虑怎么去除最前面的0。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">printNumbers</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>x <span class="token keyword">for</span> x <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>pow<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="17-删除链表的节点"><a href="#17-删除链表的节点" class="headerlink" title="17.删除链表的节点"></a>17.<a href="https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/" target="_blank" rel="noopener">删除链表的节点</a></h2><p>思路：数据结构中单链表的最基础操作，使用一个指针，当其next节点的值为需要删除的值时，通过移动next指针指向next节点的next指针，完成删除操作。</p>
+<p>特别地，为了不讨论在链表头部删除节点的特殊情况，我们额外添加一个空的头节点。</p>
+<pre><code># Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteNode(self, head: ListNode, val: int) -&gt; ListNode:
+        dummyhead=ListNode(0)
+        dummyhead.next=head
+        p=dummyhead
+        while (p.next!=None):
+            if p.next.val==val:
+                p.next=p.next.next
+                break
+            p=p.next
+        return dummyhead.next</code></pre><h2 id="18-正则表达式匹配"><a href="#18-正则表达式匹配" class="headerlink" title="18.正则表达式匹配"></a>18.<a href="https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/" target="_blank" rel="noopener">正则表达式匹配</a></h2><p>思路：动态规划求解，这道题我在我的另一篇博客里有提及。</p>
+<ul>
+<li>时间复杂度：$O(MN)$。</li>
+<li>空间复杂度：$O(MN)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">isMatch</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> str<span class="token punctuation">,</span> p<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>
+        dp<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token boolean">False</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        dp<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">True</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                first_match<span class="token operator">=</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token punctuation">(</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>p<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">or</span> p<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'.'</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> j<span class="token operator">+</span><span class="token number">1</span><span class="token operator">&lt;</span>len<span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">and</span> p<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'*'</span><span class="token punctuation">:</span>
+                    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">or</span> <span class="token punctuation">(</span>first_match <span class="token operator">and</span> dp<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>first_match <span class="token operator">and</span> dp<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>dp<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="19-表示数值的字符串"><a href="#19-表示数值的字符串" class="headerlink" title="19. 表示数值的字符串"></a>19.<a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/" target="_blank" rel="noopener"> 表示数值的字符串</a></h2><p>这道题个人感觉纯靠耐心，利用判断慢慢做，暂时先不做了</p>
+<h2 id="20-调整数组顺序使奇数位于偶数前面"><a href="#20-调整数组顺序使奇数位于偶数前面" class="headerlink" title="20. 调整数组顺序使奇数位于偶数前面"></a>20. <a href="https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/" target="_blank" rel="noopener">调整数组顺序使奇数位于偶数前面</a></h2><p>思路：双指针法，我的思路来自于快速排序。指针left指向数组最左侧，指针right指向数组最右侧，如果left处的数字是一个奇数，说明该位置上的数字没问题，我们将left加1；如果是一个偶数，则将其与right处的数字交换，此时right处的数字必为偶数，我们可以将right减1。接着，我们看right处的数字，如果它是一个偶数，说明right处数字没问题，可以将right减1，否则，我们将其与left处的数字交换，此时left处必是奇数，我们可以将left+1.</p>
+<p>由于数组中必然一半是奇数，一半是偶数，上述算法当left==right时跳出即可，说明所有数字已成功移动。</p>
+<ul>
+<li>时间复杂度：$O(N)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">exchange</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">swap</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            tmp<span class="token operator">=</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+            nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+            nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>tmp
+        left<span class="token operator">=</span><span class="token number">0</span>
+        right<span class="token operator">=</span>len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>left<span class="token operator">&lt;</span>right<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+                swap<span class="token punctuation">(</span>left<span class="token punctuation">,</span>right<span class="token punctuation">)</span>
+                right<span class="token operator">-=</span><span class="token number">1</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                left<span class="token operator">+=</span><span class="token number">1</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+                right<span class="token operator">-=</span><span class="token number">1</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                swap<span class="token punctuation">(</span>left<span class="token punctuation">,</span>right<span class="token punctuation">)</span>
+                left<span class="token operator">+=</span><span class="token number">1</span>
+        <span class="token keyword">return</span> nums<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="21-链表中倒数第k个节点"><a href="#21-链表中倒数第k个节点" class="headerlink" title="21.链表中倒数第k个节点"></a>21.<a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/" target="_blank" rel="noopener">链表中倒数第k个节点</a></h2><p>思路：快慢指针法，构建一前一后间隔为k的两个指针，当前方的指针指向None时，返回后方指针。特别地，要讨论一下当快指针到达正数第k个节点之前，慢指针将不会出发。</p>
+<ul>
+<li>时间复杂度：$O(N)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for singly-linked list.</span>
+<span class="token comment" spellcheck="true"># class ListNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.next = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">getKthFromEnd</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> ListNode<span class="token punctuation">,</span> k<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
+        p<span class="token operator">=</span>head
+        q<span class="token operator">=</span>head
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>q<span class="token operator">!=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>k<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                p<span class="token operator">=</span>p<span class="token punctuation">.</span>next
+                q<span class="token operator">=</span>q<span class="token punctuation">.</span>next
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                k<span class="token operator">-=</span><span class="token number">1</span>
+                q<span class="token operator">=</span>q<span class="token punctuation">.</span>next
+        <span class="token keyword">return</span> p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="22-反转链表"><a href="#22-反转链表" class="headerlink" title="22.反转链表"></a>22.<a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/" target="_blank" rel="noopener">反转链表</a></h2><p>思路：有点类似于主站的k个一组反转链表，简化版，可以用头插法或者尾插法实现翻转。</p>
+<ul>
+<li>时间复杂度：$O(N)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for singly-linked list.</span>
+<span class="token comment" spellcheck="true"># class ListNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.next = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> head<span class="token operator">==</span>None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        p<span class="token operator">=</span>head
+        q<span class="token operator">=</span>head<span class="token punctuation">.</span>next
+        <span class="token keyword">while</span><span class="token punctuation">(</span>q<span class="token operator">!=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            p<span class="token punctuation">.</span>next<span class="token operator">=</span>q<span class="token punctuation">.</span>next
+            q<span class="token punctuation">.</span>next<span class="token operator">=</span>head
+            head<span class="token operator">=</span>q
+            q<span class="token operator">=</span>p<span class="token punctuation">.</span>next
+        <span class="token keyword">return</span> head<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这道题由于所有插入均在头部，所以不需要使用dummy head。</p>
+<h2 id="23-合并两个排序的链表"><a href="#23-合并两个排序的链表" class="headerlink" title="23. 合并两个排序的链表"></a>23. <a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/" target="_blank" rel="noopener">合并两个排序的链表</a></h2><p>思路：这题类似于主站的第21题，我曾在另一篇博客里详细说过，主要的思路是用两个指针比较两个链表中的元素，并选取较小的放入新链表。</p>
+<ul>
+<li>时间复杂度：$O(M+N)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for singly-linked list.</span>
+<span class="token comment" spellcheck="true"># class ListNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.next = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">mergeTwoLists</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l1<span class="token punctuation">:</span> ListNode<span class="token punctuation">,</span> l2<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
+        dummyhead<span class="token operator">=</span>ListNode<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        p<span class="token punctuation">,</span>q<span class="token operator">=</span>l1<span class="token punctuation">,</span>l2
+        r<span class="token operator">=</span>dummyhead
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token operator">!=</span>None <span class="token operator">and</span> q<span class="token operator">!=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>p<span class="token punctuation">.</span>val <span class="token operator">&lt;</span> q<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                r<span class="token punctuation">.</span>next<span class="token operator">=</span>p
+                p<span class="token operator">=</span>p<span class="token punctuation">.</span>next
+                r<span class="token operator">=</span>r<span class="token punctuation">.</span>next
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                r<span class="token punctuation">.</span>next<span class="token operator">=</span>q
+                q<span class="token operator">=</span>q<span class="token punctuation">.</span>next
+                r<span class="token operator">=</span>r<span class="token punctuation">.</span>next
+        <span class="token keyword">if</span> p<span class="token operator">==</span>None<span class="token punctuation">:</span>
+            r<span class="token punctuation">.</span>next<span class="token operator">=</span>q
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            r<span class="token punctuation">.</span>next<span class="token operator">=</span>p
+        <span class="token keyword">return</span> dummyhead<span class="token punctuation">.</span>next<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>归并排序中合并相邻链表的常规做法，需要注意的是当插入空链表时需要分类讨论，为了减少判断，我们可以使用一个伪头结点。</p>
+<h2 id="24-树的子结构"><a href="#24-树的子结构" class="headerlink" title="24.树的子结构"></a>24.<a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener">树的子结构</a></h2><p>思路：我们先使用先序遍历，遍历树A。然后调用另一个函数，判断A的当前子树是否与B匹配。如果当前子树与B匹配，返回True，否则继续尝试遍历A当前子树的左子树和右子树，看它们与B是否匹配。</p>
+<p>匹配的函数：</p>
+<ol>
+<li>如果当前节点B为空，说明树B已经匹配至越过叶子节点，返回True</li>
+<li>如果当前节点A为空，说明树A已经匹配至越过叶子节点，但树B还没有匹配完，失配了，返回False</li>
+<li>如果当前节点A和节点B均非空，且A的值与B的值相等，则继续尝试匹配A、B节点的左节点和右节点。</li>
+<li>如果A的值与B的值不等，说明失配，返回False。</li>
+</ol>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for a binary tree node.</span>
+<span class="token comment" spellcheck="true"># class TreeNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.left = None</span>
+<span class="token comment" spellcheck="true">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">isSubStructure</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> A<span class="token punctuation">:</span> TreeNode<span class="token punctuation">,</span> B<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">match</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span>B<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>B<span class="token operator">==</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>A<span class="token operator">==</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>A<span class="token punctuation">.</span>val<span class="token operator">==</span>B<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> match<span class="token punctuation">(</span>A<span class="token punctuation">.</span>left<span class="token punctuation">,</span>B<span class="token punctuation">.</span>left<span class="token punctuation">)</span> <span class="token operator">and</span> match<span class="token punctuation">(</span>A<span class="token punctuation">.</span>right<span class="token punctuation">,</span>B<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+
+        <span class="token keyword">if</span> A<span class="token operator">==</span>None <span class="token operator">or</span> B<span class="token operator">==</span>None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">if</span> match<span class="token punctuation">(</span>A<span class="token punctuation">,</span>B<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token boolean">True</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> self<span class="token punctuation">.</span>isSubStructure<span class="token punctuation">(</span>A<span class="token punctuation">.</span>left<span class="token punctuation">,</span>B<span class="token punctuation">)</span> <span class="token operator">or</span> self<span class="token punctuation">.</span>isSubStructure<span class="token punctuation">(</span>A<span class="token punctuation">.</span>right<span class="token punctuation">,</span>B<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="25-二叉树的镜像"><a href="#25-二叉树的镜像" class="headerlink" title="25.二叉树的镜像"></a>25.<a href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/" target="_blank" rel="noopener">二叉树的镜像</a></h2><p>思路：观察镜像翻转后的二叉树可知，我们可以从上向下进行递归翻转。对于每一个节点，我们将其左子树和右子树交换，然后递归进入左子树和右子树的根节点，继续交换它们的左右子树。你会发现，如果你将当前层调整至镜像后，下一层节点其实已经被两个一组翻转了，只需要交换两个一组内部的节点即可完成翻转。</p>
+<ul>
+<li>时间复杂度：$O(N)$。</li>
+<li>空间复杂度：$O(N)$。递归要占用栈空间。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for a binary tree node.</span>
+<span class="token comment" spellcheck="true"># class TreeNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.left = None</span>
+<span class="token comment" spellcheck="true">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">mirrorTree</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> TreeNode<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> root<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+            root<span class="token punctuation">.</span>left<span class="token punctuation">,</span>root<span class="token punctuation">.</span>right<span class="token operator">=</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span>root<span class="token punctuation">.</span>left
+            self<span class="token punctuation">.</span>mirrorTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>mirrorTree<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="26-对称的二叉树"><a href="#26-对称的二叉树" class="headerlink" title="26.对称的二叉树"></a>26.<a href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/" target="_blank" rel="noopener">对称的二叉树</a></h2><p>思路：</p>
+<ul>
+<li>对称二叉树规律：<ul>
+<li>对于树中任意两个对称节点A和B，一定有：<ul>
+<li>A.val = B.val：即此两对称节点值相等。</li>
+<li>A 的 左子节点 和 B的 右子节点 对称；</li>
+<li>A 的 右子节点 和 B的 左子节点 对称。</li>
+<li>如果A、B均为空，我们认为它们是对称的。</li>
+<li>如果A、B中一个空一个非空，则必然不对称。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>根据以上规律，考虑从顶至底递归判断每对节点是否对称，从而判断树是否为对称二叉树。</li>
+</ul>
+<p><img src="26.png" alt="规律"></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for a binary tree node.</span>
+<span class="token comment" spellcheck="true"># class TreeNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.left = None</span>
+<span class="token comment" spellcheck="true">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">isSymmetric</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">match</span><span class="token punctuation">(</span>A<span class="token punctuation">,</span>B<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> A<span class="token operator">==</span>None <span class="token operator">and</span> B<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            <span class="token keyword">if</span> A<span class="token operator">==</span>None <span class="token operator">or</span> B<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+            <span class="token keyword">if</span> A<span class="token punctuation">.</span>val<span class="token operator">==</span>B<span class="token punctuation">.</span>val<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> match<span class="token punctuation">(</span>A<span class="token punctuation">.</span>left<span class="token punctuation">,</span>B<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token operator">and</span> match<span class="token punctuation">(</span>A<span class="token punctuation">.</span>right<span class="token punctuation">,</span>B<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">return</span> match<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span> <span class="token keyword">if</span> root <span class="token keyword">else</span> <span class="token boolean">True</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间复杂度：$O(N)$。</li>
+<li>空间复杂度：$O(N)$。递归要占用栈空间。</li>
+</ul>
+<h2 id="27-顺时针打印矩阵"><a href="#27-顺时针打印矩阵" class="headerlink" title="27.顺时针打印矩阵"></a>27.<a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener">顺时针打印矩阵</a></h2><p>思路：螺旋矩阵，模拟题，做过很多次了。主站第54题，可以看我的另一篇博客。</p>
+<ul>
+<li>时间复杂度：$O(MN)$。</li>
+<li>空间复杂度：$O(N)$。递归要占用栈空间。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">spiralOrder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> matrix<span class="token punctuation">:</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        level<span class="token operator">=</span><span class="token number">0</span>
+        row<span class="token operator">=</span><span class="token number">0</span>
+        col<span class="token operator">=</span><span class="token number">0</span>
+        <span class="token keyword">if</span> matrix<span class="token operator">==</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        result<span class="token operator">=</span><span class="token punctuation">[</span>matrix<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">]</span>
+        count<span class="token operator">=</span><span class="token number">1</span>
+        row_nums<span class="token operator">=</span>len<span class="token punctuation">(</span>matrix<span class="token punctuation">)</span>
+        col_nums<span class="token operator">=</span>len<span class="token punctuation">(</span>matrix<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        size<span class="token operator">=</span>row_nums<span class="token operator">*</span>col_nums
+        <span class="token keyword">while</span> count<span class="token operator">&lt;</span>size<span class="token punctuation">:</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>col_nums<span class="token operator">-</span>level<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                col<span class="token operator">+=</span><span class="token number">1</span>
+                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                count<span class="token operator">+=</span><span class="token number">1</span>
+                <span class="token keyword">if</span> count<span class="token operator">>=</span>size<span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> result
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>row_nums<span class="token operator">-</span>level<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                row<span class="token operator">+=</span><span class="token number">1</span>
+                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                count<span class="token operator">+=</span><span class="token number">1</span>
+                <span class="token keyword">if</span> count<span class="token operator">>=</span>size<span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> result
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>col_nums<span class="token operator">-</span>level<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                col<span class="token operator">-=</span><span class="token number">1</span>
+                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                count<span class="token operator">+=</span><span class="token number">1</span>
+                <span class="token keyword">if</span> count<span class="token operator">>=</span>size<span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> result
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>level<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>row_nums<span class="token operator">-</span>level<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                row<span class="token operator">-=</span><span class="token number">1</span>
+                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                count<span class="token operator">+=</span><span class="token number">1</span>
+                <span class="token keyword">if</span> count<span class="token operator">>=</span>size<span class="token punctuation">:</span>
+                    <span class="token keyword">return</span> result
+            level<span class="token operator">+=</span><span class="token number">1</span>
+            col<span class="token operator">+=</span><span class="token number">1</span>
+            result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>matrix<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">)</span>
+            count<span class="token operator">+=</span><span class="token number">1</span>
+        <span class="token keyword">return</span> result<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="28-包含min函数的栈"><a href="#28-包含min函数的栈" class="headerlink" title="28.包含min函数的栈"></a>28.<a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/" target="_blank" rel="noopener">包含min函数的栈</a></h2><p>思路：入栈、出栈、取栈顶元素的操作都很简单，Java中可以用数组或者链表来模拟，而python中可以直接用列表来模拟。唯一的难点在于如何找到当前最小值。如果取最小值的时候遍历整个栈，时间复杂度会是线性的，比较高。我们可以以空间换时间，通过建立一个辅助栈，记录当前栈中的某个元素及其之前的所有元素中的最小值。</p>
+<ul>
+<li>时间复杂度：$O(1)$。</li>
+<li>空间复杂度：$O(N)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MinStack</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        initialize your data structure here.
+        """</span>
+        self<span class="token punctuation">.</span>A<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>B<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> None<span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>A<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>B<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">if</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>B<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span> <span class="token operator">or</span> x<span class="token operator">&lt;</span>self<span class="token punctuation">.</span>B<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token keyword">else</span> self<span class="token punctuation">.</span>B<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span>B<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> None<span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>A<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>B<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>A<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">min</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>B<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># Your MinStack object will be instantiated and called as such:</span>
+<span class="token comment" spellcheck="true"># obj = MinStack()</span>
+<span class="token comment" spellcheck="true"># obj.push(x)</span>
+<span class="token comment" spellcheck="true"># obj.pop()</span>
+<span class="token comment" spellcheck="true"># param_3 = obj.top()</span>
+<span class="token comment" spellcheck="true"># param_4 = obj.min()</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="29-栈的压入、弹出序列"><a href="#29-栈的压入、弹出序列" class="headerlink" title="29.栈的压入、弹出序列"></a>29.<a href="https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/" target="_blank" rel="noopener">栈的压入、弹出序列</a></h2><p>思路：辅助栈模拟法。通过采用一个辅助栈模拟压入、弹出的过程。按照压入序列，每次往辅助栈中压入一个数字，同时查看弹出序列中的第 i 个元素是否为辅助栈的栈顶元素（i初始为0），是则从辅助栈中弹出该元素，并将 i 加1，尝试弹出下一个元素，否则继续压入数字。如果最终辅助栈为空，说明弹出序列在当前压入序列下合法。</p>
+<ul>
+<li>时间复杂度：$O(N)$。将所有元素一遍入栈，一遍出栈，需要 $O(2N)$。</li>
+<li>空间复杂度：$O(N)$。使用了辅助栈 <code>st</code>。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">validateStackSequences</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> pushed<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">,</span> popped<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>
+        stack<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        i<span class="token operator">=</span><span class="token number">0</span>
+        <span class="token keyword">for</span> num <span class="token keyword">in</span> pushed<span class="token punctuation">:</span>
+            stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">(</span>popped<span class="token punctuation">)</span> <span class="token operator">and</span> len<span class="token punctuation">(</span>stack<span class="token punctuation">)</span><span class="token operator">></span><span class="token number">0</span> <span class="token operator">and</span> stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span>popped<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                i<span class="token operator">+=</span><span class="token number">1</span> 
+        <span class="token keyword">return</span> <span class="token boolean">True</span> <span class="token keyword">if</span> stack<span class="token operator">==</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">else</span> <span class="token boolean">False</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="30-I-从上到下打印二叉树"><a href="#30-I-从上到下打印二叉树" class="headerlink" title="30. I. 从上到下打印二叉树"></a>30.<a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/" target="_blank" rel="noopener"> I. 从上到下打印二叉树</a></h2><p>思路：基本的BFS，队列实现。</p>
+<ul>
+<li><p>时间复杂度：$O(N)$。</p>
+</li>
+<li><p>空间复杂度：$O(N)$。</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for a binary tree node.</span>
+<span class="token comment" spellcheck="true"># class TreeNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.left = None</span>
+<span class="token comment" spellcheck="true">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">levelOrder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        queue<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> root<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+            queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+            i<span class="token operator">=</span><span class="token number">0</span>
+            <span class="token keyword">while</span> i<span class="token operator">&lt;</span>len<span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> queue<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                    <span class="token keyword">if</span> queue<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>left<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                        queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>queue<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+                    <span class="token keyword">if</span> queue<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>right<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                        queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>queue<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+                i<span class="token operator">+=</span><span class="token number">1</span>
+            queue<span class="token operator">=</span><span class="token punctuation">[</span>node<span class="token punctuation">.</span>val <span class="token keyword">for</span> node <span class="token keyword">in</span> queue<span class="token punctuation">]</span>
+        <span class="token keyword">return</span> queue<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="31-II-从上到下打印二叉树-II"><a href="#31-II-从上到下打印二叉树-II" class="headerlink" title="31.II. 从上到下打印二叉树 II"></a>31.<a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/" target="_blank" rel="noopener">II. 从上到下打印二叉树 II</a></h2><p>思路：依然是BFS的基本题，采用队列的方式。每一层开始时记录下当前队列中的节点数目 L，并开始让父节点出队，左右子节点非空入队，共重复L次，即完成了一层的遍历，将当前队列中的节点添加至结果数组中。</p>
+<ul>
+<li><p>时间复杂度：$O(N)$。</p>
+</li>
+<li><p>空间复杂度：$O(N)$。</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for a binary tree node.</span>
+<span class="token comment" spellcheck="true"># class TreeNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.left = None</span>
+<span class="token comment" spellcheck="true">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">levelOrder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        result<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        queue<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> root<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+            queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+            <span class="token keyword">while</span> queue<span class="token operator">!=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>node<span class="token punctuation">.</span>val <span class="token keyword">for</span> node <span class="token keyword">in</span> queue<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                l<span class="token operator">=</span>len<span class="token punctuation">(</span>queue<span class="token punctuation">)</span>
+                <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">if</span> queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>left<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                        queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+                    <span class="token keyword">if</span> queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>right<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                        queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+                    queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> result            <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="32-III-从上到下打印二叉树-III"><a href="#32-III-从上到下打印二叉树-III" class="headerlink" title="32. III. 从上到下打印二叉树 III"></a>32.<a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/" target="_blank" rel="noopener"> III. 从上到下打印二叉树 III</a></h2><p>思路：依然是BFS的基本题，使用一个level变量记录一下当前的层数即可。</p>
+<ul>
+<li><p>时间复杂度：$O(N)$。</p>
+</li>
+<li><p>空间复杂度：$O(N)$。</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for a binary tree node.</span>
+<span class="token comment" spellcheck="true"># class TreeNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.left = None</span>
+<span class="token comment" spellcheck="true">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">levelOrder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        result<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        queue<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        level<span class="token operator">=</span><span class="token number">0</span>
+        <span class="token keyword">if</span> root<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+            queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+            <span class="token keyword">while</span> queue<span class="token operator">!=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> level<span class="token operator">%</span><span class="token number">2</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+                    result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>node<span class="token punctuation">.</span>val <span class="token keyword">for</span> node <span class="token keyword">in</span> queue<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>node<span class="token punctuation">.</span>val <span class="token keyword">for</span> node <span class="token keyword">in</span> queue<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                l<span class="token operator">=</span>len<span class="token punctuation">(</span>queue<span class="token punctuation">)</span>
+                <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>l<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">if</span> queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>left<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                        queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+                    <span class="token keyword">if</span> queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>right<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                        queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+                    queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+                level<span class="token operator">+=</span><span class="token number">1</span>
+        <span class="token keyword">return</span> result   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="33-二叉搜索树的后序遍历序列"><a href="#33-二叉搜索树的后序遍历序列" class="headerlink" title="33.二叉搜索树的后序遍历序列"></a>33.<a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/" target="_blank" rel="noopener">二叉搜索树的后序遍历序列</a></h2><p>思路：这道题就是看数组是否满足某一个二叉搜索树的后序遍历。我们知道：</p>
+<ul>
+<li>后序遍历的最后一个节点都是根节点。数组顺序为： [ 左子树 | 右子树 | 根节点 ] 。</li>
+<li>对于二叉搜索树的任意一个节点，左子树的所有节点必然小于它，右子树的所有节点必然大于它。</li>
+</ul>
+<p>根据上述两个性质，我们可以进行递归分治判断，我们先判断根节点的的左子树是否均比他小，右子树是否均比他大，若成立，则继续判断左子树和右子树是否符合二叉搜索树的定义。至于如何划分子树，可以根据根节点来划分，如果出现了比根节点大的值，则该节点及其后在根节点之前的所有节点均为右子树的节点。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">verifyPostorder</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> postorder<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">match</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span>right<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> left<span class="token operator">>=</span>right<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">True</span>
+            p<span class="token operator">=</span>left
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>postorder<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">&lt;</span>postorder<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                p<span class="token operator">+=</span><span class="token number">1</span>
+            pos<span class="token operator">=</span>p
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>postorder<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token operator">></span>postorder<span class="token punctuation">[</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                p<span class="token operator">+=</span><span class="token number">1</span>
+            <span class="token keyword">if</span> p<span class="token operator">==</span>right<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> match<span class="token punctuation">(</span>left<span class="token punctuation">,</span>pos<span class="token number">-1</span><span class="token punctuation">)</span> <span class="token operator">and</span> match<span class="token punctuation">(</span>pos<span class="token punctuation">,</span>right<span class="token number">-1</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">return</span> match<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>len<span class="token punctuation">(</span>postorder<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><p>时间复杂度：$O(N^2)$。最坏情况下是当二叉树退化为链表。</p>
+</li>
+<li><p>空间复杂度：$O(N)$。</p>
+</li>
+</ul>
+<h2 id="34-二叉树中和为某一值的路径"><a href="#34-二叉树中和为某一值的路径" class="headerlink" title="34.二叉树中和为某一值的路径"></a>34.<a href="https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/" target="_blank" rel="noopener">二叉树中和为某一值的路径</a></h2><p>思路：递归搜索+回溯。类似于组合数的问题，我在另一篇博客中有提到过，基本做法是从根节点向下递归搜索，如果当前节点为空，则直接返回，如果当前节点不为空，则将当前节点加入至当前路径列表，并将它的值加入至当前路径和中。接着讨论两种情况：（1）当前节点为叶子节点且当前路径和为0，那么将当前路径加入至结果列表中；（2）否则，继续搜索左孩子节点和右孩子节点。讨论完成后，回溯至最初的状态。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for a binary tree node.</span>
+<span class="token comment" spellcheck="true"># class TreeNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.left = None</span>
+<span class="token comment" spellcheck="true">#         self.right = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">pathSum</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> TreeNode<span class="token punctuation">,</span> sum<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        result<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span>re<span class="token punctuation">,</span>sum<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> root<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                <span class="token keyword">return</span>
+            re<span class="token punctuation">.</span>append<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+            sum<span class="token operator">-=</span>root<span class="token punctuation">.</span>val
+            <span class="token keyword">if</span> sum<span class="token operator">==</span><span class="token number">0</span> <span class="token operator">and</span> root<span class="token punctuation">.</span>left<span class="token operator">==</span>None <span class="token operator">and</span> root<span class="token punctuation">.</span>right<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>re<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                dfs<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">,</span>re<span class="token punctuation">,</span>sum<span class="token punctuation">)</span>
+                dfs<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">,</span>re<span class="token punctuation">,</span>sum<span class="token punctuation">)</span>
+            re<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+            sum<span class="token operator">+=</span>root<span class="token punctuation">.</span>val
+
+        dfs<span class="token punctuation">(</span>root<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>sum<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>node<span class="token punctuation">.</span>val <span class="token keyword">for</span> node <span class="token keyword">in</span> re<span class="token punctuation">]</span> <span class="token keyword">for</span> re <span class="token keyword">in</span> result<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><p>时间复杂度：$O(N)$。本质上就是一次先序遍历加上判断的过程。</p>
+</li>
+<li><p>空间复杂度：$O(N)$。</p>
+</li>
+</ul>
+<h2 id="35-复杂链表的复制"><a href="#35-复杂链表的复制" class="headerlink" title="35.复杂链表的复制"></a>35.<a href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/" target="_blank" rel="noopener">复杂链表的复制</a></h2><p>思路：这题本质上是模拟复杂链表的深拷贝。既然是深拷贝，我们就不能直接引用，而是应该使用新建值相同的节点类的方式进行拷贝。但是这道题有一个问题，就是存在random指针指向链表中的任意节点或者 <code>null</code>。 所以如何保证拷贝random指针的节点和拷贝next指针的节点的一致性，是我们需要解决的问题。也就是说，如果我们按照next指针顺序进行拷贝节点的话，如果需要拷贝的节点已经因为之前被某个节点的random指针指向，而已经被拷贝过了，如何知道它已经拷贝且正确指向他呢？</p>
+<p>我的思路是使用一个哈希表，哈希表的key是原链表中的节点，哈希表的value是新拷贝得到的节点。当我们进行拷贝时，如果需要拷贝的节点尚且不在哈希表的key中，则我们可以进行拷贝，并将原节点-新节点的键值对保存进哈希表中，当我们再次拷贝某节点，会发现它已被拷贝过，直接将next或random指针指向它即可。</p>
+<ul>
+<li><p>时间复杂度：$O(N)$。</p>
+</li>
+<li><p>空间复杂度：$O(N)$。哈希表使用了额外的空间。</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">copyRandomList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> head<span class="token operator">==</span>None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        copyhead<span class="token operator">=</span>Node<span class="token punctuation">(</span>head<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        p<span class="token operator">=</span>copyhead
+        q<span class="token operator">=</span>head
+        visited<span class="token operator">=</span><span class="token punctuation">{</span>head<span class="token punctuation">:</span>copyhead<span class="token punctuation">}</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>q<span class="token operator">!=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> q<span class="token punctuation">.</span>next<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> q<span class="token punctuation">.</span>next <span class="token operator">not</span> <span class="token keyword">in</span> visited<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    visited<span class="token punctuation">[</span>q<span class="token punctuation">.</span>next<span class="token punctuation">]</span><span class="token operator">=</span>Node<span class="token punctuation">(</span>q<span class="token punctuation">.</span>next<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+                p<span class="token punctuation">.</span>next<span class="token operator">=</span>visited<span class="token punctuation">[</span>q<span class="token punctuation">.</span>next<span class="token punctuation">]</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                p<span class="token punctuation">.</span>next<span class="token operator">=</span>None
+            <span class="token keyword">if</span> q<span class="token punctuation">.</span>random<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> q<span class="token punctuation">.</span>random <span class="token operator">not</span> <span class="token keyword">in</span> visited<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    visited<span class="token punctuation">[</span>q<span class="token punctuation">.</span>random<span class="token punctuation">]</span><span class="token operator">=</span>Node<span class="token punctuation">(</span>q<span class="token punctuation">.</span>random<span class="token punctuation">.</span>val<span class="token punctuation">)</span>
+                p<span class="token punctuation">.</span>random<span class="token operator">=</span>visited<span class="token punctuation">[</span>q<span class="token punctuation">.</span>random<span class="token punctuation">]</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                p<span class="token punctuation">.</span>random<span class="token operator">=</span>None
+            p<span class="token punctuation">,</span>q<span class="token operator">=</span>p<span class="token punctuation">.</span>next<span class="token punctuation">,</span>q<span class="token punctuation">.</span>next
+        <span class="token keyword">return</span> copyhead<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其他思路：</p>
+<p><img src="35.png" alt></p>
+<ul>
+<li>我们可以将链表看成是graph，利用BFS或者DFS+哈希表进行求解。本质思想和直接迭代按照单链表的next指针顺序复制是一样的。</li>
+</ul>
+<h2 id="35-二叉搜索树与双向链表"><a href="#35-二叉搜索树与双向链表" class="headerlink" title="35.二叉搜索树与双向链表"></a>35.<a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/" target="_blank" rel="noopener">二叉搜索树与双向链表</a></h2><p>思路：首先，我们知道，二叉搜索树的性质有一条是中序遍历所得到的结果是升序排序的序列。恰好，我们要构造的双向链表也是升序排序的，所以我们会想到使用中序遍历来进行原地转换。</p>
+<p>具体算法如下：</p>
+<ul>
+<li><p>设置全局变量head，tail指针，指向当前链表的头尾节点，初始均为None。（为什么一定要全局节点，因为这里的指针是不可变类型，所以在内部函数中对其修改不会改变外层的值，如果是可变类型则会产生改变）</p>
+</li>
+<li><p>开始中序遍历，如果当前节点为空，那么什么也不做，直接返回。如果当前节点非空，先递归遍历左子树。如果当前head指针非空，说明当前节点是二叉搜索树的第一个节点，即最小值，自然也就是双向链表的head节点，那么让head指向他。如果当前tail非空，说明左子树的遍历已经为双向链表加入了节点，且tail指向的是当前双向链表的尾部节点，那么进行如下修改：（1）让当前节点的left指针指向当前tail（2）让当前tail的right指针指向当前节点。接下来，无论tail是否为空，让它指向当前节点。上述三个操作相当于把当前节点加入至双向链表尾部，并让tail指向他。接下来，递归遍历右子树。简而言之，上述过程就是按照中序遍历的顺序不断原地修改二叉搜索树，tail指针始终指向当前节点的前一个节点。</p>
+</li>
+<li><p>完成中序遍历后，我们获得了一个头尾尚未连接的双向链表，此时我们将头节点和尾节点连接即可。</p>
+</li>
+<li><p>时间复杂度：$O(N)$。</p>
+</li>
+<li><p>空间复杂度：$O(1)$。</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+"""</span>
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>head<span class="token operator">=</span>None
+        self<span class="token punctuation">.</span>tail<span class="token operator">=</span>None
+
+    <span class="token keyword">def</span> <span class="token function">treeToDoublyList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">:</span> <span class="token string">'Node'</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token string">'Node'</span><span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">inorder</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> root<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> 
+            inorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> self<span class="token punctuation">.</span>head<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>head<span class="token operator">=</span>root
+            <span class="token keyword">if</span> self<span class="token punctuation">.</span>tail<span class="token operator">!=</span>None<span class="token punctuation">:</span>
+                root<span class="token punctuation">.</span>left<span class="token operator">=</span>self<span class="token punctuation">.</span>tail
+                self<span class="token punctuation">.</span>tail<span class="token punctuation">.</span>right<span class="token operator">=</span>root
+            self<span class="token punctuation">.</span>tail<span class="token operator">=</span>root
+            inorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> root<span class="token operator">==</span>None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        inorder<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>head<span class="token punctuation">.</span>left<span class="token operator">=</span>self<span class="token punctuation">.</span>tail
+        self<span class="token punctuation">.</span>tail<span class="token punctuation">.</span>right<span class="token operator">=</span>self<span class="token punctuation">.</span>head
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>head<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="36-序列化二叉树"><a href="#36-序列化二叉树" class="headerlink" title="36.序列化二叉树"></a>36.<a href="https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/" target="_blank" rel="noopener">序列化二叉树</a></h2><p>思路：这道题我曾经在大二的数据结构课上做过，可以用两种方式来解决。这里我们先说层次遍历的解法。</p>
+<p>BFS的解法：</p>
+<ul>
+<li>序列化：BFS的序列化按照常规做法，依然是使用队列来完成。先将根节点加入队列。每次从队首取出一个节点，如果当前节点为空，那么向序列化的字符串中添加一个”*”作为占位符，否则将它的value添加进字符串，中间用“，”隔开。然后，将其左右孩子节点均加入队列中。重复上述过程直到队列为空。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Encodes a tree to a single string.
+
+        :type root: TreeNode
+        :rtype: str
+        """</span>
+        queue<span class="token operator">=</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span>
+        data<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>queue<span class="token operator">!=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            node<span class="token operator">=</span>queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> node<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                data<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                data<span class="token punctuation">.</span>append<span class="token punctuation">(</span>str<span class="token punctuation">(</span>node<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                queue<span class="token punctuation">.</span>extend<span class="token punctuation">(</span><span class="token punctuation">[</span>node<span class="token punctuation">.</span>left<span class="token punctuation">,</span>node<span class="token punctuation">.</span>right<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">","</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>反序列化：BFS的反序列化较为复杂，由于不是完全二叉树，不可以直接用下标运算求解子节点位置，需要使用一个辅助队列来存放当前剩余的需要处理的节点，并使用一个指针来遍历序列化字符串中逗号隔开的每个元素。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """</span>
+        data<span class="token operator">=</span>data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"*"</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        root<span class="token operator">=</span>TreeNode<span class="token punctuation">(</span>int<span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        queue<span class="token operator">=</span><span class="token punctuation">[</span>root<span class="token punctuation">]</span>
+        i<span class="token operator">=</span><span class="token number">1</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>queue<span class="token operator">!=</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            node<span class="token operator">=</span>queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token string">"*"</span><span class="token punctuation">:</span>
+                leftNode<span class="token operator">=</span>TreeNode<span class="token punctuation">(</span>int<span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                node<span class="token punctuation">.</span>left<span class="token operator">=</span>leftNode
+                queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>leftNode<span class="token punctuation">)</span>
+            i<span class="token operator">+=</span><span class="token number">1</span>
+            <span class="token keyword">if</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token string">"*"</span><span class="token punctuation">:</span>
+                rightNode<span class="token operator">=</span>TreeNode<span class="token punctuation">(</span>int<span class="token punctuation">(</span>data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                node<span class="token punctuation">.</span>right<span class="token operator">=</span>rightNode
+                queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>rightNode<span class="token punctuation">)</span>
+            i<span class="token operator">+=</span><span class="token number">1</span>
+        <span class="token keyword">return</span> root<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一种更为简单直观的方式是DFS的做法，直接使用先序遍历求解。</p>
+<ul>
+<li>序列化：先序遍历，每次将当前节点加入至序列化字符串中，如果当前节点为空，则加入“*”占位符，否则加入value，然后递归遍历左子树和右子树。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">serialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Encodes a tree to a single string.
+
+        :type root: TreeNode
+        :rtype: str
+        """</span>
+        data<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">def</span> <span class="token function">preorder</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> root<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                data<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                data<span class="token punctuation">.</span>append<span class="token punctuation">(</span>str<span class="token punctuation">(</span>root<span class="token punctuation">.</span>val<span class="token punctuation">)</span><span class="token punctuation">)</span>
+                preorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span>
+                preorder<span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span>
+        preorder<span class="token punctuation">(</span>root<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token string">","</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>反序列化：依然是先序遍历的方式递归重建二叉树。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python">    <span class="token keyword">def</span> <span class="token function">deserialize</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """</span>
+        <span class="token keyword">def</span> <span class="token function">build</span><span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            now<span class="token operator">=</span>queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">if</span> now<span class="token operator">==</span><span class="token string">"*"</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> None
+            root<span class="token operator">=</span>TreeNode<span class="token punctuation">(</span>int<span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            root<span class="token punctuation">.</span>left<span class="token operator">=</span>build<span class="token punctuation">(</span>queue<span class="token punctuation">)</span>
+            root<span class="token punctuation">.</span>right<span class="token operator">=</span>build<span class="token punctuation">(</span>queue<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> root
+
+        queue<span class="token operator">=</span>data<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> build<span class="token punctuation">(</span>queue<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="37-字符串的排列"><a href="#37-字符串的排列" class="headerlink" title="37.字符串的排列"></a>37.<a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/" target="_blank" rel="noopener">字符串的排列</a></h2><p>思路：全排列问题，采用DFS+递归的方式解决。需要注意的是这里应该进行去重，去重的思路有两种：</p>
+<ul>
+<li>哈希表或者集合的方式去重。</li>
+<li>先对字符串进行字典序排序（字符串没有sort函数，必须调用全局函数sorted（）），如果当前序号的字符等于前一个字符，且前一个字符尚未被访问，则可以跳过对他的搜索。因为它的所有组合已经被前一个字符的搜索所覆盖了。具体可以参考主站的第47题<a href="https://leetcode-cn.com/problems/permutations-ii/" target="_blank" rel="noopener">全排列 II</a>。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">permutation</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> s<span class="token punctuation">:</span> str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> List<span class="token punctuation">[</span>str<span class="token punctuation">]</span><span class="token punctuation">:</span>
+        visited<span class="token operator">=</span><span class="token punctuation">[</span><span class="token boolean">False</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        s<span class="token operator">=</span>sorted<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+        result<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">def</span> <span class="token function">DFS</span><span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>len<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token operator">==</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>st<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    <span class="token keyword">if</span> visited<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">!=</span><span class="token boolean">True</span> <span class="token operator">and</span> <span class="token operator">not</span><span class="token punctuation">(</span>i<span class="token operator">></span><span class="token number">0</span> <span class="token operator">and</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span>s<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">and</span> visited<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                        visited<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">True</span>
+                        DFS<span class="token punctuation">(</span>st<span class="token operator">+</span>s<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+                        visited<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token boolean">False</span>
+        DFS<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> result<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间复杂度：$O(N*N!)$。N为字符串长度</li>
+<li>空间复杂度：$O(N*N!)$。</li>
+</ul>
+<h2 id="38-数组中出现次数超过一半的数字"><a href="#38-数组中出现次数超过一半的数字" class="headerlink" title="38.数组中出现次数超过一半的数字"></a>38.<a href="https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/" target="_blank" rel="noopener">数组中出现次数超过一半的数字</a></h2><p>思路：排序然后取中位数即可。因为假如某个数字出现次数超过一半，则排序后必然出现在中间位置上。</p>
+<ul>
+<li>时间复杂度：$O(NlogN)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">majorityElement</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        nums<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> nums<span class="token punctuation">[</span>len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">2</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="39-最小的k个数"><a href="#39-最小的k个数" class="headerlink" title="39.最小的k个数"></a>39.<a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/" target="_blank" rel="noopener">最小的k个数</a></h2><p>思路：经典的TOP K问题！主要思路有有两种，分别是使用堆（优先队列）或者快速选择。</p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><ul>
+<li>基本思路：使用一个大顶堆来存储数组中前k小的元素。一开始，先使用数组中前K个元素建大顶堆，此时，堆顶的元素为前K个元素中的最大值。然后从K+1个元素向后依次遍历，如果当前元素小于大顶堆的堆顶元素，说明堆顶元素不仅大于堆中的K-1个元素，且大于当前元素，必不可能是前K小的元素。所以，我们将当前元素加入至堆中，并调整堆至继续符合大顶堆。继续向后遍历，维护大顶堆，直到遍历到数组末尾，此时堆中的元素即为数组的前K小的值。</li>
+<li>时间复杂度：$O()$</li>
+</ul>
 
             </div>
             <hr />
@@ -960,44 +1772,41 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/21/jian-zhi-offer-ti-jie/">
+                <a href="/2020/03/25/nlp-zi-xue-bi-ji-xian-xing-mo-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="剑指Offer题解">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="NLP自学笔记：线性模型">
                         
-                        <span class="card-title">剑指Offer题解</span>
+                        <span class="card-title">NLP自学笔记：线性模型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言最近随便投了字节跳动的暑期实习生，没想到简历过关了，4.12日先去笔试。考虑到Leetcode上面的题目比较多，决定先把《剑指Offer》上的所有题目都刷一遍。
-1. 数组中重复的数字思路：使用哈希表或者集合等数据结构，遍历数组中的数字
+                            前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于线性模型的一些个人见解和思考，同时参考了一些书籍和网上的资料编写而
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-21
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-25
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/编程算法/" class="post-category" target="_blank">
-                                    编程算法
+                            <a href="/categories/机器学习/" class="post-category" target="_blank">
+                                    机器学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1005,8 +1814,12 @@
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/tags/剑指Offer/" target="_blank">
-                        <span class="chip bg-color">剑指Offer</span>
+                    <a href="/tags/机器学习/" target="_blank">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/自然语言处理/" target="_blank">
+                        <span class="chip bg-color">自然语言处理</span>
                     </a>
                     
                 </div>
@@ -1024,7 +1837,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="NLP自学笔记：从HMM到条件随机场">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="NLP自学笔记：从HMM到条件随机场">
                         
                         <span class="card-title">NLP自学笔记：从HMM到条件随机场</span>
                     </div>
@@ -1214,7 +2027,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">29.5k</span>
+            <span class="white-color">49.5k</span>
             
 
             <br>
