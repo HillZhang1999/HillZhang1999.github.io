@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
+    
+    <lastmod>2020-03-29T06:41:25.917Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/</loc>
     
-    <lastmod>2020-03-25T06:19:56.889Z</lastmod>
+    <lastmod>2020-03-28T08:53:12.290Z</lastmod>
     
   </url>
   
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/</loc>
     
     <lastmod>2020-03-20T14:32:10.916Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
-    
-    <lastmod>2020-03-20T06:55:15.843Z</lastmod>
     
   </url>
   
@@ -65,14 +65,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/archives/index.html</loc>
+    <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/archives/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
@@ -86,7 +86,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>http://yoursite.com/contact/index.html</loc>
+    
+    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
@@ -94,13 +101,6 @@
   
   <url>
     <loc>http://yoursite.com/tags/index.html</loc>
-    
-    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/contact/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
