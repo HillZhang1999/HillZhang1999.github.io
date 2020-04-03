@@ -2,16 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
-    <lastmod>2020-03-29</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/</loc>
-    <lastmod>2020-03-28</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2020/03/25/nlp-zi-xue-bi-ji-xian-xing-mo-xing/</loc>
-    <lastmod>2020-03-25</lastmod>
+    <lastmod>2020-04-03</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/</loc>
-    <lastmod>2020-03-24</lastmod>
+    <lastmod>2020-04-03</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/</loc>
+    <lastmod>2020-03-31</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/</loc>
     <lastmod>2020-03-20</lastmod>
