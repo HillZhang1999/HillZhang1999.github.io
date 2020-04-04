@@ -213,7 +213,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -372,14 +372,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    19.3k
+                    20k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    84 分
+                    87 分
                 </div>
                 
                 
@@ -2463,6 +2463,64 @@ class Solution:
 <li>时间复杂度：$O(n)$。</li>
 <li>空间复杂度：$O(n)$。</li>
 </ul>
+<h2 id="2020-4-4-（2-hard-1easy）"><a href="#2020-4-4-（2-hard-1easy）" class="headerlink" title="2020.4.4 （2 hard 1easy）"></a>2020.4.4 （2 hard 1easy）</h2><h3 id="124题-二叉树中的最大路径和"><a href="#124题-二叉树中的最大路径和" class="headerlink" title="124题  二叉树中的最大路径和"></a>124题 <a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener"> 二叉树中的最大路径和</a></h3><p><img src="124.png" alt="第124题"></p>
+<h4 id="思路：-12"><a href="#思路：-12" class="headerlink" title="思路："></a>思路：</h4><p>我的思路是递归求解，先给出代码：</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        self.max_sum=root.val
+        def recur(root):
+            if root==None:
+                return 0
+            left_sum=max(recur(root.left),0)
+            right_sum=max(recur(root.right),0)
+            now_path_sum=root.val+left_sum+right_sum
+            self.max_sum=max(self.max_sum,now_path_sum)
+            return root.val+max(left_sum,right_sum)
+        recur(root)
+        return self.max_sum
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果当前节点为空，我们的递归函数返回0，表示经过该节点的最大路径和为0。</p>
+<p>接着我们递归计算左子树和右子树，如果递归函数返回值大于0，说明加上它有可能会使当前节点路径和变大，否则不走路径和小于0的子树。</p>
+<p>当前节点的最大路径和即为当前节点的值加上左子树和0的最大值加上右子树和0的最大值，加上后即可尝试更新当前二叉树的最大路径和。</p>
+<p>接下来是进行返回，也是本题中最容易出错的地方！返回值不是当前节点的最大路径和，而是只能走一边的子树，因为二叉树的节点不能被重复访问！</p>
+<h3 id="128题-最长连续序列"><a href="#128题-最长连续序列" class="headerlink" title="128题  最长连续序列"></a>128题 <a href="https://leetcode-cn.com/problems/longest-consecutive-sequence/" target="_blank" rel="noopener"> 最长连续序列</a></h3><p><img src="128.png" alt="第128题"></p>
+<h4 id="思路：-13"><a href="#思路：-13" class="headerlink" title="思路："></a>思路：</h4><p>我们先从暴力算法想起，暴力算法的做法是遍历数组中的每一个数，查看他的下一个数是否在数组中，如果在，那么就再查看下一个数，直到出现不在数组中的数，记录下当前长度并尝试更新最大长度。由于数组无序，所以每次查找都需要$O(n)$的时间复杂度，最坏情况下（即数组降序），需要的时间复杂度为$O(n^3)$。</p>
+<p>为了优化至$O(n)$的时间复杂度，首先，我们可以建立辅助的数据结构——哈希表。这里，我们使用哈希集合，hashset和hashmap的区别在于，hashset只存key不存value，而hashmap存了键值对。我们知道，哈希集合的查找时间复杂度仅需$O(1)$（直接哈希函数），所以此时的时间复杂度已经降为$O(n^2)$。</p>
+<p>为了进一步优化，我们进行剪枝操作，当我们访问到num，假如num-1已经在hashset中，那么我们就不对他进行向后搜索。即：我们现在只对序列开头的数进行向后搜索。因为我们使用的是hashset，所以判断num-1是否存在依然很快。</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        hashset=set(nums)
+        first_num=0
+        max_length=0
+        for num in nums:
+            if num-1 not in hashset:
+                length=1
+                while num+1 in hashset:
+                    num+=1
+                    length+=1
+                max_length=max(length,max_length)
+        return max_length
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<h3 id="136题-只出现一次的数字"><a href="#136题-只出现一次的数字" class="headerlink" title="136题 只出现一次的数字"></a>136题 <a href="https://leetcode-cn.com/problems/single-number/" target="_blank" rel="noopener">只出现一次的数字</a></h3><p><img src="136.png" alt="第136题"></p>
+<h4 id="思路：-14"><a href="#思路：-14" class="headerlink" title="思路："></a>思路：</h4><p>剑指Offer原题，异或运算，一个数异或自身为0，异或0为自身。</p>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        result=0
+        for num in nums:
+            result^=num
+        return result
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -2809,7 +2867,7 @@ class Solution:
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="KMP算法">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="KMP算法">
                         
                         <span class="card-title">KMP算法</span>
                     </div>
@@ -2859,7 +2917,7 @@ class Solution:
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（附代码）">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（附代码）">
                         
                         <span class="card-title">十大经典排序算法整理汇总（附代码）</span>
                     </div>
@@ -3068,7 +3126,7 @@ class Solution:
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">58.8k</span>
+            <span class="white-color">52.2k</span>
             
 
             <br>

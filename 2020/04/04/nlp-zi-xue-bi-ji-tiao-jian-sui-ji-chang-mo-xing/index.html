@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="KMP算法, 章岳 学习笔记 计算机 算法 程序">
+    <meta name="keywords" content="NLP自学笔记：条件随机场模型, 章岳 学习笔记 计算机 算法 程序">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="前言本文整理了KMP算法的原理及代码，可以使用LEETCODE上的题目进行测试：28. 实现 strStr()。
-从Brute-Force算法说起BF算法是最为简单的一种字符串匹配算法，它采用纯暴力匹配的思想。对于目标串S和模式串P，其基本">
+    <meta name="description" content="前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于条件随机场模型（Condition Random Field Mo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>KMP算法 | HillZhang的博客</title>
+    <title>NLP自学笔记：条件随机场模型 | HillZhang的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -213,13 +212,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        KMP算法
+                        NLP自学笔记：条件随机场模型
                     </div>
                 </div>
             </div>
@@ -334,6 +333,14 @@
                             <span class="chip bg-color">算法</span>
                         </a>
                         
+                        <a href="/tags/机器学习/" target="_blank">
+                            <span class="chip bg-color">机器学习</span>
+                        </a>
+                        
+                        <a href="/tags/自然语言处理/" target="_blank">
+                            <span class="chip bg-color">自然语言处理</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
@@ -342,8 +349,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/编程算法/" class="post-category" target="_blank">
-                            编程算法
+                        <a href="/categories/机器学习/" class="post-category" target="_blank">
+                            机器学习
                         </a>
                         
                     </div>
@@ -354,7 +361,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-04-04
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -368,14 +375,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    11 分
                 </div>
                 
                 
@@ -386,95 +393,64 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文整理了KMP算法的原理及代码，可以使用LEETCODE上的题目进行测试：<a href="https://leetcode-cn.com/problems/implement-strstr/submissions/" title="28. 实现 strStr()" target="_blank" rel="noopener">28. 实现 strStr()</a>。</p>
-<h2 id="从Brute-Force算法说起"><a href="#从Brute-Force算法说起" class="headerlink" title="从Brute-Force算法说起"></a>从Brute-Force算法说起</h2><p>BF算法是最为简单的一种字符串匹配算法，它采用纯暴力匹配的思想。对于目标串S和模式串P，其基本匹配思路如下：</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是我在学习苏州大学李正华老师的中文信息处理课程（<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/" target="_blank" rel="noopener">中文信息处理（Chinese Information Processing）Course Resources</a>）时，对于条件随机场模型（Condition Random Field Model）的一些个人见解和思考，同时参考了一些书籍和网上的资料编写而成。写这篇文章的主要目的是加深自己对于该模型的理解，如有错误欢迎在评论区指出，非常感谢！</p>
+<h2 id="从问题出发"><a href="#从问题出发" class="headerlink" title="从问题出发"></a>从问题出发</h2><p>与之前的讲解类似，我们在这里依旧围绕自然语言处理中的经典问题<strong>词性标注问题</strong>进行讨论和解释。</p>
 <ul>
-<li>枚举 i = 0, 1, 2 … , len（S）-len（P）</li>
-<li>将 S[i : i+len（P）] 与 P 作比较。如果一致，则找到了一个匹配。</li>
+<li>给定一个句子X，输出句子中每一个单词对应的词性。</li>
 </ul>
-<p><img src="1.jpg" alt="BF算法匹配流程"></p>
-<p>BF算法的缺点在于每一次都是将目标串中的指针直接回溯为i+1。</p>
-<p>我们记 n = |S| 为串 S 的长度，m = |P| 为串 P 的长度。不难想到，最坏情况下其时间复杂度为$O(MN)$。</p>
-<p><img src="2.jpg" alt="BF算法python实现"></p>
-<h2 id="KMP算法：Brute-Force算法的优化"><a href="#KMP算法：Brute-Force算法的优化" class="headerlink" title="KMP算法：Brute-Force算法的优化"></a>KMP算法：Brute-Force算法的优化</h2><p>为了优化BF算法，我们需要尽可能地减少匹配的趟数。那么，我们如何达到这一目的呢？</p>
-<p>如果把模式串视为一把标尺，在主串上移动，那么 Brute-Force 就是每次失配之后只右移一位；改进算法则是每次失配之后，移很多位，跳过那些不可能匹配成功的位置。为了减少重复匹配，我们需要在失配处计算移动的位数，而不是单纯的回退目标串和模式串中的指针。通过一个名叫“部分匹配表”的东西，我们可以跳过绝不可能匹配成功的字符串比较，从而实现算法的优化。</p>
-<h3 id="部分匹配表"><a href="#部分匹配表" class="headerlink" title="部分匹配表"></a>部分匹配表</h3><p>部分匹配表（Partial Match Table）的含义为：</p>
+<p><img src="1.png" alt="词性标注任务"></p>
+<h2 id="条件随机场模型的由来"><a href="#条件随机场模型的由来" class="headerlink" title="条件随机场模型的由来"></a>条件随机场模型的由来</h2><p>我在之前已经讨论过了隐马尔可夫模型（HMM）和对数线性模型（Log-Linear Model），我觉得，有了之前的过程基础，我们接下来对于条件随机场模型的学习将变得非常轻松，因为<strong>实际上条件随机场模型只是隐马尔可夫模型和对数线性模型的结合。</strong>当我们打好了基础，剩下来的只有细微的调整和修补。</p>
+<p>首先，我们来看下面这张图，它阐述了我们要学习的条件随机场模型和之前的两个模型的关系。<strong>顺便说一下，本文讨论的条件随机场模型都是线性链条件随机场（ Linear-chain CRF），这是NLP中常用的CRF形式，此外还有全连接条件随机场（Generl Graph CRF），一般用在CV中，这里就不多叙述。</strong></p>
+<p><img src="2.png" alt="HMM、Log-Linear Model、LC-CRF的关系"></p>
+<p>这张图将三者的关系描述的很清楚。你可以这样去理解LC-CRF的由来：</p>
 <ul>
-<li><p>对于长度为m的字符串P，部分匹配表是与之对应的长度为m的一个数组PMT。</p>
-</li>
-<li><p>PMT[i]的值等于：字符串P的前i位字符组成的子字符串中，前缀集合和后缀集合中公共子串（前缀和后缀不包括自身）的最大长度。</p>
-</li>
+<li>LC-CRF可以看作是<strong>分类模型Log-Linear Model加入了HMM中的转移特征（齐次马尔可夫假设）从而转变成为的结构化分类模型</strong>，从而可以进行Seq2Seq的标注。也就是说，对于样本的预测不再是相互独立的，对于某个样本的预测需要考虑前面（Forward）或者后面（Backward）样本预测的结果。</li>
+<li>LC-CRF也可以看作是<strong>生成模型HMM中引入了Log-Linear Model中的自定义特征函数，把它变成了一个判别模型，解决了HMM的输出独立性假设问题和有限元马尔可夫假设问题</strong>， 不仅可以表达观测之间的依赖，还可表示当前观测与前后多个状态之间的复杂依赖。 </li>
 </ul>
-<p>对于字符串“abababca”，它的PMT如下表所示：</p>
-<p><img src="3.png" alt="PMT"></p>
-<p>例如，对于”aba”，它的前缀集合为{”a”, ”ab”}，后缀 集合为{”ba”, ”a”}。两个集合的交集为{”a”}，那么长度最长的元素就是字符串”a”了，长 度为1，所以对于”aba”而言，它在PMT表中对应的值就是1。再比如，对于字符串”ababa”，它的前缀集合为{”a”, ”ab”, ”aba”, ”abab”}，它的后缀集合为{”baba”, ”aba”, ”ba”, ”a”}， 两个集合的交集为{”a”, ”aba”}，其中最长的元素为”aba”，长度为3。</p>
-<h3 id="如何使用部分匹配表进行优化"><a href="#如何使用部分匹配表进行优化" class="headerlink" title="如何使用部分匹配表进行优化"></a>如何使用部分匹配表进行优化</h3><p><img src="4.png" alt="KMT算法示意图"></p>
-<p>我们以上图为例进行说明。当目标串S的指针为i，模式串P的指针为j时，此时匹配失败了。按照BF算法，我们会将i回退至下标为1处，j回退至下标为0处继续匹配。这显然是很笨拙的。</p>
-<p>通过观察，我们可以发现， S[:i] 和 P[:j] 是成功匹配的，只是 S[i] 和 P[j] 不相同。</p>
-<p>这时，我们在上一节所得的模式串的部分匹配表就派上了用场。通过 PMT[j-1] ，我们可以得知，P[:j] 这一子串中前后缀公共子串的最大长度为4。又因为 S[:i] 和 P[:j] 是相等的，所以 P[:j] 的后缀也就是 S[:i] 的后缀。那么，我们可以推知目标串i之前的4位和模式串开头的4位是相同的。就是图中的灰色部分。那这部分就不用再比较了。</p>
-<p>有了上面的思路，我们就可以使用PMT加速字符串的查找了。我们看到如果是在 j 位 失配，那么影响 j 指针回溯的位置的其实是第 j −1 位的 PMT 值。</p>
-<p>以上其实就是KMP算法的基本思想了，我们总结一下：KMP算法的目的是使用部分匹配表，来跳过必不可能成功的匹配，减少匹配的趟数。</p>
-<h3 id="KMP算法的流程"><a href="#KMP算法的流程" class="headerlink" title="KMP算法的流程"></a>KMP算法的流程</h3><p>我们现在来总结一下KMP算法主程序的基本流程：</p>
-<p>假设现在文本串 S 匹配到 tar 位置，模式串 P 匹配到 pos 位置：</p>
-<ol>
-<li><p>如果当前字符匹配成功，则tar++，pos++，继续匹配二者的下个字符。若当前的pos等于模式串的长度，则说明全部匹配成功，此时可以返回tar减去pos的值，即模式串在目标串中出现的首个字符的下标。</p>
-</li>
-<li><p>如果当前匹配失败，且pos大于0，说明此时模式串已经成功匹配了部分字符，可以尝试利用部分匹配表跳过必然无法匹配成功的子串，令pos=PMT[pos-1]。</p>
-</li>
-<li><p>如果匹配失败，且pos等于0，说明此时模式串的第一个字符就无法匹配，则tar++，尝试与目标串的下个字符匹配。</p>
-</li>
-</ol>
-<p>根据上述的流程，我们可以编写KMP算法主体函数如下：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">        def match(st,pattern):
-            tar=0
-            pos=0
-            PMT=getPMT(pattern)
-            while (tar<len(st)):
-                if (st[tar]==pattern[pos]):
-                    tar+=1
-                    pos+=1
-                    if (pos==len(pattern)):
-                        return tar-pos
-                elif (pos>0):
-                    pos=PMT[pos-1]
-                else:
-                    tar+=1
-            return -1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="KMP算法的难点：获取部分匹配表"><a href="#KMP算法的难点：获取部分匹配表" class="headerlink" title="KMP算法的难点：获取部分匹配表"></a>KMP算法的难点：获取部分匹配表</h3><p>KMP算法的基本思想其实并不难，但KMP算法主要的难点在于如何求解模式串的PMT数组。这里我们可以采取<strong>动态规划</strong>的方式求解。</p>
+<p>LC-CRF本质上结合了HMM和Log-Linear Model的优点，从而效果更好，更加强大。也就是说，<strong>LC-CRF是Log-Linear Model的序列扩展，是Global Log-Linear Model！</strong></p>
+<p>其实介绍到这里，我觉得CRF已经没有多少要说得了，如果你深入地理解了对数线性模型和隐马尔可夫模型，那么CRF的训练和预测过程你一定能够轻松学会。</p>
+<h2 id="LC-CRF的训练"><a href="#LC-CRF的训练" class="headerlink" title="LC-CRF的训练"></a>LC-CRF的训练</h2><p><strong>LC-CRF是一个判别模型</strong>，所以它的训练过程和Log-Linear Model非常类似。</p>
+<h3 id="构建特征空间"><a href="#构建特征空间" class="headerlink" title="构建特征空间"></a>构建特征空间</h3><p>与Log-Linear Model类似，首先，我们需要为LC-CRF构建<strong>特征空间（Feature Space）</strong>。构建特征空间的方法也与之前类似，<strong>我们采用预先定义好的特征模板（Feature Template）对训练集中的每一个词进行特征抽取</strong>。这里，我们使用如下的特征模板：</p>
+<p><img src="3.png" alt="LC-CRF的特征模板"></p>
+<p>你可能会发现：02-15号特征和我们之前在Log-Linear Model中定义的特征模板是一致。这些特征我们称之为<strong>Unigram特征</strong>，也就是一元特征，包含了词特征、字特征，例如当前词是什么，上一个词是什么，当前词的前缀后缀等。它考虑的是当前词的特征信息，也就是说只考虑了一元隐状态。</p>
+<p>需要特别注意，<strong>我们新加入了01号特征，考虑了当前词性和上一个词性的关系（二元隐状态），这称为Bigram特征，也就是二元特征。</strong>正是因为有了二元特征，我们才可以考虑不同时间步输出之间的关系，将Log-Linear Model序列化，并且使用Viterbi算法进行全局动态规划解码。<strong>二元特征的定义符合了HMM中的一阶马尔可夫假设，其实就是HMM模型中的状态转移矩阵</strong>。下面这张图简单地描述了Unigram特征和Bigram特征。</p>
+<p><img src="4.png" alt="Unigram特征和Bigram特征"></p>
+<p>与Log-Linear Model类似，这里的特征使用One-hot表示，特征抽取可以进行“段+偏移”优化。具体细节可以参考我的对数线性模型博客。</p>
+<h3 id="定义假设函数"><a href="#定义假设函数" class="headerlink" title="定义假设函数"></a>定义假设函数</h3><p>LC-CRF与Log-Linear Model的假设函数并不相同，<strong>因为它是序列模型，所以输出的是预测的整个序列的概率。</strong></p>
+<p>我们先定义一个长度为$n$的句子$S$标注为词性序列$Y$的分值为：</p>
+<script type="math/tex; mode=display">
+Score(S,Y)=\sum_{i=1}^{n}w_i^T x_i</script><p>其中，$w_i$是这个句子第$i$个词的特征权重向量，$x_i$是它的特征向量。这里它们都是列向量，需要对$w_i$进行转置处理，然后进行矩阵相乘。将所有词的分值进行相加，得到的是整个句子的总分。</p>
+<p>如果我们对这个句子的所有可能的词性序列求解最大分值，并将最大分值的词性序列作为当前句子的标注结果，你会发现这种做法其实也是Work的。<strong>这其实就是将我们之前提到的Linear Model的全局化，也就是Global Linear Model。</strong>有关线性模型的更多知识可以参考我的上一篇博客，训练的方法依然可以使用我们在Linear Model的在线学习法。</p>
+<p><strong>为了将Global Linear Model转化为Global Log-Linear Model，也就是我们的LC-CRF模型，我们还需要对所得的分值Score进行Softmax函数运算，从而将所得的分值归一化为概率Probability</strong>。从线性模型到对数线性模型的转化也可以看我的上一篇博客。这里，我们使用Softmax函数，得到长度为$n$的句子$S$标注为词性序列$Y$的条件概率，也就是我们模型的假设函数为：</p>
+<script type="math/tex; mode=display">
+P(Y|S)=\frac{e^{Score(S,Y)}}{\sum_{Y^{'}\in{T^n}}e^{Score(S,Y^{'})}}</script><p>其中，$T^n$为当前句子所有可能的词性标注序列集合。<strong>可以看到，我们使用一个Softmax指数模型来表示整个标签序列的联合概率, 这个概率条件依赖于给定的完整观察序列。 这是一种全局归一化的方式。</strong></p>
+<p>特别地，HMM模型和Log-Linear Model的结合其实还有另外一种方式，即<strong>最大熵隐马尔可夫模型（MEMM）</strong>，这个模型和LC-CRF非常类似，唯一的区别在于，<strong>它的概率归一化的时刻在于每一个时间步（Local归一化），而LC-CRF的概率归一化时刻在整个序列计算完成后（全局归一化）。</strong>虽然MEMM也是Work的，但它存在着<strong>标注偏置</strong>的缺陷，导致其无法在维特比算法的解码过程中确保全局最优。具体为什么会这样，可以看<a href="https://blog.csdn.net/yzxnuaa/article/details/79626265" target="_blank" rel="noopener">这篇博客</a>，我就不过多的进行说明。</p>
+<h3 id="参数训练"><a href="#参数训练" class="headerlink" title="参数训练"></a>参数训练</h3><p>与Log-Linear Model一样，我们对于LC-CRF的参数拟合依然是可以通过<strong>梯度下降法</strong>进行的。这里，我们选用<strong>交叉熵损失函数</strong>作为优化的目标函数，从最大熵模型和极大似然估计法推导出交叉熵损失函数的过程可以参考我的上一篇博客。</p>
+<p>各权重梯度的求解需要使用到前向后向算法的合作，具体计算过程的推导大家可以参考<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/12-crf/main.pdf" target="_blank" rel="noopener">李老师的讲义</a>，这里就不进行叙述了，可以自己动手推导一遍。<strong>特别注意的是，当你对Softmax的交叉熵损失函数求$w_i$的梯度时，条件概率$P(T|S)$的分母上也含有$w_i$，不能忘记求偏导，这导致我一开始怎么也无法推导出正确的梯度。</strong></p>
+<p>至于梯度下降过程中的细节，如正则化、学习率下降等，均在我的上一篇博客中有说明。大家可以动手自己实践一下，仅需要在Log-Linear Model的基础上进行一些修改即可。</p>
+<h2 id="LC-CRF的预测"><a href="#LC-CRF的预测" class="headerlink" title="LC-CRF的预测"></a>LC-CRF的预测</h2><p>LC-CRF跟HMM一样，一般预测用的都是<strong>维特比（Viterbi）算法</strong>。这个算法是一个简单的动态规划，在我的HMM博客有详细的说明。</p>
+<p><strong>需要注意的是，LC-CRF是全局归一化，即分值和概率的转化放在最后一步进行，所以在维特比算法的动态规划状态矩阵中计算的是当前词性序列的累计得分，使用的是累加。而在HMM中，状态矩阵中计算的是概率，使用的是发射概率和转移概率的累乘。</strong></p>
+<p><img src="5.png" alt="维特比算法示意图"></p>
+<h2 id="HMM和CRF的关系"><a href="#HMM和CRF的关系" class="headerlink" title="HMM和CRF的关系"></a>HMM和CRF的关系</h2><p><strong>与HMM相比，CRF其实是它的泛化，添加了不受限制的特征模板，从而可以不仅仅局限在HMM的观测独立性假设和齐次马尔可夫假设上。</strong>如果你对HMM的核心概率公式，即已知观测序列$s$，求解生成观测序列$l$的概率的概率公式（HMM是生成模型，这里是联合概率），求对数后，将得到：</p>
+<script type="math/tex; mode=display">
+logP(l,s)=log(P(l_0)\prod_{i=1}^nP(l_i|l_{i-1})P(s_i|l_i))
+\\=logP(l_0)+\sum_{i=1}^nlogP(l_i|l_{i-1})+\sum_{i=1}^nlogP(s_i|l_i)</script><p> 我们可以将HMM的这个式子和我们的CRF的分值计算公式进行对比：</p>
+<script type="math/tex; mode=display">
+Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})</script><p>其中，$\lambda$表示特征权重，$f_j$表示第$j$个特征。</p>
+<p>由于CRF需要使用Bigram特征，这里的特征还需要考虑前面一个隐状态$l_{i-1}$是什么。</p>
+<p>由于$f_j$的取值总为0或1，我们可以发现： <strong>如果我们把第一个HMM式子中的log形式的概率看做是第二个CRF式子中的特征函数的权重的话，其实，CRF和HMM具有相同的形式。换句话说，我们可以构造一个CRF，使它与HMM的对数形式相同 ，只需要将特征模板限定为初始特征、转移特征和发射特征。也就是说 ，每一个HMM模型其实都等价于某个CRF！</strong></p>
+<p> 但是，CRF要比HMM更加强大，原因主要有两点： </p>
 <ul>
-<li>问题：对于模式串P，已知PMT[0],PMT[1],PMT[2]…PMT[x-1]，求解PMT[x]。</li>
+<li><strong>CRF可以定义数量更多，种类更丰富的特征函数</strong>。  HMM模型具有天然具有局部性，就是说，在HMM模型中，当前的单词只依赖于当前的标签，当前的标签只依赖于前一个标签。这样的局部性限制了HMM只能定义相应类型的特征函数，而CRF的特征模板不受限制，可以考虑各种类型的特征。</li>
+<li><strong>CRF可以使用任意的特征权重</strong> 。HMM的特征权重是对数概率，也就是说它必须取负值，也只能取负值。而且既然是概率那么它一定要满足概率完备性条件才可以，但是CRF的特征权重你是可以随意取值的。</li>
 </ul>
-<p>观察上述问题，我们发现，该问题符合最优子结构和重叠子问题的动态规划要求，动态规划具体的转移情况我们进行分类讨论。</p>
-<ul>
-<li>情况一：已知now=PMT[x-1]，若P[x]==P[now]，则PMT[x]=now+1。如下图所示，因为我们已知前x-1个字符中有长度为now的公共前后缀，如果当前前缀的后一位P[now]等于当前后缀的后一位P[x]，则公共前后缀长度自然可以加1。</li>
-</ul>
-<p><img src="4.jpg" alt="情况1"></p>
-<ul>
-<li>情况二： 若P[x]!=P[now]，则令now=PMT[now-1]，再次尝试比较P[x]和P[now]，如果相等则PMT[x]=now+1，如果不相等再重复之前的过程，直到now等于0。如下图所示，此时由于子串A必然与子串B相等，则子串A的后缀与子串B的后缀必然相同，所以子串A的最大公共前后缀即为前x-1个字符中第二长的公共前后缀。</li>
-</ul>
-<p><img src="5.jpg" alt="情况2"></p>
-<p>根据上述分析，我们可以编写获取模式串PMT数组的代码如下：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">        def getPMT(p):
-            PMT=[0]#PMT[0]必定为0
-            x=1
-            now=0
-            while (x<len(p)):
-                if (p[now]==p[x]):
-                    now+=1
-                    PMT.append(now)
-                    x+=1
-                elif now>0:
-                    now=PMT[now-1]
-                else:
-                    PMT.append(now)
-                    x+=1
-            return PMT
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>至此，KMP算法介绍完毕。</p>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>KMP算法在我看来，主要有两方面的内容，一是通过动态规划求解模式串的部分匹配表；二是通过部分匹配表来跳过必不可能的情况，提升匹配的速度。其核心难点在于PMT动态规划的转移方程，需要静下心来自己推导一遍。</p>
-<p>我们不难看出，对于长度为M的目标串S和长度为N的模式串P，KMP算法的时间复杂度由两部分组成：一是match函数中需要让指针遍历目标串S的每一个位置，需要耗费$O(M)$的时间，二是getPMT函数中计算部分匹配表，这一部分我们采用均摊时间复杂度分析，可以发现耗费的时间为$O(N)$。</p>
-<p>利用KMP算法，我们将BF算法的时间复杂度$O(MN)$成功降为$O(M+N)$，使速度大大提升。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是我对NLP中的CRF模型的学习笔记，由于很多知识在前面的两篇博客——HMM模型和Log-Linear模型中已经讲解过，所以本文写的比较简略。但只要认真的学习了前面两个模型，其实CRF已经迎刃而解了。</p>
+<p>接下来，我将继续学习NLP的相关知识，并尝试练习使用深度学习模型。</p>
+<h2 id="参考资料（部分）"><a href="#参考资料（部分）" class="headerlink" title="参考资料（部分）"></a>参考资料（部分）</h2><p><a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/" target="_blank" rel="noopener">苏州大学李正华老师的课件</a></p>
+<p><a href="https://www.jianshu.com/p/55755fc649b1" target="_blank" rel="noopener">如何轻松愉快地理解条件随机场（CRF）？</a></p>
+<p><a href="https://www.zhihu.com/question/35866596" target="_blank" rel="noopener">如何用简单易懂的例子解释条件随机场（CRF）模型？它和HMM有什么区别？</a></p>
+<p><a href="https://www.cnblogs.com/kerwins-AC/p/9584862.html" target="_blank" rel="noopener"><a href="https://www.cnblogs.com/kerwins-AC/p/9584862.html" target="_blank" rel="noopener">条件随机场(Conditional random field)</a></a></p>
+<p>李航老师《统计学习方法》</p>
 
             </div>
             <hr />
@@ -509,9 +485,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《KMP算法》
+                    《NLP自学笔记：条件随机场模型》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/17/kmp-suan-fa/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/" property="cc:attributionName"
                rel="cc:attributionURL">
                 HillZhang
             </a> 采用
@@ -813,29 +789,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/">
+                <a href="/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="NLP自学笔记：隐马尔可夫模型">
+                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="NLP自学笔记：条件随机场模型">
                         
-                        <span class="card-title">NLP自学笔记：隐马尔可夫模型</span>
+                        <span class="card-title">NLP自学笔记：条件随机场模型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于隐马尔可夫模型的一些个人见解和思考，同时参考了一些书籍和网上的资料
+                            前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于条件随机场模型（Condition Random Field Mo
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -848,6 +825,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -874,24 +852,25 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/">
+                <a href="/2020/03/21/jian-zhi-offer-ti-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="LeetCode每日两题">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="剑指Offer题解">
                         
-                        <span class="card-title">LeetCode每日两题</span>
+                        <span class="card-title">剑指Offer题解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Leetcode的刷题总结
+                            前言最近随便投了字节跳动的暑期实习生，没想到简历过关了，4.12日先去笔试。考虑到Leetcode上面的题目比较多，决定先把《剑指Offer》上的所有题目都刷一遍。
+1. 数组中重复的数字思路：使用哈希表或者集合等数据结构，遍历数组中的数字
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-21
                             </span>
                         <span class="publish-author">
                             
@@ -912,8 +891,8 @@
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/剑指Offer/" target="_blank">
+                        <span class="chip bg-color">剑指Offer</span>
                     </a>
                     
                 </div>
