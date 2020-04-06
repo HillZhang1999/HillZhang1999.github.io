@@ -213,7 +213,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -425,22 +425,21 @@
 </li>
 </ol>
 <p>根据上述的流程，我们可以编写KMP算法主体函数如下：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">        def match(st,pattern):
-            tar=0
-            pos=0
-            PMT=getPMT(pattern)
-            while (tar<len(st)):
-                if (st[tar]==pattern[pos]):
-                    tar+=1
-                    pos+=1
-                    if (pos==len(pattern)):
-                        return tar-pos
-                elif (pos>0):
-                    pos=PMT[pos-1]
-                else:
-                    tar+=1
-            return -1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">        <span class="token keyword">def</span> <span class="token function">match</span><span class="token punctuation">(</span>st<span class="token punctuation">,</span>pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            tar<span class="token operator">=</span><span class="token number">0</span>
+            pos<span class="token operator">=</span><span class="token number">0</span>
+            PMT<span class="token operator">=</span>getPMT<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>tar<span class="token operator">&lt;</span>len<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>st<span class="token punctuation">[</span>tar<span class="token punctuation">]</span><span class="token operator">==</span>pattern<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    tar<span class="token operator">+=</span><span class="token number">1</span>
+                    pos<span class="token operator">+=</span><span class="token number">1</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>pos<span class="token operator">==</span>len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                        <span class="token keyword">return</span> tar<span class="token operator">-</span>pos
+                <span class="token keyword">elif</span> <span class="token punctuation">(</span>pos<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    pos<span class="token operator">=</span>PMT<span class="token punctuation">[</span>pos<span class="token number">-1</span><span class="token punctuation">]</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    tar<span class="token operator">+=</span><span class="token number">1</span>
+            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="KMP算法的难点：获取部分匹配表"><a href="#KMP算法的难点：获取部分匹配表" class="headerlink" title="KMP算法的难点：获取部分匹配表"></a>KMP算法的难点：获取部分匹配表</h3><p>KMP算法的基本思想其实并不难，但KMP算法主要的难点在于如何求解模式串的PMT数组。这里我们可以采取<strong>动态规划</strong>的方式求解。</p>
 <ul>
 <li>问题：对于模式串P，已知PMT[0],PMT[1],PMT[2]…PMT[x-1]，求解PMT[x]。</li>
@@ -455,22 +454,21 @@
 </ul>
 <p><img src="5.jpg" alt="情况2"></p>
 <p>根据上述分析，我们可以编写获取模式串PMT数组的代码如下：</p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">        def getPMT(p):
-            PMT=[0]#PMT[0]必定为0
-            x=1
-            now=0
-            while (x<len(p)):
-                if (p[now]==p[x]):
-                    now+=1
-                    PMT.append(now)
-                    x+=1
-                elif now>0:
-                    now=PMT[now-1]
-                else:
-                    PMT.append(now)
-                    x+=1
-            return PMT
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python">        <span class="token keyword">def</span> <span class="token function">getPMT</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            PMT<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token comment" spellcheck="true">#PMT[0]必定为0</span>
+            x<span class="token operator">=</span><span class="token number">1</span>
+            now<span class="token operator">=</span><span class="token number">0</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span>x<span class="token operator">&lt;</span>len<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>p<span class="token punctuation">[</span>now<span class="token punctuation">]</span><span class="token operator">==</span>p<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    now<span class="token operator">+=</span><span class="token number">1</span>
+                    PMT<span class="token punctuation">.</span>append<span class="token punctuation">(</span>now<span class="token punctuation">)</span>
+                    x<span class="token operator">+=</span><span class="token number">1</span>
+                <span class="token keyword">elif</span> now<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">:</span>
+                    now<span class="token operator">=</span>PMT<span class="token punctuation">[</span>now<span class="token number">-1</span><span class="token punctuation">]</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    PMT<span class="token punctuation">.</span>append<span class="token punctuation">(</span>now<span class="token punctuation">)</span>
+                    x<span class="token operator">+=</span><span class="token number">1</span>
+            <span class="token keyword">return</span> PMT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>至此，KMP算法介绍完毕。</p>
 <h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>KMP算法在我看来，主要有两方面的内容，一是通过动态规划求解模式串的部分匹配表；二是通过部分匹配表来跳过必不可能的情况，提升匹配的速度。其核心难点在于PMT动态规划的转移方程，需要静下心来自己推导一遍。</p>
 <p>我们不难看出，对于长度为M的目标串S和长度为N的模式串P，KMP算法的时间复杂度由两部分组成：一是match函数中需要让指针遍历目标串S的每一个位置，需要耗费$O(M)$的时间，二是getPMT函数中计算部分匹配表，这一部分我们采用均摊时间复杂度分析，可以发现耗费的时间为$O(N)$。</p>
@@ -821,7 +819,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="NLP自学笔记：隐马尔可夫模型">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="NLP自学笔记：隐马尔可夫模型">
                         
                         <span class="card-title">NLP自学笔记：隐马尔可夫模型</span>
                     </div>
@@ -878,7 +876,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="LeetCode每日两题">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="LeetCode每日两题">
                         
                         <span class="card-title">LeetCode每日两题</span>
                     </div>
@@ -1087,7 +1085,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">52.2k</span>
+            <span class="white-color">74.9k</span>
             
 
             <br>

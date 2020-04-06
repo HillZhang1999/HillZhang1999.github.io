@@ -212,7 +212,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -417,26 +417,18 @@
 <p><img src="4.png" alt="Unigram特征和Bigram特征"></p>
 <p>与Log-Linear Model类似，这里的特征使用One-hot表示，特征抽取可以进行“段+偏移”优化。具体细节可以参考我的对数线性模型博客。</p>
 <h3 id="定义假设函数"><a href="#定义假设函数" class="headerlink" title="定义假设函数"></a>定义假设函数</h3><p>LC-CRF与Log-Linear Model的假设函数并不相同，<strong>因为它是序列模型，所以输出的是预测的整个序列的概率。</strong></p>
-<p>我们先定义一个长度为$n$的句子$S$标注为词性序列$Y$的分值为：</p>
-<script type="math/tex; mode=display">
-Score(S,Y)=\sum_{i=1}^{n}w_i^T x_i</script><p>其中，$w_i$是这个句子第$i$个词的特征权重向量，$x_i$是它的特征向量。这里它们都是列向量，需要对$w_i$进行转置处理，然后进行矩阵相乘。将所有词的分值进行相加，得到的是整个句子的总分。</p>
+<p>我们先定义一个长度为$n$的句子$S$标注为词性序列$Y$的分值为：<br>$$<br>Score(S,Y)=\sum_{i=1}^{n}w_i^T x_i<br>$$<br>其中，$w_i$是这个句子第$i$个词的特征权重向量，$x_i$是它的特征向量。这里它们都是列向量，需要对$w_i$进行转置处理，然后进行矩阵相乘。将所有词的分值进行相加，得到的是整个句子的总分。</p>
 <p>如果我们对这个句子的所有可能的词性序列求解最大分值，并将最大分值的词性序列作为当前句子的标注结果，你会发现这种做法其实也是Work的。<strong>这其实就是将我们之前提到的Linear Model的全局化，也就是Global Linear Model。</strong>有关线性模型的更多知识可以参考我的上一篇博客，训练的方法依然可以使用我们在Linear Model的在线学习法。</p>
-<p><strong>为了将Global Linear Model转化为Global Log-Linear Model，也就是我们的LC-CRF模型，我们还需要对所得的分值Score进行Softmax函数运算，从而将所得的分值归一化为概率Probability</strong>。从线性模型到对数线性模型的转化也可以看我的上一篇博客。这里，我们使用Softmax函数，得到长度为$n$的句子$S$标注为词性序列$Y$的条件概率，也就是我们模型的假设函数为：</p>
-<script type="math/tex; mode=display">
-P(Y|S)=\frac{e^{Score(S,Y)}}{\sum_{Y^{'}\in{T^n}}e^{Score(S,Y^{'})}}</script><p>其中，$T^n$为当前句子所有可能的词性标注序列集合。<strong>可以看到，我们使用一个Softmax指数模型来表示整个标签序列的联合概率, 这个概率条件依赖于给定的完整观察序列。 这是一种全局归一化的方式。</strong></p>
+<p><strong>为了将Global Linear Model转化为Global Log-Linear Model，也就是我们的LC-CRF模型，我们还需要对所得的分值Score进行Softmax函数运算，从而将所得的分值归一化为概率Probability</strong>。从线性模型到对数线性模型的转化也可以看我的上一篇博客。这里，我们使用Softmax函数，得到长度为$n$的句子$S$标注为词性序列$Y$的条件概率，也就是我们模型的假设函数为：<br>$$<br>P(Y|S)=\frac{e^{Score(S,Y)}}{\sum_{Y^{‘}\in{T^n}}e^{Score(S,Y^{‘})}}<br>$$<br>其中，$T^n$为当前句子所有可能的词性标注序列集合。<strong>可以看到，我们使用一个Softmax指数模型来表示整个标签序列的联合概率, 这个概率条件依赖于给定的完整观察序列。 这是一种全局归一化的方式。</strong></p>
 <p>特别地，HMM模型和Log-Linear Model的结合其实还有另外一种方式，即<strong>最大熵隐马尔可夫模型（MEMM）</strong>，这个模型和LC-CRF非常类似，唯一的区别在于，<strong>它的概率归一化的时刻在于每一个时间步（Local归一化），而LC-CRF的概率归一化时刻在整个序列计算完成后（全局归一化）。</strong>虽然MEMM也是Work的，但它存在着<strong>标注偏置</strong>的缺陷，导致其无法在维特比算法的解码过程中确保全局最优。具体为什么会这样，可以看<a href="https://blog.csdn.net/yzxnuaa/article/details/79626265" target="_blank" rel="noopener">这篇博客</a>，我就不过多的进行说明。</p>
 <h3 id="参数训练"><a href="#参数训练" class="headerlink" title="参数训练"></a>参数训练</h3><p>与Log-Linear Model一样，我们对于LC-CRF的参数拟合依然是可以通过<strong>梯度下降法</strong>进行的。这里，我们选用<strong>交叉熵损失函数</strong>作为优化的目标函数，从最大熵模型和极大似然估计法推导出交叉熵损失函数的过程可以参考我的上一篇博客。</p>
-<p>各权重梯度的求解需要使用到前向后向算法的合作，具体计算过程的推导大家可以参考<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/12-crf/main.pdf" target="_blank" rel="noopener">李老师的讲义</a>，这里就不进行叙述了，可以自己动手推导一遍。<strong>特别注意的是，当你对Softmax的交叉熵损失函数求$w_i$的梯度时，条件概率$P(T|S)$的分母上也含有$w_i$，不能忘记求偏导，这导致我一开始怎么也无法推导出正确的梯度。</strong></p>
+<p>各权重梯度的求解需要使用到前向后向算法的合作，具体计算过程的推导大家可以参考<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/12-crf/main.pdf" target="_blank" rel="noopener">李老师的讲义</a>，这里就不进行叙述了，可以自己动手推导一遍。<strong>特别注意的是，当你对Softmax的交叉熵损失函数求$w_i$的梯度时，条件概率$P(Y|S)$的分母上也含有$w_i$，不能忘记求偏导，这导致我一开始怎么也无法推导出正确的梯度。</strong></p>
 <p>至于梯度下降过程中的细节，如正则化、学习率下降等，均在我的上一篇博客中有说明。大家可以动手自己实践一下，仅需要在Log-Linear Model的基础上进行一些修改即可。</p>
 <h2 id="LC-CRF的预测"><a href="#LC-CRF的预测" class="headerlink" title="LC-CRF的预测"></a>LC-CRF的预测</h2><p>LC-CRF跟HMM一样，一般预测用的都是<strong>维特比（Viterbi）算法</strong>。这个算法是一个简单的动态规划，在我的HMM博客有详细的说明。</p>
 <p><strong>需要注意的是，LC-CRF是全局归一化，即分值和概率的转化放在最后一步进行，所以在维特比算法的动态规划状态矩阵中计算的是当前词性序列的累计得分，使用的是累加。而在HMM中，状态矩阵中计算的是概率，使用的是发射概率和转移概率的累乘。</strong></p>
 <p><img src="5.png" alt="维特比算法示意图"></p>
-<h2 id="HMM和CRF的关系"><a href="#HMM和CRF的关系" class="headerlink" title="HMM和CRF的关系"></a>HMM和CRF的关系</h2><p><strong>与HMM相比，CRF其实是它的泛化，添加了不受限制的特征模板，从而可以不仅仅局限在HMM的观测独立性假设和齐次马尔可夫假设上。</strong>如果你对HMM的核心概率公式，即已知观测序列$s$，求解生成观测序列$l$的概率的概率公式（HMM是生成模型，这里是联合概率），求对数后，将得到：</p>
-<script type="math/tex; mode=display">
-logP(l,s)=log(P(l_0)\prod_{i=1}^nP(l_i|l_{i-1})P(s_i|l_i))
-\\=logP(l_0)+\sum_{i=1}^nlogP(l_i|l_{i-1})+\sum_{i=1}^nlogP(s_i|l_i)</script><p> 我们可以将HMM的这个式子和我们的CRF的分值计算公式进行对比：</p>
-<script type="math/tex; mode=display">
-Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})</script><p>其中，$\lambda$表示特征权重，$f_j$表示第$j$个特征。</p>
+<h2 id="HMM和CRF的关系"><a href="#HMM和CRF的关系" class="headerlink" title="HMM和CRF的关系"></a>HMM和CRF的关系</h2><p><strong>与HMM相比，CRF其实是它的泛化，添加了不受限制的特征模板，从而可以不仅仅局限在HMM的观测独立性假设和齐次马尔可夫假设上。</strong>如果你对HMM的核心概率公式，即已知观测序列$s$，求解生成观测序列$l$的概率的概率公式（HMM是生成模型，这里是联合概率），求对数后，将得到：<br>$$<br>logP(l,s)=log(P(l_0)\prod_{i=1}^nP(l_i|l_{i-1})P(s_i|l_i))<br>\\=logP(l_0)+\sum_{i=1}^nlogP(l_i|l_{i-1})+\sum_{i=1}^nlogP(s_i|l_i)<br>$$<br> 我们可以将HMM的这个式子和我们的CRF的分值计算公式进行对比：<br>$$<br>Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})<br>$$</p>
+<p>其中，$f_j$表示第$j$个特征，$\lambda_j$表示它的特征权重。</p>
 <p>由于CRF需要使用Bigram特征，这里的特征还需要考虑前面一个隐状态$l_{i-1}$是什么。</p>
 <p>由于$f_j$的取值总为0或1，我们可以发现： <strong>如果我们把第一个HMM式子中的log形式的概率看做是第二个CRF式子中的特征函数的权重的话，其实，CRF和HMM具有相同的形式。换句话说，我们可以构造一个CRF，使它与HMM的对数形式相同 ，只需要将特征模板限定为初始特征、转移特征和发射特征。也就是说 ，每一个HMM模型其实都等价于某个CRF！</strong></p>
 <p> 但是，CRF要比HMM更加强大，原因主要有两点： </p>
@@ -449,7 +441,7 @@ Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})</script><p>
 <h2 id="参考资料（部分）"><a href="#参考资料（部分）" class="headerlink" title="参考资料（部分）"></a>参考资料（部分）</h2><p><a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/" target="_blank" rel="noopener">苏州大学李正华老师的课件</a></p>
 <p><a href="https://www.jianshu.com/p/55755fc649b1" target="_blank" rel="noopener">如何轻松愉快地理解条件随机场（CRF）？</a></p>
 <p><a href="https://www.zhihu.com/question/35866596" target="_blank" rel="noopener">如何用简单易懂的例子解释条件随机场（CRF）模型？它和HMM有什么区别？</a></p>
-<p><a href="https://www.cnblogs.com/kerwins-AC/p/9584862.html" target="_blank" rel="noopener"><a href="https://www.cnblogs.com/kerwins-AC/p/9584862.html" target="_blank" rel="noopener">条件随机场(Conditional random field)</a></a></p>
+<p><a href="https://www.cnblogs.com/kerwins-AC/p/9584862.html" target="_blank" rel="noopener">条件随机场</a></p>
 <p>李航老师《统计学习方法》</p>
 
             </div>
@@ -789,43 +781,41 @@ Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})</script><p>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/">
+                <a href="/2020/04/05/nlp-zi-xue-bi-ji-shen-jing-wang-luo-xu-lie-mo-xing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="NLP自学笔记：条件随机场模型">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="NLP自学笔记：神经网络序列模型">
                         
-                        <span class="card-title">NLP自学笔记：条件随机场模型</span>
+                        <span class="card-title">NLP自学笔记：神经网络序列模型</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于条件随机场模型（Condition Random Field Mo
+                            前言序列模型（Sequence Model）是深度学习最令人激动的领域之一。循环神经网络（Recurrent Neural Network, RNN）也已变革了语音识别（Speech Recognition）、自然语言处理（Natural 
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-04
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/机器学习/" class="post-category" target="_blank">
-                                    机器学习
+                            <a href="/categories/深度学习/" class="post-category" target="_blank">
+                                    深度学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -839,6 +829,10 @@ Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})</script><p>
                     
                     <a href="/tags/自然语言处理/" target="_blank">
                         <span class="chip bg-color">自然语言处理</span>
+                    </a>
+                    
+                    <a href="/tags/深度学习/" target="_blank">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
                 </div>
@@ -856,7 +850,7 @@ Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})</script><p>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="剑指Offer题解">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="剑指Offer题解">
                         
                         <span class="card-title">剑指Offer题解</span>
                     </div>
@@ -1066,7 +1060,7 @@ Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})</script><p>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">52.2k</span>
+            <span class="white-color">74.9k</span>
             
 
             <br>

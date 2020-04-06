@@ -212,7 +212,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -405,19 +405,10 @@
 <p><img src="2.png" alt="房价预测"></p>
 <p>如上图所示，假设我们得到了一个当地的房价数据集，其中包括了房子的面积、卧室数、层数、房龄等信息，同时给出了对应的房价。我们需要解决的问题就是如何<strong>利用房子的信息预测出它的价格</strong>。在机器学习中，我们把类似于面积、卧室数等这些样本的信息叫做<strong>样本的特征（Feature）</strong>，它们是我们进行预测的依据。我们把需要预测的值叫做<strong>样本的标签（Label)</strong>。训练集中的每一个样本是一个<strong>（特征，标签)二元组</strong>。</p>
 <p>在机器学习中，样本的特征往往是人工选择的，例如上述的面积、卧室数、层数等房屋信息。如何选择合适的特征是一门高深的学问，我们称其为<strong>特征工程</strong>。特征往往不止一个，所以使用<strong>向量</strong>的形式对其进行表示。在这里，我使用列向量$\vec x=(x_1,x_2…x_n)$来表示特征向量，由于书写列向量不是很方便，所以只能这么书写，但你需要记住$\vec x$是一个列向量。</p>
-<p>当给定某个房子的面积、卧室数、层数、房龄等特征，在线性模型中，我们会使用一个线性方程来计算房子的价格。我们使用$h$表示这个线性方程，$h$代表<strong>hypothesis</strong>(<strong>假设</strong>) ，具体公式如下：</p>
-<script type="math/tex; mode=display">
-h_{w}(x)=w_0+w_1x_1+w_2x_2+...+w_nx_n</script><p>我们为每个特征给定一个特征权重$w$，这个权重可以是正数也可以是负数。其中，$w_0$为<strong>偏置项</strong>（bias），专门用来表示方程中的常数项。通过训练样本学习权重$w$，我们便可使用上述方程进行预测。</p>
-<p>为了使公式简洁一些，引入$x_0=1$，使用列向量$\vec w=(w_0,w_1…w_n)$来表示权重向量，则公式转化为：</p>
-<script type="math/tex; mode=display">
-h_{w}(x)=w_0x_0+w_1x_1+w_2x_2+...+w_nx_n\\
-=w^Tx</script><h2 id="线性模型的泛化"><a href="#线性模型的泛化" class="headerlink" title="线性模型的泛化"></a>线性模型的泛化</h2><p>看到上述的线性方程，你可能会疑惑：上述方程得到的仅仅是一条直线方程，而需要拟合的数据点往往不能通过简单的直线来拟合。换句话说， 如果仅仅使用在此之前的单元和多元线性回归，<strong>我们只能得到多维空间的高维平面</strong>。为了进一步增强泛化能力，我们可以引入<strong>幂次项特征和多项式特征</strong>。 </p>
-<p>例如，我们的模型原先只是一个线性方程：</p>
-<script type="math/tex; mode=display">
-h_{w}(x)=w_1x_1+w_2x_2</script><p>为了增强拟合能力，我们可以令$x_3=x_1^2$，$x_4=x_2^2$，$x_5=x_1x_2$。于是，我们的模型将变为：</p>
-<script type="math/tex; mode=display">
-h_{w}(x)=w_1x_1+w_2x_2+w_3x_3+w_4x_4+w_5x_5\\
-=w_1x_1+w_2x_2+w_3x_1^2+w_4x_2^2+w_5x_1x_2</script><p>可以看到，此时我们的模型将可以拟合复杂的非线性函数。<strong>也就是说，很多复杂的模型都可以转化为线性模型进行建模。</strong></p>
+<p>当给定某个房子的面积、卧室数、层数、房龄等特征，在线性模型中，我们会使用一个线性方程来计算房子的价格。我们使用$h$表示这个线性方程，$h$代表<strong>hypothesis</strong>(<strong>假设</strong>) ，具体公式如下：<br>$$<br>h_{w}(x)=w_0+w_1x_1+w_2x_2+…+w_nx_n<br>$$<br>我们为每个特征给定一个特征权重$w$，这个权重可以是正数也可以是负数。其中，$w_0$为<strong>偏置项</strong>（bias），专门用来表示方程中的常数项。通过训练样本学习权重$w$，我们便可使用上述方程进行预测。</p>
+<p>为了使公式简洁一些，引入$x_0=1$，使用列向量$\vec w=(w_0,w_1…w_n)$来表示权重向量，则公式转化为：<br>$$<br>h_{w}(x)=w_0x_0+w_1x_1+w_2x_2+…+w_nx_n\<br>=w^Tx<br>$$</p>
+<h2 id="线性模型的泛化"><a href="#线性模型的泛化" class="headerlink" title="线性模型的泛化"></a>线性模型的泛化</h2><p>看到上述的线性方程，你可能会疑惑：上述方程得到的仅仅是一条直线方程，而需要拟合的数据点往往不能通过简单的直线来拟合。换句话说， 如果仅仅使用在此之前的单元和多元线性回归，<strong>我们只能得到多维空间的高维平面</strong>。为了进一步增强泛化能力，我们可以引入<strong>幂次项特征和多项式特征</strong>。 </p>
+<p>例如，我们的模型原先只是一个线性方程：<br>$$<br>h_{w}(x)=w_1x_1+w_2x_2<br>$$<br>为了增强拟合能力，我们可以令$x_3=x_1^2$，$x_4=x_2^2$，$x_5=x_1x_2$。于是，我们的模型将变为：<br>$$<br>h_{w}(x)=w_1x_1+w_2x_2+w_3x_3+w_4x_4+w_5x_5\<br>=w_1x_1+w_2x_2+w_3x_1^2+w_4x_2^2+w_5x_1x_2<br>$$<br>可以看到，此时我们的模型将可以拟合复杂的非线性函数。<strong>也就是说，很多复杂的模型都可以转化为线性模型进行建模。</strong></p>
 <p>但需要注意的是：<strong>过多地使用幂次项特征和多项式特征会使模型的拟合能力太强，从而导致过拟合的问题</strong>。我将专门 写一篇blog来讲解机器学习中的过拟合问题，并介绍一些解决过拟合的办法，如正则化和dropout等。</p>
 <h2 id="线性模型的特征提取"><a href="#线性模型的特征提取" class="headerlink" title="线性模型的特征提取"></a>线性模型的特征提取</h2><h3 id="连续型特征"><a href="#连续型特征" class="headerlink" title="连续型特征"></a>连续型特征</h3><p>特征分为连续型特征和离散型特征。<strong>连续型特征顾名思义就是取值是连续的特征，例如上述例子中的房子面积。</strong>在实际的机器学习过程中， 很少直接将连续值作为线性回归模型和逻辑回归模型的特征输入，而是将连续特征离散化为一系列0、1特征交给模型，这样做的优势有以下几点： </p>
 <ol>
@@ -447,9 +438,7 @@ h_{w}(x)=w_1x_1+w_2x_2+w_3x_3+w_4x_4+w_5x_5\\
 <li><strong>目标函数（Object Function）</strong>：<strong>最终需要优化的函数</strong>。等于经验风险+结构风险（也就是代价函数 + 正则化项）。</li>
 </ol>
 <p><strong>这里，我们先不讲解正则化的知识，假设我们的目标函数即为代价函数</strong>。那么线性模型的优化问题即为最小化所有样本的误差的平均值。线性模型的误差可以用许多函数来表示，其中比较常用的一种是<strong>均方误差</strong>(Mean squared error) ，这里我们使用均方误差来描述我们的模型误差（PS：更多损失函数可以参考<a href="https://www.jiqizhixin.com/articles/091202" target="_blank" rel="noopener">机器学习中常用的损失函数你知多少？</a>）</p>
-<p>假设训练集中样本的标签为$y$，样本的数量为$m$，预测值为假设函数的输出$h_{w}(x)$，则需要优化的目标函数为：</p>
-<script type="math/tex; mode=display">
-J(w)=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2</script><p>我们的目标便是<strong>选择出可以使得建模误差的平方和能够最小的模型参数</strong>，即<strong>找到合适的模型权重$\vec w$，使$J(w)$取得最小值</strong>。需要注意的是，目标函数中的1/2仅仅是为了方便求导。</p>
+<p>假设训练集中样本的标签为$y$，样本的数量为$m$，预测值为假设函数的输出$h_{w}(x)$，则需要优化的目标函数为：<br>$$<br>J(w)=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2<br>$$<br>我们的目标便是<strong>选择出可以使得建模误差的平方和能够最小的模型参数</strong>，即<strong>找到合适的模型权重$\vec w$，使$J(w)$取得最小值</strong>。需要注意的是，目标函数中的1/2仅仅是为了方便求导。</p>
 <h3 id="从极大似然估计到损失函数"><a href="#从极大似然估计到损失函数" class="headerlink" title="从极大似然估计到损失函数"></a>从极大似然估计到损失函数</h3><p>在隐马尔可夫模型的讲解中，我曾经说过损失函数和极大似然估计有着紧密的联系，例如<strong>我们在逻辑回归模型里使用的交叉熵损失函数其实就是似然函数加上负号</strong>。也就是说，<strong>最优化问题既可以理解为最大化模型的似然估计，也可以理解为最小化模型的损失函数</strong>。</p>
 <p>为什么会出现这样的现象呢？其实这并不是巧合，是可以通过数学公式进行推导的。具体推导内容可以参考这篇讲义<a href="https://wenku.baidu.com/view/78d16462c9d376eeaeaad1f34693daef5ff713d2.html" target="_blank" rel="noopener">各损失函数与最大似然</a>。</p>
 <h3 id="优化方法"><a href="#优化方法" class="headerlink" title="优化方法"></a>优化方法</h3><h4 id="正规方程法"><a href="#正规方程法" class="headerlink" title="正规方程法"></a>正规方程法</h4><p>正规方程法可以用于求解线性模型的目标函数取得最小值时，权重$w$的准确值。但在机器学习中，我们很少使用这种方法求解模型的权重，我在这里简单提一下它的弊端：</p>
@@ -464,9 +453,7 @@ J(w)=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2</script><p>我们的目�
 <p>则可以看出在三维空间中存在一个使得$J(\theta_0,\theta_1)$最小的点，我们可以发现均方差损失函数的图像很明显是一个<strong>凸函数</strong>，即不存在局部最优解的问题。 </p>
 <p>梯度下降法的相当于<strong>我们下山的过程</strong>，每次我们要走一步下山，寻找最低的地方，那么最可靠的方法便是环顾四周，寻找下山速度最快的方向前进，持续该过程，最后便能无限接近最低点。</p>
 <p>对于函数而言，<strong>便是求得该函数对所有参数的偏导（梯度），每次根据梯度更新这些参数，直到参数收敛为止，注意这些参数必须同步进行更新</strong>。 从数学上的角度来看，梯度的方向是函数增长速度最快的方向，那么梯度的反方向就是函数减少最快的方向。那么，如果想计算一个函数的最小值，就可以使用梯度下降法的思想来做。 </p>
-<p>假设模型共有$n$个特征，加上偏置项的特征$x_0=1$，共有$n+1$个特征。则对于某个权重参数$w_j$进行梯度下降的公式可以表示为：</p>
-<script type="math/tex; mode=display">
-w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}(h_w(x^{(i)})-y^{(i)})x_j^{(i)}</script><p>其中，<strong>$\alpha$是一个由我们自己设置的超参数（hyper parameter）——学习率</strong> （<strong>learning rate</strong>），它决定了我们沿着能让目标函数下降程度最大的方向向下迈出的步子有多大。 </p>
+<p>假设模型共有$n$个特征，加上偏置项的特征$x_0=1$，共有$n+1$个特征。则对于某个权重参数$w_j$进行梯度下降的公式可以表示为：<br>$$<br>w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}(h_w(x^{(i)})-y^{(i)})x_j^{(i)}<br>$$<br>其中，<strong>$\alpha$是一个由我们自己设置的超参数（hyper parameter）——学习率</strong> （<strong>learning rate</strong>），它决定了我们沿着能让目标函数下降程度最大的方向向下迈出的步子有多大。 </p>
 <p>梯度下降的过程形象表示便是如下图所示，一步一步下降达到最低点。</p>
 <p> <img src="3.jpg" alt="梯度下降的直观表示"></p>
 <p>需要说明以下几点：</p>
@@ -508,11 +495,7 @@ w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}(h_w(x^{(i)}
 <li>L1正则项：各个权重的<strong>绝对值之和</strong>，可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于<strong>特征选择</strong> 。同时，一定程度上 也可以防止过拟合 。</li>
 <li>L2正则项：各个权重的<strong>平方和</strong>，可以防止模型过拟合（overfitting）。</li>
 </ul>
-<p>线性模型和对数线性模型中，我们通常采用的是L2正则项。加入正则项后，模型的代价函数变为：</p>
-<script type="math/tex; mode=display">
-J(w)=\frac{1}{2m}[\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2+\lambda\sum_{j=1}^{n}w^2]</script><p>梯度下降的公式变为：</p>
-<script type="math/tex; mode=display">
-w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}[(h_w(x^{(i)})-y^{(i)})x_j^{(i)}+\lambda w_j]</script><p>我们可以发现，通过引入正则化项，可以使模型的所有参数在梯度下降时多下降一些，从而尽可能地减小。上式中，$\lambda$是一个用于控制正则化程度的超参数，我们一般称其为<strong>正则化系数</strong>，如果$\lambda$过大，则所有权重将趋近于0， 这样我们所得到的只能是一条平行于x轴的直线 。 所以对于正则化，我们要取一个合理的$\lambda$的值 。超参数的选择是机器学习中最为常见的问题，我们一般使用<strong>开发集</strong>进行调参。</p>
+<p>线性模型和对数线性模型中，我们通常采用的是L2正则项。加入正则项后，模型的代价函数变为：<br>$$<br>J(w)=\frac{1}{2m}[\sum_{i=1}^{m}(h_w(x^{(i)})-y^{(i)})^2+\lambda\sum_{j=1}^{n}w^2]<br>$$<br>梯度下降的公式变为：<br>$$<br>w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}[(h_w(x^{(i)})-y^{(i)})x_j^{(i)}+\lambda w_j]<br>$$<br>我们可以发现，通过引入正则化项，可以使模型的所有参数在梯度下降时多下降一些，从而尽可能地减小。上式中，$\lambda$是一个用于控制正则化程度的超参数，我们一般称其为<strong>正则化系数</strong>，如果$\lambda$过大，则所有权重将趋近于0， 这样我们所得到的只能是一条平行于x轴的直线 。 所以对于正则化，我们要取一个合理的$\lambda$的值 。超参数的选择是机器学习中最为常见的问题，我们一般使用<strong>开发集</strong>进行调参。</p>
 <p>顺便提一下，过拟合的情况下，增加训练集的样本数量将会使模型的性能得到提升。在当今这个海量数据的时代，数据是容易获得的，所以深度学习的常见做法是训练出一个拟合能力很强（层数深、神经元多）的神经网络，加上大规模的训练样本，再加上一些正则化的方法，所得出的模型通常性能最好。</p>
 <h2 id="回到词性标注问题上来"><a href="#回到词性标注问题上来" class="headerlink" title="回到词性标注问题上来"></a>回到词性标注问题上来</h2><p>相信通过前面的介绍，你已经对线性模型有了基本的认识，下面我们回到词性标注任务上，简单地介绍一下如何基于多元分类的思想使用线性回归模型进行词性标注。</p>
 <h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>在我们之前的介绍中，你可能会发现，线性模型主要是用于解决机器学习中的<strong>回归（regression）问题</strong>。也就是说，它预测的最终结果通常是连续值。虽然与对数线性模型相比，线性模型不常用于<strong>分类（classification）</strong>，但在介绍对数线性模型之前，我们仍可以通过一些方法使其运用在分类标注词性上。</p>
@@ -536,20 +519,11 @@ w_j=w_j-\alpha\frac{dJ(w)}{dw_j}=w_j-\alpha\frac{1}{m}\sum^{m}_{i=1}[(h_w(x^{(i)
 <p>为了解决上述问题，我们可以使用<strong>对数线性模型（log-linear model）</strong>，或许它的另一个名称更为常用，也可以叫做<strong>逻辑回归模型（logistic regression model）</strong>，不过似乎人们在使用逻辑回归模型时，默认解决的是二分类问题，这里我们称之为<strong>多分类的逻辑回归模型</strong>似乎更合适。</p>
 <p>对数线性模型主要做的就是<strong>将线性模型输出的分值使用非线性函数映射到[0，1]区间上，即将分值转化为概率</strong>，这种形式大大减少了极端值的影响，同时概率应用在分类问题上也更易于理解，我们也可以通过样本的真实标签和预测概率定义目标函数，从而使用梯度下降法进行模型训练。</p>
 <h2 id="从线性模型到对数线性模型"><a href="#从线性模型到对数线性模型" class="headerlink" title="从线性模型到对数线性模型"></a>从线性模型到对数线性模型</h2><p>为了将分值转化为概率，我们需要使用一些非线性函数进行映射。<strong>比较常用的两种函数分别为：Sigmoid函数和Softmax函数，前者用于二分类的对数线性模型中，而后者用于多分类的对数线性模型中。</strong>顺便提一下，在深度学习中，Sigmoid和Softmax是最为常用的几种<strong>激活函数（activation function）</strong>之一，他们为神经网络增加了非线性特征，从而使神经网络的表达能力大大增强。与此同时，他们也经常是分类任务的神经网络输出层的首选激活函数，其在输出层的作用和在对数线性模型中的作用是一样的，即将分布在任意区间内的分值转化为[0，1]上的概率。</p>
-<h3 id="Sigmoid函数（二分类问题）"><a href="#Sigmoid函数（二分类问题）" class="headerlink" title="Sigmoid函数（二分类问题）"></a>Sigmoid函数（二分类问题）</h3><p>我们使用$z$来表示原先的线性模型的假设函数输出（注意：你可能会在别的地方看到式子的最后加上了偏差项$b$，我在这里没有将偏差项特别拎出来，而是为特征向量额外添加了一个维度$x_0=1$，来和权重$w_0$共同表示偏差）：</p>
-<script type="math/tex; mode=display">
-z=w^Tx</script><p>则Sigmoid函数的形式为：</p>
-<script type="math/tex; mode=display">
-g(z)=\frac{1}{1+e^{-z}}</script><p>可以看到，它的函数图像如下：</p>
+<h3 id="Sigmoid函数（二分类问题）"><a href="#Sigmoid函数（二分类问题）" class="headerlink" title="Sigmoid函数（二分类问题）"></a>Sigmoid函数（二分类问题）</h3><p>我们使用$z$来表示原先的线性模型的假设函数输出（注意：你可能会在别的地方看到式子的最后加上了偏差项$b$，我在这里没有将偏差项特别拎出来，而是为特征向量额外添加了一个维度$x_0=1$，来和权重$w_0$共同表示偏差）：<br>$$<br>z=w^Tx<br>$$<br>则Sigmoid函数的形式为：<br>$$<br>g(z)=\frac{1}{1+e^{-z}}<br>$$<br>可以看到，它的函数图像如下：</p>
 <p><img src="4.jpg" alt="Sigmoid"></p>
 <p> 可以很明显的看出，该函数将<strong>实数域映射成了[0,1]的区间</strong> ，无论线性模型的输出是什么，我们都可以将其转化为[0，1]上的值，也就是概率。</p>
-<p>所以，加入了Sigmoid函数后，对数线性模型的假设函数变为：</p>
-<script type="math/tex; mode=display">
-h_w(x)=g(z)=\frac{1}{1+e^{-z}}=\frac{1}{1+e^{-w^Tx}}</script><h3 id="Softmax函数（多分类问题）"><a href="#Softmax函数（多分类问题）" class="headerlink" title="Softmax函数（多分类问题）"></a>Softmax函数（多分类问题）</h3><p>我们依然使用$z$来表示原先的线性模型的假设函数输出，由于多分类问题每个样本会输出多个概率值，每个概率值都是该样本标注为某个词性的概率，我们使用$z_i$来表示当前样本被标注为第$i$种词性的分值，共有$n$种词性。则Softmax函数的形式为：</p>
-<script type="math/tex; mode=display">
-g(z_i)=\frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}</script><p>所以，加入了Softmax函数后，对数线性模型的假设函数变为：</p>
-<script type="math/tex; mode=display">
-h_w(x_i)=g(z_i)=\frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}=\frac{e^{w^T_ix}}{\sum_{j=1}^{n}{e^{w^T_jx}}}</script><p>我们发现，该函数实际上对每一个类别 i 的概率进行了归一化处理，从而保证其范围在[0，1]上，此外，它还保证了对于每一个样本，其标注为每一个类别的条件概率之和为1<strong>（这也是另一种多分类方法One vs All所不能做到的）</strong>。实际上，你还可以推导发现，<strong>Sigmoid函数其实是Softmax函数在类别 n=2 时的特殊形式</strong>。</p>
+<p>所以，加入了Sigmoid函数后，对数线性模型的假设函数变为：<br>$$<br>h_w(x)=g(z)=\frac{1}{1+e^{-z}}=\frac{1}{1+e^{-w^Tx}}<br>$$</p>
+<h3 id="Softmax函数（多分类问题）"><a href="#Softmax函数（多分类问题）" class="headerlink" title="Softmax函数（多分类问题）"></a>Softmax函数（多分类问题）</h3><p>我们依然使用$z$来表示原先的线性模型的假设函数输出，由于多分类问题每个样本会输出多个概率值，每个概率值都是该样本标注为某个词性的概率，我们使用$z_i$来表示当前样本被标注为第$i$种词性的分值，共有$n$种词性。则Softmax函数的形式为：<br>$$<br>g(z_i)=\frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}<br>$$<br>所以，加入了Softmax函数后，对数线性模型的假设函数变为：<br>$$<br>h_w(x_i)=g(z_i)=\frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}=\frac{e^{w^T_ix}}{\sum_{j=1}^{n}{e^{w^T_jx}}}<br>$$<br>我们发现，该函数实际上对每一个类别 i 的概率进行了归一化处理，从而保证其范围在[0，1]上，此外，它还保证了对于每一个样本，其标注为每一个类别的条件概率之和为1<strong>（这也是另一种多分类方法One vs All所不能做到的）</strong>。实际上，你还可以推导发现，<strong>Sigmoid函数其实是Softmax函数在类别 n=2 时的特殊形式</strong>。</p>
 <h2 id="对数线性模型背后的数学原理"><a href="#对数线性模型背后的数学原理" class="headerlink" title="对数线性模型背后的数学原理"></a>对数线性模型背后的数学原理</h2><p>事实上，上述两种非线性映射函数并不是科学家们一拍脑袋就定义出来的，他们都是有严格的概率统计学证明的。Sigmoid函数是Softmax函数在二分类时的特殊形式，而Softmax函数可以通过信息论中的<strong>最大熵模型</strong>进行推导。我们根据<strong>求解最大熵函数在给定的约束条件下的极值（使用拉格朗日乘子法）</strong>，可以得到最大熵模型的参数形式，也就是Softmax函数的形式。</p>
 <p>具体证明过程可以参考<a href="http://hlt.suda.edu.cn/~zhli/teach/cip-2015-fall/10-maxent-loglinear/main.pdf" target="_blank" rel="noopener">李老师的讲义</a>。</p>
 <h2 id="定义对数线性模型的优化目标"><a href="#定义对数线性模型的优化目标" class="headerlink" title="定义对数线性模型的优化目标"></a>定义对数线性模型的优化目标</h2><p>如果我们在对数线性模型中依然使用线性回归模型的均方差损失函数进行梯度下降，我们将发现<strong>加入了非线性映射函数的均方差损失函数不再是一个凸优化问题，无法保证获得全局最优解</strong>，所以我们需要另寻新的损失函数。</p>
@@ -558,18 +532,8 @@ h_w(x_i)=g(z_i)=\frac{e^{z_i}}{\sum_{j=1}^{n}{e^{z_j}}}=\frac{e^{w^T_ix}}{\sum_{
 <p><strong>极大似然估计：利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值（模型已定，参数未知）</strong> 。</p>
 </blockquote>
 <p>由于我们的词性标注问题是多分类问题，所以我在这里就推导一下Softmax函数的目标函数，事实上，Sigmoid函数只是它的一种特殊情况。</p>
-<p>我们假设当前词预测为第 i 种词性的概率为$\hat{y_i}$，根据Softmax函数，我们的模型现在是：</p>
-<script type="math/tex; mode=display">
-\hat{y_i}=h_w(x_i)=\frac{e^{w^T_ix}}{\sum_{j=1}^{n}{e^{w^T_jx}}}</script><p>我们已知模型的真实概率分布，也就是样本结果信息，即训练集中每一个样本的特征向量和标签。<strong>极大似然估计的目标就是找到一组合适的模型的参数，使得这些样本结果出现的概率最大。</strong>也就是说，对于每一个样本，我们都希望它被标注为正确标签的概率最大。 对于整个训练集，我们当然是期望所有样本的联合概率都达到最大。我们的目标函数，本身是个联合概率，但是假设每个样本独立，那就可以写成连乘形式： </p>
-<script type="math/tex; mode=display">
-J(w)=\frac{1}{N}\prod^{N}_{i=1}\prod^{M}_{j=1}(\frac{e^{w^T_jx_i}}{\sum_{k=1}^{M}{e^{w^T_kx_i}}})^{y_{ij}}</script><p>其中，$N$指样本数量，$i$指第几个样本，$M$指类别数量，$j$指第几个类别，$y_{ij}$指第$i$个样本被标注为第$j$个类别的取值是0还是1。</p>
-<p>我们还可以发现，对于每一个样本$i$，其标签都是一个One-hot向量，即只有一个正确标签为1，其余均为0，所以我们可以对上述目标函数进行化简。设$y_{i}$为第$i$个样本的正确标签，则目标函数简化为：</p>
-<script type="math/tex; mode=display">
-J(w)=\frac{1}{N}\prod^{N}_{i=1}(\frac{e^{w^T_ix_i}}{\sum_{k=1}^{M}{e^{w^T_kx_i}}})^{y_{i}}</script><p>到了这一步，其实我们就可以使用当前的目标函数进行梯度下降，计算模型参数了。但是，我们发现<strong>连乘的形式会使得我们梯度求解变得很复杂，所以为了简化计算，我们可以对目标函数取对数</strong>：</p>
-<script type="math/tex; mode=display">
-logJ(w)=\frac{1}{N}\sum^{N}_{i=1}y_{i}log(\frac{e^{w^T_ix_i}}{\sum_{k=1}^{M}{e^{w^T_kx_i}}})=\frac{1}{N}\sum^{N}_{i=1}y_{i}log\hat{y_i}</script><p>以上就是我们极大化似然估计的目标函数，我们只需要使用梯度上升法对它进行优化即可获得最合适的$w$。此外，<strong>我们也可以加上一个负号，将其转化为最小化损失函数的形式，从而进行梯度下降求解</strong>。</p>
-<script type="math/tex; mode=display">
-Loss(w)=-\frac{1}{N}\sum^{N}_{i=1}y_{i}log\hat{y_i}</script><p>上面这个式子就是Softmax对数线性模型的损失函数，它其实就是我们常说的<strong>交叉熵（cross entropy）损失函数</strong>，更多有关交叉熵的知识来自于信息论，我在此就不多加介绍了。</p>
+<p>我们假设当前词预测为第 i 种词性的概率为$\hat{y_i}$，根据Softmax函数，我们的模型现在是：<br>$$<br>\hat{y_i}=h_w(x_i)=\frac{e^{w^T_ix}}{\sum_{j=1}^{n}{e^{w^T_jx}}}<br>$$<br>我们已知模型的真实概率分布，也就是样本结果信息，即训练集中每一个样本的特征向量和标签。<strong>极大似然估计的目标就是找到一组合适的模型的参数，使得这些样本结果出现的概率最大。</strong>也就是说，对于每一个样本，我们都希望它被标注为正确标签的概率最大。 对于整个训练集，我们当然是期望所有样本的联合概率都达到最大。我们的目标函数，本身是个联合概率，但是假设每个样本独立，那就可以写成连乘形式：<br>$$<br>J(w)=\frac{1}{N}\prod^{N}<em>{i=1}\prod^{M}</em>{j=1}(\frac{e^{w^T_jx_i}}{\sum_{k=1}^{M}{e^{w^T_kx_i}}})^{y_{ij}}<br>$$<br>其中，$N$指样本数量，$i$指第几个样本，$M$指类别数量，$j$指第几个类别，$y_{ij}$指第$i$个样本被标注为第$j$个类别的取值是0还是1。</p>
+<p>我们还可以发现，对于每一个样本$i$，其标签都是一个One-hot向量，即只有一个正确标签为1，其余均为0，所以我们可以对上述目标函数进行化简。设$y_{i}$为第$i$个样本的正确标签，则目标函数简化为：<br>$$<br>J(w)=\frac{1}{N}\prod^{N}<em>{i=1}(\frac{e^{w^T_ix_i}}{\sum</em>{k=1}^{M}{e^{w^T_kx_i}}})^{y_{i}}<br>$$<br>到了这一步，其实我们就可以使用当前的目标函数进行梯度下降，计算模型参数了。但是，我们发现<strong>连乘的形式会使得我们梯度求解变得很复杂，所以为了简化计算，我们可以对目标函数取对数</strong>：<br>$$<br>logJ(w)=\frac{1}{N}\sum^{N}<em>{i=1}y</em>{i}log(\frac{e^{w^T_ix_i}}{\sum_{k=1}^{M}{e^{w^T_kx_i}}})=\frac{1}{N}\sum^{N}<em>{i=1}y</em>{i}log\hat{y_i}<br>$$<br>以上就是我们极大化似然估计的目标函数，我们只需要使用梯度上升法对它进行优化即可获得最合适的$w$。此外，<strong>我们也可以加上一个负号，将其转化为最小化损失函数的形式，从而进行梯度下降求解</strong>。<br>$$<br>Loss(w)=-\frac{1}{N}\sum^{N}<em>{i=1}y</em>{i}log\hat{y_i}<br>$$<br>上面这个式子就是Softmax对数线性模型的损失函数，它其实就是我们常说的<strong>交叉熵（cross entropy）损失函数</strong>，更多有关交叉熵的知识来自于信息论，我在此就不多加介绍了。</p>
 <p>特别地，如果你根据上述损失函数计算梯度，<strong>你会发现对于同一个特征权重，交叉熵损失函数的梯度居然神奇地和均方差损失函数一致！</strong>可以自己动手推导一遍。</p>
 <h2 id="用对数线性模型解决词性标注问题"><a href="#用对数线性模型解决词性标注问题" class="headerlink" title="用对数线性模型解决词性标注问题"></a>用对数线性模型解决词性标注问题</h2><p>有关对数线性模型以及梯度下降法的知识在之前我已经全部介绍过了。在这里我们只需要应用即可。</p>
 <p><strong>依然是使用我们的特征模板构建特征空间，模型使用Softmax函数进行概率转化，模型的训练方式采用随机梯度下降法，损失函数选择交叉熵损失函数。正则化方式选择L2正则化，随机打乱数据集，并使用学习率下降算法，对学习率进行模拟退火处理，使模型在梯度下降后期趋于稳定。</strong></p>
@@ -927,7 +891,7 @@ Loss(w)=-\frac{1}{N}\sum^{N}_{i=1}y_{i}log\hat{y_i}</script><p>上面这个式�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="剑指Offer题解">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="剑指Offer题解">
                         
                         <span class="card-title">剑指Offer题解</span>
                     </div>
@@ -981,7 +945,7 @@ Loss(w)=-\frac{1}{N}\sum^{N}_{i=1}y_{i}log\hat{y_i}</script><p>上面这个式�
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="NLP自学笔记：隐马尔可夫模型">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="NLP自学笔记：隐马尔可夫模型">
                         
                         <span class="card-title">NLP自学笔记：隐马尔可夫模型</span>
                     </div>
@@ -1194,7 +1158,7 @@ Loss(w)=-\frac{1}{N}\sum^{N}_{i=1}y_{i}log\hat{y_i}</script><p>上面这个式�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">52.2k</span>
+            <span class="white-color">74.9k</span>
             
 
             <br>
