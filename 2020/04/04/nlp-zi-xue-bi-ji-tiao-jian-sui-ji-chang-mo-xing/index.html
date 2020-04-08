@@ -212,7 +212,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -329,12 +329,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/算法/" target="_blank">
-                            <span class="chip bg-color">算法</span>
-                        </a>
-                        
                         <a href="/tags/机器学习/" target="_blank">
                             <span class="chip bg-color">机器学习</span>
+                        </a>
+                        
+                        <a href="/tags/算法/" target="_blank">
+                            <span class="chip bg-color">算法</span>
                         </a>
                         
                         <a href="/tags/自然语言处理/" target="_blank">
@@ -427,7 +427,7 @@
 <h2 id="LC-CRF的预测"><a href="#LC-CRF的预测" class="headerlink" title="LC-CRF的预测"></a>LC-CRF的预测</h2><p>LC-CRF跟HMM一样，一般预测用的都是<strong>维特比（Viterbi）算法</strong>。这个算法是一个简单的动态规划，在我的HMM博客有详细的说明。</p>
 <p><strong>需要注意的是，LC-CRF是全局归一化，即分值和概率的转化放在最后一步进行，所以在维特比算法的动态规划状态矩阵中计算的是当前词性序列的累计得分，使用的是累加。而在HMM中，状态矩阵中计算的是概率，使用的是发射概率和转移概率的累乘。</strong></p>
 <p><img src="5.png" alt="维特比算法示意图"></p>
-<h2 id="HMM和CRF的关系"><a href="#HMM和CRF的关系" class="headerlink" title="HMM和CRF的关系"></a>HMM和CRF的关系</h2><p><strong>与HMM相比，CRF其实是它的泛化，添加了不受限制的特征模板，从而可以不仅仅局限在HMM的观测独立性假设和齐次马尔可夫假设上。</strong>如果你对HMM的核心概率公式，即已知观测序列$s$，求解生成观测序列$l$的概率的概率公式（HMM是生成模型，这里是联合概率），求对数后，将得到：<br>$$<br>logP(l,s)=log(P(l_0)\prod_{i=1}^nP(l_i|l_{i-1})P(s_i|l_i))<br>\\=logP(l_0)+\sum_{i=1}^nlogP(l_i|l_{i-1})+\sum_{i=1}^nlogP(s_i|l_i)<br>$$<br> 我们可以将HMM的这个式子和我们的CRF的分值计算公式进行对比：<br>$$<br>Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})<br>$$</p>
+<h2 id="HMM和CRF的关系"><a href="#HMM和CRF的关系" class="headerlink" title="HMM和CRF的关系"></a>HMM和CRF的关系</h2><p><strong>与HMM相比，CRF其实是它的泛化，添加了不受限制的特征模板，从而可以不仅仅局限在HMM的观测独立性假设和齐次马尔可夫假设上。</strong>如果你对HMM的核心概率公式，即已知观测序列$s$，求解生成观测序列$l$的概率的概率公式（HMM是生成模型，这里是联合概率），求对数后，将得到：<br>$$<br>logP(l,s)=log(P(l_0)\prod_{i=1}^nP(l_i|l_{i-1})P(s_i|l_i))<br>\\\\=logP(l_0)+\sum_{i=1}^nlogP(l_i|l_{i-1})+\sum_{i=1}^nlogP(s_i|l_i)<br>$$<br> 我们可以将HMM的这个式子和我们的CRF的分值计算公式进行对比：<br>$$<br>Score(l,s)=\sum_{i=1}^{n}\sum_{j=1}^{m}\lambda_jf_j(s,i,l_i,l_{i-1})<br>$$</p>
 <p>其中，$f_j$表示第$j$个特征，$\lambda_j$表示它的特征权重。</p>
 <p>由于CRF需要使用Bigram特征，这里的特征还需要考虑前面一个隐状态$l_{i-1}$是什么。</p>
 <p>由于$f_j$的取值总为0或1，我们可以发现： <strong>如果我们把第一个HMM式子中的log形式的概率看做是第二个CRF式子中的特征函数的权重的话，其实，CRF和HMM具有相同的形式。换句话说，我们可以构造一个CRF，使它与HMM的对数形式相同 ，只需要将特征模板限定为初始特征、转移特征和发射特征。也就是说 ，每一个HMM模型其实都等价于某个CRF！</strong></p>
@@ -789,7 +789,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="NLP自学笔记：神经网络序列模型">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="NLP自学笔记：神经网络序列模型">
                         
                         <span class="card-title">NLP自学笔记：神经网络序列模型</span>
                     </div>
@@ -819,20 +819,20 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                     <a href="/tags/机器学习/" target="_blank">
                         <span class="chip bg-color">机器学习</span>
                     </a>
                     
-                    <a href="/tags/自然语言处理/" target="_blank">
-                        <span class="chip bg-color">自然语言处理</span>
-                    </a>
-                    
                     <a href="/tags/深度学习/" target="_blank">
                         <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/自然语言处理/" target="_blank">
+                        <span class="chip bg-color">自然语言处理</span>
                     </a>
                     
                 </div>
@@ -850,7 +850,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="剑指Offer题解">
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="剑指Offer题解">
                         
                         <span class="card-title">剑指Offer题解</span>
                     </div>
@@ -1060,7 +1060,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">74.9k</span>
+            <span class="white-color">80.1k</span>
             
 
             <br>

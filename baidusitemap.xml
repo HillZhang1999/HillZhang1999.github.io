@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/</loc>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2020/04/05/nlp-zi-xue-bi-ji-shen-jing-wang-luo-xu-lie-mo-xing/</loc>
-    <lastmod>2020-04-06</lastmod>
+    <lastmod>2020-04-08</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
-    <lastmod>2020-04-06</lastmod>
+    <lastmod>2020-04-08</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/</loc>
+    <lastmod>2020-04-07</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/</loc>
+    <lastmod>2020-04-07</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/</loc>
+    <lastmod>2020-04-07</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/</loc>
-    <lastmod>2020-04-05</lastmod>
+    <lastmod>2020-04-06</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/</loc>
     <lastmod>2020-04-05</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/</loc>
-    <lastmod>2020-04-03</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/</loc>
     <lastmod>2020-03-20</lastmod>

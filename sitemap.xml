@@ -2,23 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/</loc>
+    
+    <lastmod>2020-04-08T09:42:35.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/</loc>
+    
+    <lastmod>2020-04-08T09:14:03.529Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/04/05/nlp-zi-xue-bi-ji-shen-jing-wang-luo-xu-lie-mo-xing/</loc>
     
-    <lastmod>2020-04-06T17:24:12.337Z</lastmod>
+    <lastmod>2020-04-08T08:58:08.676Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
     
-    <lastmod>2020-04-06T15:44:52.932Z</lastmod>
+    <lastmod>2020-04-08T08:01:56.404Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/</loc>
+    
+    <lastmod>2020-04-07T16:42:06.966Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/</loc>
+    
+    <lastmod>2020-04-07T14:17:25.630Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/</loc>
+    
+    <lastmod>2020-04-07T14:17:13.936Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/</loc>
     
-    <lastmod>2020-04-05T07:13:22.654Z</lastmod>
+    <lastmod>2020-04-06T16:38:30.725Z</lastmod>
     
   </url>
   
@@ -26,13 +61,6 @@
     <loc>http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/</loc>
     
     <lastmod>2020-04-05T06:49:43.799Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/</loc>
-    
-    <lastmod>2020-04-03T09:51:39.573Z</lastmod>
     
   </url>
   
@@ -72,21 +100,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/categories/index.html</loc>
-    
-    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/contact/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
@@ -100,7 +114,21 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/contact/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     

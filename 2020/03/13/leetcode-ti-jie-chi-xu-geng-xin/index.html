@@ -213,7 +213,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -372,14 +372,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    25.3k
+                    28.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    110 分
+                    122 分
                 </div>
                 
                 
@@ -2248,7 +2248,7 @@ class Solution:
 <ul>
 <li>DP[i]=f[1]+f[2]+…+f[i]，即计算以1到i的每个节点为根节点的二叉搜索树数目之和。</li>
 <li>f[j]=DP[j-1]*DP[i-j]，即以j为根节点的二叉搜索树，左侧有j-1个节点，右侧有i-j个节点，又因为j+1到i为节点的二叉搜索树数目与1到i-j的二叉搜索树一致，所以可以用DP[i-j]来代替。则左右两边子树组合数目为DP[j-1]乘以DP[i-j]。</li>
-<li>则动态规划转移方程为：DP[i]=DP[0] * DP[i-1]+DP[1] * DP[i-2]+…+DP[i] * DP[0]</li>
+<li>则动态规划转移方程为：DP[i]=DP[0] <em> DP[i-1]+DP[1] </em> DP[i-2]+…+DP[i] * DP[0]</li>
 <li>这个动态规划方程在数学上有一个名字，叫做“卡特兰数”</li>
 </ul>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
@@ -2699,7 +2699,7 @@ DoubleList cache<span class="token punctuation">;</span>
 <h3 id="152题-乘积最大子数组"><a href="#152题-乘积最大子数组" class="headerlink" title="152题 乘积最大子数组"></a>152题 <a href="https://leetcode-cn.com/problems/maximum-product-subarray/" target="_blank" rel="noopener">乘积最大子数组</a></h3><p><img src="152.png" alt="第152题"></p>
 <h4 id="思路-45"><a href="#思路-45" class="headerlink" title="思路:"></a>思路:</h4><p>动态规划，类似于最大连续子序和问题。我们使用dp[i]表示前i个数字中子数组的最大乘积。动态规划转移方程为：</p>
 <blockquote>
-<p>maxDP[i + 1] = max(maxDP[i] * A[i + 1], A[i + 1],minDP[i] * A[i + 1])<br>minDP[i + 1] = min(minDP[i] * A[i + 1], A[i + 1],maxDP[i] * A[i + 1])<br>dp[i + 1] = max(dp[i], maxDP[i + 1])</p>
+<p>maxDP[i + 1] = max(maxDP[i] <em> A[i + 1], A[i + 1],minDP[i] </em> A[i + 1])<br>minDP[i + 1] = min(minDP[i] <em> A[i + 1], A[i + 1],maxDP[i] </em> A[i + 1])<br>dp[i + 1] = max(dp[i], maxDP[i + 1])</p>
 </blockquote>
 <p>在这里，maxDP[i] 是以第i个数字结尾的子数组的最大乘积，minDP[i]是以第i个数字结尾的子数组的最小乘积。之所以我们需要保留最小乘积，是因为考虑到第i+1个数字是负数的情况。</p>
 <p>由于我们发现，所有的动态规划转移方程都只需要用到前一个状态，所以我们只需要使用三个变量即可代替状态矩阵（滚动数组法优化DP空间的思想）</p>
@@ -2716,6 +2716,317 @@ DoubleList cache<span class="token punctuation">;</span>
             max_product<span class="token operator">=</span>max<span class="token punctuation">(</span>imax<span class="token punctuation">,</span>max_product<span class="token punctuation">)</span>
         <span class="token keyword">return</span> max_product<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>需要注意的是，imax和imin必须同步更新，因为imin的更新需要使用到imax的值，如果imax的值先被改变，结果将出错。</p>
+<h2 id="2020-4-7-（4-easy）"><a href="#2020-4-7-（4-easy）" class="headerlink" title="2020.4.7 （4 easy）"></a>2020.4.7 （4 easy）</h2><h3 id="155题-最小栈"><a href="#155题-最小栈" class="headerlink" title="155题 最小栈"></a>155题 <a href="https://leetcode-cn.com/problems/min-stack/" target="_blank" rel="noopener">最小栈</a></h3><p><img src="155.png" alt="第155题"></p>
+<h4 id="思路：-18"><a href="#思路：-18" class="headerlink" title="思路："></a>思路：</h4><p>剑指Offer原题，我们可以使用一个辅助栈，存放栈内前i个元素中的最小值，以空间换时间。</p>
+<ul>
+<li>时间复杂度：$O(1)$。</li>
+<li>空间复杂度：$O(n)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MinStack</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        initialize your data structure here.
+        """</span>
+        self<span class="token punctuation">.</span>stack1<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>stack2<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> None<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>stack2<span class="token operator">==</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>stack2<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>stack2<span class="token punctuation">.</span>append<span class="token punctuation">(</span>min<span class="token punctuation">(</span>self<span class="token punctuation">.</span>stack2<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>stack1<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> None<span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>stack2<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stack1<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stack1<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">getMin</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>stack2<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+
+<span class="token comment" spellcheck="true"># Your MinStack object will be instantiated and called as such:</span>
+<span class="token comment" spellcheck="true"># obj = MinStack()</span>
+<span class="token comment" spellcheck="true"># obj.push(x)</span>
+<span class="token comment" spellcheck="true"># obj.pop()</span>
+<span class="token comment" spellcheck="true"># param_3 = obj.top()</span>
+<span class="token comment" spellcheck="true"># param_4 = obj.getMin()</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="160题-相交链表"><a href="#160题-相交链表" class="headerlink" title="160题 相交链表"></a>160题 <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/" target="_blank" rel="noopener">相交链表</a></h3><p><img src="160.png" alt="第160题"></p>
+<h4 id="思路：-19"><a href="#思路：-19" class="headerlink" title="思路："></a>思路：</h4><p>剑指Offer原题，我们最容易想到的方法是采用哈希表的方式，记录下A、B链表中的每一个节点，找到第一个重复的节点返回。但有没有方法可以不使用额外的空间呢？答案是有的，我们可以使用双指针法，这有些类似于环形链表142题。</p>
+<p>我们创建指针p指向headA，指针q指向headB，使二者向前遍历链表A和B。当p遍历到链表A结尾时，令p=headB，当q遍历到链表B结尾时，令q=headA。如果链表A和链表B存在相交点时，p和q继续向后遍历，必然会在相交点处相等。如果不存在相交点，p和q继续向后遍历，必然会同时遍历到链表结尾。</p>
+<p>原理：</p>
+<p><img src="160-1.png" alt="第160题示意图"></p>
+<p>假如相交，则a+b+c必然等于c+b+a！p指针和q指针在链表相交点处必然走过相同的路程。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for singly-linked list.</span>
+<span class="token comment" spellcheck="true"># class ListNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.next = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">getIntersectionNode</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> headA<span class="token punctuation">:</span> ListNode<span class="token punctuation">,</span> headB<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> headA<span class="token operator">==</span>None <span class="token operator">or</span> headB<span class="token operator">==</span>None<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> None
+        p<span class="token operator">=</span>headA
+        q<span class="token operator">=</span>headB
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token operator">!=</span>q<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> p<span class="token punctuation">.</span>next<span class="token operator">==</span>None <span class="token operator">and</span> q<span class="token punctuation">.</span>next<span class="token operator">==</span>None<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> None
+            p<span class="token operator">=</span>p<span class="token punctuation">.</span>next <span class="token keyword">if</span> p<span class="token punctuation">.</span>next<span class="token operator">!=</span>None <span class="token keyword">else</span> headB
+            q<span class="token operator">=</span>q<span class="token punctuation">.</span>next <span class="token keyword">if</span> q<span class="token punctuation">.</span>next<span class="token operator">!=</span>None <span class="token keyword">else</span> headA
+        <span class="token keyword">return</span> p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="169题-多数元素"><a href="#169题-多数元素" class="headerlink" title="169题 多数元素"></a>169题 <a href="https://leetcode-cn.com/problems/majority-element/" target="_blank" rel="noopener">多数元素</a></h3><p><img src="169.png" alt="第169题"></p>
+<h4 id="思路：-20"><a href="#思路：-20" class="headerlink" title="思路："></a>思路：</h4><p>常规的做法有：（1）哈希表记录各元素出现的次数，选择出现次数最多的元素（时：$O(n)$，空：$O(n)$）（2）排序法，取中值。（时：$O(nlogn)$，空：$O(1)$）</p>
+<p>为了获得最优的时空复杂度，我们还可以使用投票算法：</p>
+<ul>
+<li>如果我们把众数记为 +1，把其他数记为 -1，将它们全部加起来，显然和大于 0，从结果本身我们可以看出众数比其他数多。 </li>
+<li>我们遍历数组，使用count记录下当前投票和。如果count等于0，那么就更新候选人。接着进行投票，如果当前值等于候选人，count加1，否则count减1。</li>
+<li>投票算法证明：<ol>
+<li>如果候选人不是maj（多数元素） 则 maj,会和其他非候选人一起反对 会反对候选人,所以候选人一定会下台(maj==0时发生换届选举)</li>
+<li>如果候选人是maj , 则maj 会支持自己，其他候选人会反对，同样因为maj 票数超过一半，所以maj 一定会成功当选</li>
+</ol>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">majorityElement</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        count<span class="token operator">=</span><span class="token number">0</span>
+        candidate<span class="token operator">=</span>None
+        <span class="token keyword">for</span> num <span class="token keyword">in</span> nums<span class="token punctuation">:</span>
+            <span class="token keyword">if</span> count<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+                candidate<span class="token operator">=</span>num
+            count<span class="token operator">+=</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token keyword">if</span> num<span class="token operator">==</span>candidate <span class="token keyword">else</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> candidate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<h3 id="198题-打家劫舍"><a href="#198题-打家劫舍" class="headerlink" title="198题 打家劫舍"></a>198题 <a href="https://leetcode-cn.com/problems/house-robber/" target="_blank" rel="noopener">打家劫舍</a></h3><p><img src="198.png" alt="第198题"></p>
+<h4 id="思路：-21"><a href="#思路：-21" class="headerlink" title="思路："></a>思路：</h4><p>动态规划模板题，有些类似于01背包问题。动态规划状态矩阵dp[i]用于表示偷前i家的最大金额，转移方程为：</p>
+<ul>
+<li>dp[i]=max（dp[i-1]，dp[i-2]+nums[i]）</li>
+</ul>
+<p>即考虑偷当前这家和不偷当前这家的收益谁更大，选择最大收益。（偷这家就不能偷上一家）</p>
+<p>由于只用到前两个状态，所以我们可以使用滚动数组的思想进行空间优化。</p>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">rob</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+        <span class="token keyword">if</span> len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        a<span class="token operator">=</span>nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        b<span class="token operator">=</span>max<span class="token punctuation">(</span>nums<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span>len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            a<span class="token punctuation">,</span>b<span class="token operator">=</span>b<span class="token punctuation">,</span>max<span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="2020-4-7-（3-medium-1-easy）"><a href="#2020-4-7-（3-medium-1-easy）" class="headerlink" title="2020.4.7 （3 medium 1 easy）"></a>2020.4.7 （3 medium 1 easy）</h2><h3 id="200题-岛屿数量"><a href="#200题-岛屿数量" class="headerlink" title="200题 岛屿数量"></a>200题 <a href="https://leetcode-cn.com/problems/number-of-islands/" target="_blank" rel="noopener">岛屿数量</a></h3><p><img src="200.png" alt="第200题"></p>
+<h4 id="思路：-22"><a href="#思路：-22" class="headerlink" title="思路："></a>思路：</h4><p>DFS模板题，使用一个visited矩阵来存放某个位置是否已被访问过。</p>
+<p>遍历grid矩阵，每次遇到尚未被访问的岛屿时，将计数变量加1，再使用DFS遍历该岛屿的所有土地，并标记为已访问，访问过的土地或者水域都不会进行访问。这样，将会把该岛屿的所有土地都访问一次，然后终止递归。最后，所有的岛屿将被遍历一次，计数变量的值即为岛屿数。</p>
+<p>特别地，为了减少空间占用，我们还可以原地修改grid矩阵来表示已访问过。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">numIslands</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> grid<span class="token punctuation">:</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>str<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> row<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token operator">or</span> row<span class="token operator">>=</span>len<span class="token punctuation">(</span>grid<span class="token punctuation">)</span> <span class="token operator">or</span> col<span class="token operator">&lt;</span><span class="token number">0</span> <span class="token operator">or</span> col<span class="token operator">>=</span>len<span class="token punctuation">(</span>grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span>
+            <span class="token keyword">if</span> grid<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"1"</span><span class="token punctuation">:</span>
+                grid<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"0"</span>
+                dfs<span class="token punctuation">(</span>row<span class="token number">-1</span><span class="token punctuation">,</span>col<span class="token punctuation">)</span>
+                dfs<span class="token punctuation">(</span>row<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>col<span class="token punctuation">)</span>
+                dfs<span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token number">-1</span><span class="token punctuation">)</span>
+                dfs<span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+        islands<span class="token operator">=</span><span class="token number">0</span>
+        <span class="token keyword">for</span> row <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>grid<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> col <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> grid<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">"1"</span><span class="token punctuation">:</span>
+                    islands<span class="token operator">+=</span><span class="token number">1</span>
+                    dfs<span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> islands<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间复杂度：$O(mn)$。</li>
+<li>空间复杂度：$O(mn)$，递归栈。</li>
+</ul>
+<p>这道题还可以用<a href="https://blog.csdn.net/qq_41593380/article/details/81146850" target="_blank" rel="noopener">并查集</a>来做。基本思路就是将连同的陆地合并到同一个集合中，最后统计集合数目即可。</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> List
+
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">numIslands</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> grid<span class="token punctuation">:</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>str<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+
+        <span class="token keyword">class</span> <span class="token class-name">UnionFind</span><span class="token punctuation">:</span>
+
+            <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                self<span class="token punctuation">.</span>count <span class="token operator">=</span> n
+                self<span class="token punctuation">.</span>parent <span class="token operator">=</span> <span class="token punctuation">[</span>i <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+            <span class="token keyword">def</span> <span class="token function">get_count</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> self<span class="token punctuation">.</span>count
+
+            <span class="token keyword">def</span> <span class="token function">find</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> p<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                now<span class="token operator">=</span>p
+                <span class="token keyword">while</span> p <span class="token operator">!=</span> self<span class="token punctuation">.</span>parent<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    p <span class="token operator">=</span> self<span class="token punctuation">.</span>parent<span class="token punctuation">[</span>p<span class="token punctuation">]</span>
+                <span class="token keyword">while</span> now <span class="token operator">!=</span> p<span class="token punctuation">:</span>
+                    now<span class="token punctuation">,</span>self<span class="token punctuation">.</span>parent<span class="token punctuation">[</span>now<span class="token punctuation">]</span><span class="token operator">=</span>self<span class="token punctuation">.</span>parent<span class="token punctuation">[</span>now<span class="token punctuation">]</span><span class="token punctuation">,</span>p
+                <span class="token keyword">return</span> p
+
+            <span class="token keyword">def</span> <span class="token function">is_connected</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> self<span class="token punctuation">.</span>find<span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">==</span> self<span class="token punctuation">.</span>find<span class="token punctuation">(</span>q<span class="token punctuation">)</span>
+
+            <span class="token keyword">def</span> <span class="token function">union</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                p_root <span class="token operator">=</span> self<span class="token punctuation">.</span>find<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
+                q_root <span class="token operator">=</span> self<span class="token punctuation">.</span>find<span class="token punctuation">(</span>q<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> p_root <span class="token operator">!=</span> q_root<span class="token punctuation">:</span>
+                    self<span class="token punctuation">.</span>parent<span class="token punctuation">[</span>q_root<span class="token punctuation">]</span><span class="token operator">=</span>p_root
+                    self<span class="token punctuation">.</span>count<span class="token operator">-=</span><span class="token number">1</span>
+
+        row <span class="token operator">=</span> len<span class="token punctuation">(</span>grid<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 特判</span>
+        <span class="token keyword">if</span> row <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">0</span>
+        col <span class="token operator">=</span> len<span class="token punctuation">(</span>grid<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">def</span> <span class="token function">get_index</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> x <span class="token operator">*</span> col <span class="token operator">+</span> y
+
+        <span class="token comment" spellcheck="true"># 注意：我们不用像 DFS 和 BFS 一样，4 个方向都要尝试，只要看一看右边和下面就可以了</span>
+        directions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token comment" spellcheck="true"># 多开一个空间，把水域 "0" 都归到这个虚拟的老大上</span>
+        dummy_node <span class="token operator">=</span> row <span class="token operator">*</span> col
+
+        <span class="token comment" spellcheck="true"># 多开的一个空间就是那个虚拟的空间</span>
+        uf <span class="token operator">=</span> UnionFind<span class="token punctuation">(</span>dummy_node <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>row<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>col<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token comment" spellcheck="true"># 如果是水域，都连到那个虚拟的空间去</span>
+                <span class="token keyword">if</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'0'</span><span class="token punctuation">:</span>
+                    uf<span class="token punctuation">.</span>union<span class="token punctuation">(</span>get_index<span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">,</span> dummy_node<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> grid<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'1'</span><span class="token punctuation">:</span>
+                    <span class="token comment" spellcheck="true"># 向下向右如果都是陆地，即 "1"，就要合并一下</span>
+                    <span class="token keyword">for</span> direction <span class="token keyword">in</span> directions<span class="token punctuation">:</span>
+                        new_x <span class="token operator">=</span> i <span class="token operator">+</span> direction<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+                        new_y <span class="token operator">=</span> j <span class="token operator">+</span> direction<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+                        <span class="token keyword">if</span> new_x <span class="token operator">&lt;</span> row <span class="token operator">and</span> new_y <span class="token operator">&lt;</span> col <span class="token operator">and</span> grid<span class="token punctuation">[</span>new_x<span class="token punctuation">]</span><span class="token punctuation">[</span>new_y<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'1'</span><span class="token punctuation">:</span>
+                            uf<span class="token punctuation">.</span>union<span class="token punctuation">(</span>get_index<span class="token punctuation">(</span>i<span class="token punctuation">,</span> j<span class="token punctuation">)</span><span class="token punctuation">,</span> get_index<span class="token punctuation">(</span>new_x<span class="token punctuation">,</span> new_y<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 不要忘记把那个虚拟结点减掉</span>
+        <span class="token keyword">return</span> uf<span class="token punctuation">.</span>get_count<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>顾名思义，并查集的主要操作有两个，分别是并和查。类似于这种最小连通子树的问题，我们使用图结构未免过于复杂，所以并查集能够很好的解决这一问题。</p>
+<p>我们使用一个数组parent存放每个节点的父节点。</p>
+<ul>
+<li>查操作：如果节点A的父节点是自身，那么他就是所在树的根节点，否则向上递归搜索，直到找到所在树的根节点。（查询每个节点所在子树的根节点，如果A和B所在子树的根节点相同，则说明它们是连通的）</li>
+<li>特别地，为了进行路径压缩，我们在查操作递归查找到根节点后，将递归路径上的所有节点的父节点设置为根节点，从而确保所有的节点都可以在两步之内找到根节点。</li>
+<li>并操作：合并节点A和节点B所在的子树。具体做法是：查找A所在子树的根节点，查找B所在子树的根节点，修改A的根节点的父节点为B的根节点。</li>
+<li>初始情况下，我们设定每一个位置都是一个集合（子树），并查集的count数为总位置数目加1（有一个虚拟节点）。然后我们遍历所有位置，如果当前位置是陆地，则合并右方和下方的陆地至当前位置的子树，每次合并后将count数减1，说明集合数减1。如果当前位置是水域，则将其合并到伪节点下。</li>
+<li>最后，我们将并查集内的集合数目减1，即为岛屿数目（其中有一个集合是水域的集合）。</li>
+</ul>
+<h3 id="206题-反转链表"><a href="#206题-反转链表" class="headerlink" title="206题 反转链表"></a>206题 <a href="https://leetcode-cn.com/problems/reverse-linked-list/" target="_blank" rel="noopener">反转链表</a></h3><p><img src="206.png" alt="第206题"></p>
+<h4 id="思路：-23"><a href="#思路：-23" class="headerlink" title="思路："></a>思路：</h4><p>可以使用头插法，遍历链表中的每个节点都插入到头部即可。</p>
+<p>也可以使用快慢指针法，慢指针开始时指向None，快指针指向Head。每次将快指针的next指向慢指针，即实现了反转。然后将快慢指针同时向前移动一个节点，继续修改快指针的next。、</p>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Definition for singly-linked list.</span>
+<span class="token comment" spellcheck="true"># class ListNode:</span>
+<span class="token comment" spellcheck="true">#     def __init__(self, x):</span>
+<span class="token comment" spellcheck="true">#         self.val = x</span>
+<span class="token comment" spellcheck="true">#         self.next = None</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">reverseList</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> head<span class="token punctuation">:</span> ListNode<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> ListNode<span class="token punctuation">:</span>
+        p<span class="token operator">=</span>None
+        q<span class="token operator">=</span>head
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>q<span class="token operator">!=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            tmp<span class="token punctuation">,</span>q<span class="token punctuation">.</span>next<span class="token operator">=</span>q<span class="token punctuation">.</span>next<span class="token punctuation">,</span>p
+            p<span class="token punctuation">,</span>q<span class="token operator">=</span>q<span class="token punctuation">,</span>tmp
+        <span class="token keyword">return</span> p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="207题-课程表"><a href="#207题-课程表" class="headerlink" title="207题  课程表"></a>207题 <a href="https://leetcode-cn.com/problems/course-schedule/" target="_blank" rel="noopener"> 课程表</a></h3><p><img src="207.png" alt="第207题"></p>
+<h4 id="思路：-24"><a href="#思路：-24" class="headerlink" title="思路："></a>思路：</h4><p>这是一个有向图找环路的问题，基本的思路是拓扑排序。</p>
+<p>我们每次找到一个入度为0的节点，将其从图上删除，并删除以它为起点的所有边，修改相应的边终点的入度。循环执行上述操作，直到图中不存在节点，说明无环。如果无法将节点全部清空，说明存在环。</p>
+<ul>
+<li>时间复杂度：$O(N + M)$： 遍历一个图需要访问所有节点和所有临边；</li>
+<li>空间复杂度：$O(N + M)$： 为建立邻接表所需额外空间。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">canFinish</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> numCourses<span class="token punctuation">:</span> int<span class="token punctuation">,</span> prerequisites<span class="token punctuation">:</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>
+        indegree<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>numCourses<span class="token punctuation">)</span><span class="token punctuation">]</span>
+        hashmap<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>numCourses<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            hashmap<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> edge <span class="token keyword">in</span> prerequisites<span class="token punctuation">:</span>
+            indegree<span class="token punctuation">[</span>edge<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">+=</span><span class="token number">1</span>
+            hashmap<span class="token punctuation">[</span>edge<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>edge<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> hashmap<span class="token punctuation">:</span><span class="token comment" spellcheck="true">#如果还剩下节点，那么继续删除节点</span>
+            flag<span class="token operator">=</span><span class="token boolean">False</span>
+            <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>indegree<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> indegree<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+                    flag<span class="token operator">=</span><span class="token boolean">True</span>
+                    <span class="token keyword">for</span> next <span class="token keyword">in</span> hashmap<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                        indegree<span class="token punctuation">[</span>next<span class="token punctuation">]</span><span class="token operator">-=</span><span class="token number">1</span>
+                    indegree<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span>
+                    hashmap<span class="token punctuation">.</span>pop<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> flag<span class="token operator">==</span><span class="token boolean">False</span><span class="token punctuation">:</span><span class="token comment" spellcheck="true">#如果不存在入度为0的节点，那么说明必然存在环路</span>
+                <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">return</span> <span class="token boolean">True</span><span class="token comment" spellcheck="true">#节点可以被全部删除，说明无环</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="215题-数组中的第K个最大元素"><a href="#215题-数组中的第K个最大元素" class="headerlink" title="215题 数组中的第K个最大元素"></a>215题 <a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener">数组中的第K个最大元素</a></h3><p><img src="215.png" alt="第215题"></p>
+<h4 id="思路：-25"><a href="#思路：-25" class="headerlink" title="思路："></a>思路：</h4><p>剑指Offer原题，两种做法：快速选择法和辅助堆。具体解析可见剑指Offer的博客。</p>
+<p>辅助堆：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">,</span> k<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        heap<span class="token operator">=</span>nums<span class="token punctuation">[</span><span class="token punctuation">:</span>k<span class="token punctuation">]</span>
+        heapq<span class="token punctuation">.</span>heapify<span class="token punctuation">(</span>heap<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>k<span class="token punctuation">,</span>len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            heapq<span class="token punctuation">.</span>heappushpop<span class="token punctuation">(</span>heap<span class="token punctuation">,</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> heapq<span class="token punctuation">.</span>heappop<span class="token punctuation">(</span>heap<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>时间复杂度：$O(nlogk)$，堆的插入、删除都需要$O(logk)$，最坏情况下，每个数字都要入堆出堆一次。</li>
+<li>空间复杂度：$O(k)$，辅助堆。</li>
+</ul>
+<p>快速选择：</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">findKthLargest</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">,</span> k<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token keyword">def</span> <span class="token function">partition</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span>right<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment" spellcheck="true">#和快速排序中的分治一样，将当前区间首部的枢纽元素调整至正确的位置</span>
+            i<span class="token operator">=</span>left<span class="token operator">+</span><span class="token number">1</span>
+            j<span class="token operator">=</span>right
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>i<span class="token operator">&lt;=</span>right <span class="token operator">and</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;=</span>nums<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    i<span class="token operator">+=</span><span class="token number">1</span>
+                <span class="token keyword">while</span> <span class="token punctuation">(</span>j<span class="token operator">></span>left <span class="token operator">and</span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">>=</span>nums<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    j<span class="token operator">-=</span><span class="token number">1</span>
+                <span class="token keyword">if</span> i<span class="token operator">&lt;</span>j<span class="token punctuation">:</span>
+                    nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    nums<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>nums<span class="token punctuation">[</span>left<span class="token punctuation">]</span>
+                    <span class="token keyword">break</span>
+            <span class="token keyword">return</span> j
+
+        <span class="token keyword">def</span> <span class="token function">quickSelect</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span>right<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment" spellcheck="true">#快速选择算法</span>
+            m<span class="token operator">=</span>partition<span class="token punctuation">(</span>left<span class="token punctuation">,</span>right<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> m<span class="token operator">==</span>k<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> nums<span class="token punctuation">[</span>m<span class="token punctuation">]</span>
+            <span class="token keyword">elif</span> m<span class="token operator">></span>k<span class="token punctuation">:</span>
+                <span class="token keyword">return</span> quickSelect<span class="token punctuation">(</span>left<span class="token punctuation">,</span>m<span class="token number">-1</span><span class="token punctuation">,</span>k<span class="token punctuation">)</span>
+            <span class="token keyword">else</span><span class="token punctuation">:</span>
+                <span class="token keyword">return</span> quickSelect<span class="token punctuation">(</span>m<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>right<span class="token punctuation">,</span>k<span class="token punctuation">)</span>
+
+        random<span class="token punctuation">.</span>shuffle<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token comment" spellcheck="true">#非常重要！</span>
+        <span class="token keyword">if</span> k<span class="token operator">&lt;</span><span class="token number">1</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">if</span> k<span class="token operator">></span>len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> nums
+        <span class="token keyword">return</span> quickSelect<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span>len<span class="token punctuation">(</span>nums<span class="token punctuation">)</span><span class="token operator">-</span>k<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>需要注意的是：如果数组有序，那么快速选择法的时间复杂度会大幅提高。（原理和快排一样，当数组有序时，会退化成冒泡排序，时间复杂度升至$O(MN)$）所以我们需要提前随机打乱数组。</p>
+<ul>
+<li>时间复杂度：$O(n)$。</li>
+<li>空间复杂度：$O(1)$。</li>
+</ul>
 
             </div>
             <hr />
@@ -3062,7 +3373,7 @@ DoubleList cache<span class="token punctuation">;</span>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="KMP算法">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="KMP算法">
                         
                         <span class="card-title">KMP算法</span>
                     </div>
@@ -3112,7 +3423,7 @@ DoubleList cache<span class="token punctuation">;</span>
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（附代码）">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（附代码）">
                         
                         <span class="card-title">十大经典排序算法整理汇总（附代码）</span>
                     </div>
@@ -3321,7 +3632,7 @@ DoubleList cache<span class="token punctuation">;</span>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">74.9k</span>
+            <span class="white-color">80.1k</span>
             
 
             <br>

@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="KMP算法, 章岳 学习笔记 计算机 算法 程序">
+    <meta name="keywords" content="NLP自学笔记：Word2Vec、Glove和ELMO, 章岳 学习笔记 计算机 算法 程序">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="前言本文整理了KMP算法的原理及代码，可以使用LEETCODE上的题目进行测试：28. 实现 strStr()。
-从Brute-Force算法说起BF算法是最为简单的一种字符串匹配算法，它采用纯暴力匹配的思想。对于目标串S和模式串P，其基本">
+    <meta name="description" content="前言词汇表示（Word Representation）一直是自然语言处理中最基础也是最重要的任务之一。 深度学习已经给这一领域带来了革命性的变革。其中一个很关键的概念就是词嵌入（word embeddings），这是语言表示的一种方式，可以">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>KMP算法 | HillZhang的博客</title>
+    <title>NLP自学笔记：Word2Vec、Glove和ELMO | HillZhang的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -213,13 +212,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        KMP算法
+                        NLP自学笔记：Word2Vec、Glove和ELMO
                     </div>
                 </div>
             </div>
@@ -330,8 +329,20 @@
                     
                     <div class="article-tag">
                         
+                        <a href="/tags/机器学习/" target="_blank">
+                            <span class="chip bg-color">机器学习</span>
+                        </a>
+                        
+                        <a href="/tags/深度学习/" target="_blank">
+                            <span class="chip bg-color">深度学习</span>
+                        </a>
+                        
                         <a href="/tags/算法/" target="_blank">
                             <span class="chip bg-color">算法</span>
+                        </a>
+                        
+                        <a href="/tags/自然语言处理/" target="_blank">
+                            <span class="chip bg-color">自然语言处理</span>
                         </a>
                         
                     </div>
@@ -342,8 +353,12 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/编程算法/" class="post-category" target="_blank">
-                            编程算法
+                        <a href="/categories/深度学习/" class="post-category" target="_blank">
+                            深度学习
+                        </a>
+                        
+                        <a href="/categories/深度学习/预训练模型/" class="post-category" target="_blank">
+                            预训练模型
                         </a>
                         
                     </div>
@@ -354,7 +369,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-17
+                    2020-04-08
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -368,14 +383,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    839
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    2 分
                 </div>
                 
                 
@@ -386,93 +401,25 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文整理了KMP算法的原理及代码，可以使用LEETCODE上的题目进行测试：<a href="https://leetcode-cn.com/problems/implement-strstr/submissions/" title="28. 实现 strStr()" target="_blank" rel="noopener">28. 实现 strStr()</a>。</p>
-<h2 id="从Brute-Force算法说起"><a href="#从Brute-Force算法说起" class="headerlink" title="从Brute-Force算法说起"></a>从Brute-Force算法说起</h2><p>BF算法是最为简单的一种字符串匹配算法，它采用纯暴力匹配的思想。对于目标串S和模式串P，其基本匹配思路如下：</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>词汇表示（Word Representation）一直是自然语言处理中最基础也是最重要的任务之一。 深度学习已经给这一领域带来了革命性的变革。其中一个很关键的概念就是词嵌入（<strong>word embeddings</strong>），这是语言表示的一种方式，可以让算法自动的理解一些类似的词，比如男人对女人，比如国王对王后，还有其他很多的例子。 </p>
+<p>本文是我在学习吴恩达深度学习课程中的词汇表示一章的总结与思考，同时参考了一些书籍和网上的资料编写而成。写这篇文章的主要目的是加深自己的理解，如有错误欢迎在评论区指出，非常感谢！</p>
+<h2 id="one-hot表示法"><a href="#one-hot表示法" class="headerlink" title="one-hot表示法"></a>one-hot表示法</h2><p>one-hot表示法是机器学习中表示<strong>离散化特征</strong>的一种重要方法，在NLP任务中，我们同样可以使用它来表示词。在神经网络序列模型的博客中，我已经介绍了使用one-hot向量表示单词的步骤，这里我再简单说明一下：</p>
 <ul>
-<li>枚举 i = 0, 1, 2 … , len（S）-len（P）</li>
-<li>将 S[i : i+len（P）] 与 P 作比较。如果一致，则找到了一个匹配。</li>
+<li>建立一个向量，包含常用的词汇，形成一个<strong>词汇表（vocabulary）</strong> 。词汇表的大小是人为设定的，这里，我们使用10,000个单词来构建我们的词汇表。 对于一般规模的商业应用来说30,000到50,000词大小的词典比较常见，但是100,000词的也不是没有，而且有些大型互联网公司会用百万词，甚至更大的词典。</li>
+<li>接下来，我们为单词建立one-hot向量，假如一个词在词汇表中的序号为1234，那么它的one-hot向量就是在1234行为1，其余行均为0的10000维列向量。</li>
+<li>特别地，我们需要考虑<strong>未登录词、开始标记、结尾标记</strong>等情况。未登录词指的是不在词汇表中的单词，我们需要在词汇表添加标记\UNK来表示它们。此外，在构建语言模型、进行机器翻译等过程中，我们还需要使用到开始标记、结尾标记，它们表示的是句子的开始、结尾位置。例如，一旦语言模型生成了结尾标记，我们就可以认为句子生成完毕。我们在词汇表中添加\BOS和\EOS来表示他们。</li>
 </ul>
-<p><img src="1.jpg" alt="BF算法匹配流程"></p>
-<p>BF算法的缺点在于每一次都是将目标串中的指针直接回溯为i+1。</p>
-<p>我们记 n = |S| 为串 S 的长度，m = |P| 为串 P 的长度。不难想到，最坏情况下其时间复杂度为$O(MN)$。</p>
-<p><img src="2.jpg" alt="BF算法python实现"></p>
-<h2 id="KMP算法：Brute-Force算法的优化"><a href="#KMP算法：Brute-Force算法的优化" class="headerlink" title="KMP算法：Brute-Force算法的优化"></a>KMP算法：Brute-Force算法的优化</h2><p>为了优化BF算法，我们需要尽可能地减少匹配的趟数。那么，我们如何达到这一目的呢？</p>
-<p>如果把模式串视为一把标尺，在主串上移动，那么 Brute-Force 就是每次失配之后只右移一位；改进算法则是每次失配之后，移很多位，跳过那些不可能匹配成功的位置。为了减少重复匹配，我们需要在失配处计算移动的位数，而不是单纯的回退目标串和模式串中的指针。通过一个名叫“部分匹配表”的东西，我们可以跳过绝不可能匹配成功的字符串比较，从而实现算法的优化。</p>
-<h3 id="部分匹配表"><a href="#部分匹配表" class="headerlink" title="部分匹配表"></a>部分匹配表</h3><p>部分匹配表（Partial Match Table）的含义为：</p>
-<ul>
-<li><p>对于长度为m的字符串P，部分匹配表是与之对应的长度为m的一个数组PMT。</p>
-</li>
-<li><p>PMT[i]的值等于：字符串P的前i位字符组成的子字符串中，前缀集合和后缀集合中公共子串（前缀和后缀不包括自身）的最大长度。</p>
-</li>
-</ul>
-<p>对于字符串“abababca”，它的PMT如下表所示：</p>
-<p><img src="3.png" alt="PMT"></p>
-<p>例如，对于”aba”，它的前缀集合为{”a”, ”ab”}，后缀 集合为{”ba”, ”a”}。两个集合的交集为{”a”}，那么长度最长的元素就是字符串”a”了，长 度为1，所以对于”aba”而言，它在PMT表中对应的值就是1。再比如，对于字符串”ababa”，它的前缀集合为{”a”, ”ab”, ”aba”, ”abab”}，它的后缀集合为{”baba”, ”aba”, ”ba”, ”a”}， 两个集合的交集为{”a”, ”aba”}，其中最长的元素为”aba”，长度为3。</p>
-<h3 id="如何使用部分匹配表进行优化"><a href="#如何使用部分匹配表进行优化" class="headerlink" title="如何使用部分匹配表进行优化"></a>如何使用部分匹配表进行优化</h3><p><img src="4.png" alt="KMT算法示意图"></p>
-<p>我们以上图为例进行说明。当目标串S的指针为i，模式串P的指针为j时，此时匹配失败了。按照BF算法，我们会将i回退至下标为1处，j回退至下标为0处继续匹配。这显然是很笨拙的。</p>
-<p>通过观察，我们可以发现， S[:i] 和 P[:j] 是成功匹配的，只是 S[i] 和 P[j] 不相同。</p>
-<p>这时，我们在上一节所得的模式串的部分匹配表就派上了用场。通过 PMT[j-1] ，我们可以得知，P[:j] 这一子串中前后缀公共子串的最大长度为4。又因为 S[:i] 和 P[:j] 是相等的，所以 P[:j] 的后缀也就是 S[:i] 的后缀。那么，我们可以推知目标串i之前的4位和模式串开头的4位是相同的。就是图中的灰色部分。那这部分就不用再比较了。</p>
-<p>有了上面的思路，我们就可以使用PMT加速字符串的查找了。我们看到如果是在 j 位 失配，那么影响 j 指针回溯的位置的其实是第 j −1 位的 PMT 值。</p>
-<p>以上其实就是KMP算法的基本思想了，我们总结一下：KMP算法的目的是使用部分匹配表，来跳过必不可能成功的匹配，减少匹配的趟数。</p>
-<h3 id="KMP算法的流程"><a href="#KMP算法的流程" class="headerlink" title="KMP算法的流程"></a>KMP算法的流程</h3><p>我们现在来总结一下KMP算法主程序的基本流程：</p>
-<p>假设现在文本串 S 匹配到 tar 位置，模式串 P 匹配到 pos 位置：</p>
-<ol>
-<li><p>如果当前字符匹配成功，则tar++，pos++，继续匹配二者的下个字符。若当前的pos等于模式串的长度，则说明全部匹配成功，此时可以返回tar减去pos的值，即模式串在目标串中出现的首个字符的下标。</p>
-</li>
-<li><p>如果当前匹配失败，且pos大于0，说明此时模式串已经成功匹配了部分字符，可以尝试利用部分匹配表跳过必然无法匹配成功的子串，令pos=PMT[pos-1]。</p>
-</li>
-<li><p>如果匹配失败，且pos等于0，说明此时模式串的第一个字符就无法匹配，则tar++，尝试与目标串的下个字符匹配。</p>
-</li>
-</ol>
-<p>根据上述的流程，我们可以编写KMP算法主体函数如下：</p>
-<pre class="line-numbers language-python"><code class="language-python">        <span class="token keyword">def</span> <span class="token function">match</span><span class="token punctuation">(</span>st<span class="token punctuation">,</span>pattern<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            tar<span class="token operator">=</span><span class="token number">0</span>
-            pos<span class="token operator">=</span><span class="token number">0</span>
-            PMT<span class="token operator">=</span>getPMT<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>tar<span class="token operator">&lt;</span>len<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>st<span class="token punctuation">[</span>tar<span class="token punctuation">]</span><span class="token operator">==</span>pattern<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    tar<span class="token operator">+=</span><span class="token number">1</span>
-                    pos<span class="token operator">+=</span><span class="token number">1</span>
-                    <span class="token keyword">if</span> <span class="token punctuation">(</span>pos<span class="token operator">==</span>len<span class="token punctuation">(</span>pattern<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                        <span class="token keyword">return</span> tar<span class="token operator">-</span>pos
-                <span class="token keyword">elif</span> <span class="token punctuation">(</span>pos<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    pos<span class="token operator">=</span>PMT<span class="token punctuation">[</span>pos<span class="token number">-1</span><span class="token punctuation">]</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    tar<span class="token operator">+=</span><span class="token number">1</span>
-            <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="KMP算法的难点：获取部分匹配表"><a href="#KMP算法的难点：获取部分匹配表" class="headerlink" title="KMP算法的难点：获取部分匹配表"></a>KMP算法的难点：获取部分匹配表</h3><p>KMP算法的基本思想其实并不难，但KMP算法主要的难点在于如何求解模式串的PMT数组。这里我们可以采取<strong>动态规划</strong>的方式求解。</p>
-<ul>
-<li>问题：对于模式串P，已知PMT[0],PMT[1],PMT[2]…PMT[x-1]，求解PMT[x]。</li>
-</ul>
-<p>观察上述问题，我们发现，该问题符合最优子结构和重叠子问题的动态规划要求，动态规划具体的转移情况我们进行分类讨论。</p>
-<ul>
-<li>情况一：已知now=PMT[x-1]，若P[x]==P[now]，则PMT[x]=now+1。如下图所示，因为我们已知前x-1个字符中有长度为now的公共前后缀，如果当前前缀的后一位P[now]等于当前后缀的后一位P[x]，则公共前后缀长度自然可以加1。</li>
-</ul>
-<p><img src="4.jpg" alt="情况1"></p>
-<ul>
-<li>情况二： 若P[x]!=P[now]，则令now=PMT[now-1]，再次尝试比较P[x]和P[now]，如果相等则PMT[x]=now+1，如果不相等再重复之前的过程，直到now等于0。如下图所示，此时由于子串A必然与子串B相等，则子串A的后缀与子串B的后缀必然相同，所以子串A的最大公共前后缀即为前x-1个字符中第二长的公共前后缀。</li>
-</ul>
-<p><img src="5.jpg" alt="情况2"></p>
-<p>根据上述分析，我们可以编写获取模式串PMT数组的代码如下：</p>
-<pre class="line-numbers language-python"><code class="language-python">        <span class="token keyword">def</span> <span class="token function">getPMT</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            PMT<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token comment" spellcheck="true">#PMT[0]必定为0</span>
-            x<span class="token operator">=</span><span class="token number">1</span>
-            now<span class="token operator">=</span><span class="token number">0</span>
-            <span class="token keyword">while</span> <span class="token punctuation">(</span>x<span class="token operator">&lt;</span>len<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>p<span class="token punctuation">[</span>now<span class="token punctuation">]</span><span class="token operator">==</span>p<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    now<span class="token operator">+=</span><span class="token number">1</span>
-                    PMT<span class="token punctuation">.</span>append<span class="token punctuation">(</span>now<span class="token punctuation">)</span>
-                    x<span class="token operator">+=</span><span class="token number">1</span>
-                <span class="token keyword">elif</span> now<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">:</span>
-                    now<span class="token operator">=</span>PMT<span class="token punctuation">[</span>now<span class="token number">-1</span><span class="token punctuation">]</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    PMT<span class="token punctuation">.</span>append<span class="token punctuation">(</span>now<span class="token punctuation">)</span>
-                    x<span class="token operator">+=</span><span class="token number">1</span>
-            <span class="token keyword">return</span> PMT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>至此，KMP算法介绍完毕。</p>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>KMP算法在我看来，主要有两方面的内容，一是通过动态规划求解模式串的部分匹配表；二是通过部分匹配表来跳过必不可能的情况，提升匹配的速度。其核心难点在于PMT动态规划的转移方程，需要静下心来自己推导一遍。</p>
-<p>我们不难看出，对于长度为M的目标串S和长度为N的模式串P，KMP算法的时间复杂度由两部分组成：一是match函数中需要让指针遍历目标串S的每一个位置，需要耗费$O(M)$的时间，二是getPMT函数中计算部分匹配表，这一部分我们采用均摊时间复杂度分析，可以发现耗费的时间为$O(N)$。</p>
-<p>利用KMP算法，我们将BF算法的时间复杂度$O(MN)$成功降为$O(M+N)$，使速度大大提升。</p>
+<p><img src="1.png" alt="one-hot表示法"></p>
+<p> 这种表示方法的一大缺点就是它把每个词孤立起来，这样使得算法对相关词的泛化能力不强。  <strong>每个one-hot只是为了表示单词自己而已，无法让算法很容易的跨单词泛化，即它无法表示任何两个单词之间的关系</strong>，因为任何两个单词one-hot向量的内积为都是0。 </p>
+<p>例如，我们需要建立一个语言模型来生成句子，假设我们已经学习了下面这个句子：</p>
+<blockquote>
+<p>I want a glass of orange juice.  </p>
+</blockquote>
+<p>在另一个任务中，我们已经预测了如下的句子：</p>
+<blockquote>
+<p>I want a glass of apple <em>__</em>. </p>
+</blockquote>
+<p><strong>由于在one-hot表示法中，单词orange和单词apple间没有任何关联，所以即使模型知道了orange juice是比较常见的搭配，也无法学习到apple juice也是一种常见的情况。</strong></p>
 
             </div>
             <hr />
@@ -507,9 +454,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《KMP算法》
+                    《NLP自学笔记：Word2Vec、Glove和ELMO》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/03/17/kmp-suan-fa/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/" property="cc:attributionName"
                rel="cc:attributionURL">
                 HillZhang
             </a> 采用
@@ -811,46 +758,56 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/">
+                <a href="/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="NLP自学笔记：隐马尔可夫模型">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="NLP自学笔记：Word2Vec、Glove和ELMO">
                         
-                        <span class="card-title">NLP自学笔记：隐马尔可夫模型</span>
+                        <span class="card-title">NLP自学笔记：Word2Vec、Glove和ELMO</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言本文是我在学习苏州大学李正华老师的中文信息处理课程（中文信息处理（Chinese Information Processing）Course Resources）时，对于隐马尔可夫模型的一些个人见解和思考，同时参考了一些书籍和网上的资料
+                            前言词汇表示（Word Representation）一直是自然语言处理中最基础也是最重要的任务之一。 深度学习已经给这一领域带来了革命性的变革。其中一个很关键的概念就是词嵌入（word embeddings），这是语言表示的一种方式，可以
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/机器学习/" class="post-category" target="_blank">
-                                    机器学习
+                            <a href="/categories/深度学习/" class="post-category" target="_blank">
+                                    深度学习
+                                </a>
+                            
+                            <a href="/categories/深度学习/预训练模型/" class="post-category" target="_blank">
+                                    预训练模型
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/机器学习/" target="_blank">
                         <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/深度学习/" target="_blank">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
                     <a href="/tags/算法/" target="_blank">
@@ -872,31 +829,35 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/">
+                <a href="/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="LeetCode每日两题">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="NLP自学笔记：Word2Vec、Glove和ELMO">
                         
-                        <span class="card-title">LeetCode每日两题</span>
+                        <span class="card-title">NLP自学笔记：Word2Vec、Glove和ELMO</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Leetcode的刷题总结
+                            前言词汇表示（Word Representation）一直是自然语言处理中最基础也是最重要的任务之一。 深度学习已经给这一领域带来了革命性的变革。其中一个很关键的概念就是词嵌入（word embeddings），这是语言表示的一种方式，可以
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-03-13
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/编程算法/" class="post-category" target="_blank">
-                                    编程算法
+                            <a href="/categories/深度学习/" class="post-category" target="_blank">
+                                    深度学习
+                                </a>
+                            
+                            <a href="/categories/深度学习/预训练模型/" class="post-category" target="_blank">
+                                    预训练模型
                                 </a>
                             
                             
@@ -906,12 +867,20 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/机器学习/" target="_blank">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/深度学习/" target="_blank">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/自然语言处理/" target="_blank">
+                        <span class="chip bg-color">自然语言处理</span>
                     </a>
                     
                 </div>

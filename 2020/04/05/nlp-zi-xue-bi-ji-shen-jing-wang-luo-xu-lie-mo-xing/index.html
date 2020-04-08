@@ -212,7 +212,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -329,20 +329,20 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/算法/" target="_blank">
-                            <span class="chip bg-color">算法</span>
-                        </a>
-                        
                         <a href="/tags/机器学习/" target="_blank">
                             <span class="chip bg-color">机器学习</span>
                         </a>
                         
-                        <a href="/tags/自然语言处理/" target="_blank">
-                            <span class="chip bg-color">自然语言处理</span>
-                        </a>
-                        
                         <a href="/tags/深度学习/" target="_blank">
                             <span class="chip bg-color">深度学习</span>
+                        </a>
+                        
+                        <a href="/tags/算法/" target="_blank">
+                            <span class="chip bg-color">算法</span>
+                        </a>
+                        
+                        <a href="/tags/自然语言处理/" target="_blank">
+                            <span class="chip bg-color">自然语言处理</span>
                         </a>
                         
                     </div>
@@ -529,12 +529,12 @@
 <p><img src="14.png" alt="基本RNN单元"></p>
 <p>GRU经引入一个新的变量$c$，作为<strong>记忆细胞（Memory Cell）</strong>，其作用是提供一定比特的记忆，比如上例中记忆cat是单数还是负数。在时间$t$，记忆细胞的值记为$c^{\langle t \rangle}$。在GRU中，虽然输出的激活函数$a^{\langle t \rangle}$总是和$c^{\langle t \rangle}$相等，但我们还是提供两个标记区别，主要是为了和后面LSTM保持标记的统一性。 </p>
 <p>接下来是GRU的公式：</p>
-<p>首先是$\widetilde{c}$，代表将用于替换$c^{\langle t \rangle}$的候选（candidate）值：<br>$$<br>\widetilde{c}^{\langle t \rangle}=tanh(W_c[c^{\langle t-1 \rangle},x^{\langle t \rangle}]+b_c)<br>$$<br>接着，我们引入GRU的重要思想——门（Gate），我们用$Γ_u$表示 ：<br>$$<br>Γ_u=\sigma(W_u[c^{\langle t-1 \rangle},x^{\langle t \rangle}]+b_u)<br>$$<br>这里的$Γ_u$代表的是<strong>更新门（update Gate），激活函数$\sigma$使用sigmoid函数，从而使更新门的取值缩放到[0,1]，它表示的是当前时间步更新记忆细胞$c^{\langle t \rangle}$的程度</strong>，越接近1，表示更新的程度越大，具体公式如下：<br>$$<br>c^{\langle t \rangle}=Γ_u \times \widetilde{c}+(1-Γ_u) \times c^{\langle t-1 \rangle}<br>$$<br>上述公式究竟有什么用呢？ 前面说$\widetilde{c}$只是候选，是因为决定权在于$Γ_u$，$Γ_u$决定了什么时候去更新$c^{\langle t \rangle}$。对应上面的例子，*<em>这个机制可能就是，从读取到cat开始，就一直在$c^{\langle t \rangle}$记录着主语是单数，直到遇到谓语was，$c^{\langle t \rangle}$认为就没必要再记录下去了，即开始更新$c^{\langle t \rangle}$。 *</em></p>
+<p>首先是$\widetilde{c}$，代表将用于替换$c^{\langle t \rangle}$的候选（candidate）值：<br>$$<br>\widetilde{c}^{\langle t \rangle}=tanh(W_c[c^{\langle t-1 \rangle},x^{\langle t \rangle}]+b_c)<br>$$<br>接着，我们引入GRU的重要思想——门（Gate），我们用$Γ_u$表示 ：<br>$$<br>Γ_u=\sigma(W_u[c^{\langle t-1 \rangle},x^{\langle t \rangle}]+b_u)<br>$$<br>这里的$Γ_u$代表的是<strong>更新门（update Gate），激活函数$\sigma$使用sigmoid函数，从而使更新门的取值缩放到[0,1]，它表示的是当前时间步更新记忆细胞$c^{\langle t \rangle}$的程度</strong>，越接近1，表示更新的程度越大，具体公式如下：<br>$$<br>c^{\langle t \rangle}=Γ_u \times \widetilde{c}+(1-Γ_u) \times c^{\langle t-1 \rangle}<br>$$<br>上述公式究竟有什么用呢？ 前面说$\widetilde{c}$只是候选，是因为决定权在于$Γ_u$，$Γ_u$决定了什么时候去更新$c^{\langle t \rangle}$。对应上面的例子，<em><em>这个机制可能就是，从读取到cat开始，就一直在$c^{\langle t \rangle}$记录着主语是单数，直到遇到谓语was，$c^{\langle t \rangle}$认为就没必要再记录下去了，即开始更新$c^{\langle t \rangle}$。 </em></em></p>
 <p><img src="15.png" alt="更新门的作用"></p>
 <p> 把上述GRU单元的公式，它的结构用图表示如下： </p>
 <p><img src="16.png" alt="基本GRU"></p>
 <p>可以看到，<strong>GRU仅仅使用了一个门就实现了更新记忆细胞和遗忘记忆细胞，也就是让$(1-Γ_u)$控制遗忘的程度。而LSTM中使用了独立的遗忘门（forget gate）来控制遗忘，所以参数更多一些，训练起来也更慢。</strong></p>
-<p>通过使用更新门，我们可以<strong>选择性的更新记忆细胞</strong>（在GRU中就是上一个时间步的隐藏层激活值输出，包含了前面所有时间步内的信息）。*<em>当更新门$Γ_u$的值总为0时，相当于保持了记忆，在我们的例子中，就是在谓语was的时间步和主语cat的时间步之间开辟了一条直达的远距离路径。 梯度在这条路径上可以无损地传递，从而不会消失。这有些类似于CNN的 ResNet 中的跳跃连接（short cut）。 *</em></p>
+<p>通过使用更新门，我们可以<strong>选择性的更新记忆细胞</strong>（在GRU中就是上一个时间步的隐藏层激活值输出，包含了前面所有时间步内的信息）。<em><em>当更新门$Γ_u$的值总为0时，相当于保持了记忆，在我们的例子中，就是在谓语was的时间步和主语cat的时间步之间开辟了一条直达的远距离路径。 梯度在这条路径上可以无损地传递，从而不会消失。这有些类似于CNN的 ResNet 中的跳跃连接（short cut）。 </em></em></p>
 <p>此外，完整的GRU单元还设置了一个相关门 （Relevance Gate，也叫重置门Reset Gate） $Γ_r$，用于表示$\widetilde{c}$和$c^{\langle t -1 \rangle}$的相关性：<br>$$<br>Γ_r=\sigma(W_r[c^{\langle t-1 \rangle},x^{\langle t \rangle}]+b_r)<br>$$<br>候选值$\widetilde{c}$的计算公式修改为：<br>$$<br>\widetilde{c}^{\langle t \rangle}=tanh(W_c[Γ_r \times c^{\langle t-1 \rangle},x^{\langle t \rangle}]+b_c)<br>$$<br> 完整的GRU内部结构如下图所示：</p>
 <p><img src="17.png" alt="完整GRU"></p>
 <h2 id="长短期记忆单元"><a href="#长短期记忆单元" class="headerlink" title="长短期记忆单元"></a>长短期记忆单元</h2><p><strong>长短期记忆单元（Long Short Term Memory）可以看作是门控循环单元GRU的复杂版</strong>。事实上， 在深度学习的历史上，<strong>LSTM</strong>也是更早出现的，而<strong>GRU</strong>是最近才发明出来的，它可能源于<strong>Pavia</strong>在更加复杂的<strong>LSTM</strong>模型中做出的简化。 </p>
@@ -925,62 +925,33 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/05/nlp-zi-xue-bi-ji-shen-jing-wang-luo-xu-lie-mo-xing/">
+                <a href="/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="NLP自学笔记：神经网络序列模型">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="NLP自学笔记：注意力机制">
                         
-                        <span class="card-title">NLP自学笔记：神经网络序列模型</span>
+                        <span class="card-title">NLP自学笔记：注意力机制</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言序列模型（Sequence Model）是深度学习最令人激动的领域之一。循环神经网络（Recurrent Neural Network, RNN）也已变革了语音识别（Speech Recognition）、自然语言处理（Natural 
+                            
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-07
+                        </span>
                         <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/深度学习/" class="post-category" target="_blank">
-                                    深度学习
-                                </a>
-                            
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
-                    <a href="/tags/自然语言处理/" target="_blank">
-                        <span class="chip bg-color">自然语言处理</span>
-                    </a>
-                    
-                    <a href="/tags/深度学习/" target="_blank">
-                        <span class="chip bg-color">深度学习</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -996,7 +967,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="NLP自学笔记：条件随机场模型">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="NLP自学笔记：条件随机场模型">
                         
                         <span class="card-title">NLP自学笔记：条件随机场模型</span>
                     </div>
@@ -1026,12 +997,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                     <a href="/tags/机器学习/" target="_blank">
                         <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                     <a href="/tags/自然语言处理/" target="_blank">
@@ -1209,7 +1180,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">74.9k</span>
+            <span class="white-color">80.1k</span>
             
 
             <br>
