@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/</loc>
-    <lastmod>2020-04-08</lastmod>
-  </url>  <url>
     <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/</loc>
     <lastmod>2020-04-08</lastmod>
   </url>  <url>

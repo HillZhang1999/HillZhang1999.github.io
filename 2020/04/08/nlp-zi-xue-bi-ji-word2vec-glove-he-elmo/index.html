@@ -329,16 +329,16 @@
                     
                     <div class="article-tag">
                         
+                        <a href="/tags/算法/" target="_blank">
+                            <span class="chip bg-color">算法</span>
+                        </a>
+                        
                         <a href="/tags/机器学习/" target="_blank">
                             <span class="chip bg-color">机器学习</span>
                         </a>
                         
                         <a href="/tags/深度学习/" target="_blank">
                             <span class="chip bg-color">深度学习</span>
-                        </a>
-                        
-                        <a href="/tags/算法/" target="_blank">
-                            <span class="chip bg-color">算法</span>
                         </a>
                         
                         <a href="/tags/自然语言处理/" target="_blank">
@@ -383,14 +383,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    839
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    5 分
                 </div>
                 
                 
@@ -419,7 +419,26 @@
 <blockquote>
 <p>I want a glass of apple <em>__</em>. </p>
 </blockquote>
-<p><strong>由于在one-hot表示法中，单词orange和单词apple间没有任何关联，所以即使模型知道了orange juice是比较常见的搭配，也无法学习到apple juice也是一种常见的情况。</strong></p>
+<p><strong>由于在one-hot表示法中，单词orange和单词apple间没有任何关联，所以即使模型知道了orange juice是比较常见的搭配，也无法学习到apple juice也是一种常见的情况。所以，空格处无法正确填入单词juice。</strong></p>
+<p>此外，one-hot向量通常维度很高（与词汇表的大小一致），同时它又是非常稀疏的（只在一个位置为1），所以使用one-hot向量表示词将会使模型的参数变多，难以训练。</p>
+<h2 id="词嵌入表示法"><a href="#词嵌入表示法" class="headerlink" title="词嵌入表示法"></a>词嵌入表示法</h2><p>有没有方法可以更好的表示词，能够捕捉词义以及词间的关联呢？答案是有的，我们可以使用<strong>特征化</strong>的方法来表示一个单词。</p>
+<p>比如下图所示，一共有4个属性（实际应用会更多）：性别、是否为皇室、年龄、是否为食品。每个单词分别从这4个属性给出与这些属性的相关度。<strong>那么任何一个单词就可以用一个4维的特征向量表示</strong>，比如Man表示为(-1, 0.01, 0.03, 0.09)。 </p>
+<p><img src="2.png" alt="词嵌入表示法"></p>
+<p>此时，可以清晰的看到Apple和Orange极为相似，上面的例子就很容易使得算法在第二句话也填入单词juice。 </p>
+<p>当我们将单词使用这种高维特征表示时，就叫做<strong>词嵌入（word embedding）</strong>。之所以叫做embedding，可以想象成每个单词被嵌入（embed）到了一个高维空间内。词嵌入是NLP最重要的思想之一。 </p>
+<p>需要说明的是，上面的特征只是直观的举例，实际上的特征并不是手工设计的，而是算法（即word embedding）学习而来；而且这些学习的特征，<strong>可能并不具有良好的解释性</strong>，但不管怎样，算法都可以快速哪些单词是相似的。 </p>
+<p>我们可以使用<strong>t-SNE</strong>算法进行高维词向量的可视化，可以看到，词义相近的单词在经过词嵌入后被聚在了一起：</p>
+<p><img src="3.png" alt="词嵌入可视化"></p>
+<h2 id="词嵌入的作用"><a href="#词嵌入的作用" class="headerlink" title="词嵌入的作用"></a>词嵌入的作用</h2><h3 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h3><p>我们以一个命名实体识别（NER）的任务为例，假设训练集中存在着这么一句话：</p>
+<blockquote>
+<p> Sally Johnson is an orange farmer. </p>
+</blockquote>
+<p>我们在这里使用一个BRNN模型，并使用词嵌入向量来表示单词，作为BRNN的输入。BRNN可以根据orange farmer判断出Sally Johnson是一个人名。</p>
+<p>当我们遇到了新的输入，如：</p>
+<blockquote>
+<p> Robert Lin is an apple farmer. </p>
+</blockquote>
+<p>由于apple的词嵌入和orange的词嵌入是相似的，所以模型也可以容易的识别Robert Lin是一个人名 。 </p>
 
             </div>
             <hr />
@@ -802,16 +821,16 @@
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
                     <a href="/tags/机器学习/" target="_blank">
                         <span class="chip bg-color">机器学习</span>
                     </a>
                     
                     <a href="/tags/深度学习/" target="_blank">
                         <span class="chip bg-color">深度学习</span>
-                    </a>
-                    
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
                     </a>
                     
                     <a href="/tags/自然语言处理/" target="_blank">
@@ -829,60 +848,29 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/">
+                <a href="/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="NLP自学笔记：Word2Vec、Glove和ELMO">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="NLP自学笔记：从Transformer到Bert">
                         
-                        <span class="card-title">NLP自学笔记：Word2Vec、Glove和ELMO</span>
+                        <span class="card-title">NLP自学笔记：从Transformer到Bert</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言词汇表示（Word Representation）一直是自然语言处理中最基础也是最重要的任务之一。 深度学习已经给这一领域带来了革命性的变革。其中一个很关键的概念就是词嵌入（word embeddings），这是语言表示的一种方式，可以
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-08
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-07
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/深度学习/" class="post-category" target="_blank">
-                                    深度学习
-                                </a>
-                            
-                            <a href="/categories/深度学习/预训练模型/" class="post-category" target="_blank">
-                                    预训练模型
-                                </a>
-                            
-                            
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/机器学习/" target="_blank">
-                        <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
-                    <a href="/tags/深度学习/" target="_blank">
-                        <span class="chip bg-color">深度学习</span>
-                    </a>
-                    
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
-                    <a href="/tags/自然语言处理/" target="_blank">
-                        <span class="chip bg-color">自然语言处理</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1054,7 +1042,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">80.1k</span>
+            <span class="white-color">79.3k</span>
             
 
             <br>

@@ -1,5 +1,4 @@
 http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/
-http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/
 http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/
 http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/
 http://yoursite.com/2020/04/05/nlp-zi-xue-bi-ji-shen-jing-wang-luo-xu-lie-mo-xing/

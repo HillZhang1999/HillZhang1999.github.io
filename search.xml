@@ -8,39 +8,6 @@
       <link href="/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/"/>
       <url>/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/</url>
       
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>词汇表示（Word Representation）一直是自然语言处理中最基础也是最重要的任务之一。 深度学习已经给这一领域带来了革命性的变革。其中一个很关键的概念就是词嵌入（<strong>word embeddings</strong>），这是语言表示的一种方式，可以让算法自动的理解一些类似的词，比如男人对女人，比如国王对王后，还有其他很多的例子。 </p><p>本文是我在学习吴恩达深度学习课程中的词汇表示一章的总结与思考，同时参考了一些书籍和网上的资料编写而成。写这篇文章的主要目的是加深自己的理解，如有错误欢迎在评论区指出，非常感谢！</p><h2 id="one-hot表示法"><a href="#one-hot表示法" class="headerlink" title="one-hot表示法"></a>one-hot表示法</h2><p>one-hot表示法是机器学习中表示<strong>离散化特征</strong>的一种重要方法，在NLP任务中，我们同样可以使用它来表示词。在神经网络序列模型的博客中，我已经介绍了使用one-hot向量表示单词的步骤，这里我再简单说明一下：</p><ul><li>建立一个向量，包含常用的词汇，形成一个<strong>词汇表（vocabulary）</strong> 。词汇表的大小是人为设定的，这里，我们使用10,000个单词来构建我们的词汇表。 对于一般规模的商业应用来说30,000到50,000词大小的词典比较常见，但是100,000词的也不是没有，而且有些大型互联网公司会用百万词，甚至更大的词典。</li><li>接下来，我们为单词建立one-hot向量，假如一个词在词汇表中的序号为1234，那么它的one-hot向量就是在1234行为1，其余行均为0的10000维列向量。</li><li>特别地，我们需要考虑<strong>未登录词、开始标记、结尾标记</strong>等情况。未登录词指的是不在词汇表中的单词，我们需要在词汇表添加标记\UNK来表示它们。此外，在构建语言模型、进行机器翻译等过程中，我们还需要使用到开始标记、结尾标记，它们表示的是句子的开始、结尾位置。例如，一旦语言模型生成了结尾标记，我们就可以认为句子生成完毕。我们在词汇表中添加\BOS和\EOS来表示他们。</li></ul><p><img src="1.png" alt="one-hot表示法"></p><p> 这种表示方法的一大缺点就是它把每个词孤立起来，这样使得算法对相关词的泛化能力不强。  <strong>每个one-hot只是为了表示单词自己而已，无法让算法很容易的跨单词泛化，即它无法表示任何两个单词之间的关系</strong>，因为任何两个单词one-hot向量的内积为都是0。 </p><p>例如，我们需要建立一个语言模型来生成句子，假设我们已经学习了下面这个句子：</p><blockquote><p>I want a glass of orange juice.  </p></blockquote><p>在另一个任务中，我们已经预测了如下的句子：</p><blockquote><p>I want a glass of apple <em>__</em>. </p></blockquote><p><strong>由于在one-hot表示法中，单词orange和单词apple间没有任何关联，所以即使模型知道了orange juice是比较常见的搭配，也无法学习到apple juice也是一种常见的情况。</strong></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 深度学习 </category>
-          
-          <category> 预训练模型 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 机器学习 </tag>
-            
-            <tag> 深度学习 </tag>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 自然语言处理 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>NLP自学笔记：Word2Vec、Glove和ELMO</title>
-      <link href="/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/"/>
-      <url>/2020/04/08/nlp-zi-xue-bi-ji-word2vec-he-elmo/</url>
-      
         <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>词汇表示（Word Representation）一直是自然语言处理中最基础也是最重要的任务之一。 深度学习已经给这一领域带来了革命性的变革。其中一个很关键的概念就是词嵌入（<strong>word embeddings</strong>），这是语言表示的一种方式，可以让算法自动的理解一些类似的词，比如男人对女人，比如国王对王后，还有其他很多的例子。 </p><p>本文是我在学习吴恩达深度学习课程中的词汇表示一章的总结与思考，同时参考了一些书籍和网上的资料编写而成。写这篇文章的主要目的是加深自己的理解，如有错误欢迎在评论区指出，非常感谢！</p><h2 id="one-hot表示法"><a href="#one-hot表示法" class="headerlink" title="one-hot表示法"></a>one-hot表示法</h2><p>one-hot表示法是机器学习中表示<strong>离散化特征</strong>的一种重要方法，在NLP任务中，我们同样可以使用它来表示词。在神经网络序列模型的博客中，我已经介绍了使用one-hot向量表示单词的步骤，这里我再简单说明一下：</p><ul><li>建立一个向量，包含常用的词汇，形成一个<strong>词汇表（vocabulary）</strong> 。词汇表的大小是人为设定的，这里，我们使用10,000个单词来构建我们的词汇表。 对于一般规模的商业应用来说30,000到50,000词大小的词典比较常见，但是100,000词的也不是没有，而且有些大型互联网公司会用百万词，甚至更大的词典。</li><li>接下来，我们为单词建立one-hot向量，假如一个词在词汇表中的序号为1234，那么它的one-hot向量就是在1234行为1，其余行均为0的10000维列向量。</li><li>特别地，我们需要考虑<strong>未登录词、开始标记、结尾标记</strong>等情况。未登录词指的是不在词汇表中的单词，我们需要在词汇表添加标记\UNK来表示它们。此外，在构建语言模型、进行机器翻译等过程中，我们还需要使用到开始标记、结尾标记，它们表示的是句子的开始、结尾位置。例如，一旦语言模型生成了结尾标记，我们就可以认为句子生成完毕。我们在词汇表中添加\BOS和\EOS来表示他们。</li></ul><p><img src="1.png" alt="one-hot表示法"></p><p> 这种表示方法的一大缺点就是它把每个词孤立起来，这样使得算法对相关词的泛化能力不强。  <strong>每个one-hot只是为了表示单词自己而已，无法让算法很容易的跨单词泛化，即它无法表示任何两个单词之间的关系</strong>，因为任何两个单词one-hot向量的内积为都是0。 </p><p>例如，我们需要建立一个语言模型来生成句子，假设我们已经学习了下面这个句子：</p><blockquote><p>I want a glass of orange juice.  </p></blockquote><p>在另一个任务中，我们已经预测了如下的句子：</p><blockquote><p>I want a glass of apple <em>__</em>. </p></blockquote><p><strong>由于在one-hot表示法中，单词orange和单词apple间没有任何关联，所以即使模型知道了orange juice是比较常见的搭配，也无法学习到apple juice也是一种常见的情况。所以，空格处无法正确填入单词juice。</strong></p><p>此外，one-hot向量通常维度很高（与词汇表的大小一致），同时它又是非常稀疏的（只在一个位置为1），所以使用one-hot向量表示词将会使模型的参数变多，难以训练。</p><h2 id="词嵌入表示法"><a href="#词嵌入表示法" class="headerlink" title="词嵌入表示法"></a>词嵌入表示法</h2><p>有没有方法可以更好的表示词，能够捕捉词义以及词间的关联呢？答案是有的，我们可以使用<strong>特征化</strong>的方法来表示一个单词。</p><p>比如下图所示，一共有4个属性（实际应用会更多）：性别、是否为皇室、年龄、是否为食品。每个单词分别从这4个属性给出与这些属性的相关度。<strong>那么任何一个单词就可以用一个4维的特征向量表示</strong>，比如Man表示为(-1, 0.01, 0.03, 0.09)。 </p><p><img src="2.png" alt="词嵌入表示法"></p><p>此时，可以清晰的看到Apple和Orange极为相似，上面的例子就很容易使得算法在第二句话也填入单词juice。 </p><p>当我们将单词使用这种高维特征表示时，就叫做<strong>词嵌入（word embedding）</strong>。之所以叫做embedding，可以想象成每个单词被嵌入（embed）到了一个高维空间内。词嵌入是NLP最重要的思想之一。 </p><p>需要说明的是，上面的特征只是直观的举例，实际上的特征并不是手工设计的，而是算法（即word embedding）学习而来；而且这些学习的特征，<strong>可能并不具有良好的解释性</strong>，但不管怎样，算法都可以快速哪些单词是相似的。 </p><p>我们可以使用<strong>t-SNE</strong>算法进行高维词向量的可视化，可以看到，词义相近的单词在经过词嵌入后被聚在了一起：</p><p><img src="3.png" alt="词嵌入可视化"></p><h2 id="词嵌入的作用"><a href="#词嵌入的作用" class="headerlink" title="词嵌入的作用"></a>词嵌入的作用</h2><h3 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h3><p>我们以一个命名实体识别（NER）的任务为例，假设训练集中存在着这么一句话：</p><blockquote><p> Sally Johnson is an orange farmer. </p></blockquote><p>我们在这里使用一个BRNN模型，并使用词嵌入向量来表示单词，作为BRNN的输入。BRNN可以根据orange farmer判断出Sally Johnson是一个人名。</p><p>当我们遇到了新的输入，如：</p><blockquote><p> Robert Lin is an apple farmer. </p></blockquote><p>由于apple的词嵌入和orange的词嵌入是相似的，所以模型也可以容易的识别Robert Lin是一个人名 。 </p>]]></content>
       
       
@@ -55,11 +22,11 @@
       
         <tags>
             
+            <tag> 算法 </tag>
+            
             <tag> 机器学习 </tag>
             
             <tag> 深度学习 </tag>
-            
-            <tag> 算法 </tag>
             
             <tag> 自然语言处理 </tag>
             
@@ -112,11 +79,11 @@
       
         <tags>
             
+            <tag> 算法 </tag>
+            
             <tag> 机器学习 </tag>
             
             <tag> 深度学习 </tag>
-            
-            <tag> 算法 </tag>
             
             <tag> 自然语言处理 </tag>
             
@@ -143,9 +110,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> 算法 </tag>
+            
+            <tag> 机器学习 </tag>
             
             <tag> 自然语言处理 </tag>
             
@@ -199,9 +166,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> 算法 </tag>
+            
+            <tag> 机器学习 </tag>
             
             <tag> 自然语言处理 </tag>
             
@@ -228,9 +195,9 @@
       
         <tags>
             
-            <tag> 机器学习 </tag>
-            
             <tag> 算法 </tag>
+            
+            <tag> 机器学习 </tag>
             
             <tag> 自然语言处理 </tag>
             
