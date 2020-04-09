@@ -4,7 +4,14 @@
   <url>
     <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/</loc>
     
-    <lastmod>2020-04-08T09:55:54.052Z</lastmod>
+    <lastmod>2020-04-09T15:41:34.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
+    
+    <lastmod>2020-04-09T08:20:24.587Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2020/04/05/nlp-zi-xue-bi-ji-shen-jing-wang-luo-xu-lie-mo-xing/</loc>
     
     <lastmod>2020-04-08T08:58:08.676Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
-    
-    <lastmod>2020-04-08T08:01:56.404Z</lastmod>
     
   </url>
   
@@ -86,14 +86,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/archives/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/archives/index.html</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
@@ -114,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/friends/index.html</loc>
+    <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>http://yoursite.com/friends/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
