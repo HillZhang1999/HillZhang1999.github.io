@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-09T15:41:34.417Z</updated>
+  <updated>2020-04-12T16:02:30.622Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>NLP自学笔记：Attention、Transformer和BERT</title>
+    <link href="http://yoursite.com/2020/04/11/nlp-zi-xue-bi-ji-attention-transformer-he-bert/"/>
+    <id>http://yoursite.com/2020/04/11/nlp-zi-xue-bi-ji-attention-transformer-he-bert/</id>
+    <published>2020-04-11T08:44:31.000Z</published>
+    <updated>2020-04-12T16:02:30.622Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="预训练模型" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/"/>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>NLP自学笔记：Word2Vec、Glove和ELMO</title>
@@ -47,34 +81,6 @@
       <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NLP自学笔记：从Transformer到Bert</title>
-    <link href="http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/"/>
-    <id>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/</id>
-    <published>2020-04-07T14:17:25.000Z</published>
-    <updated>2020-04-07T14:17:25.630Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>NLP自学笔记：注意力机制</title>
-    <link href="http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/"/>
-    <id>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/</id>
-    <published>2020-04-07T14:17:13.000Z</published>
-    <updated>2020-04-07T14:17:13.936Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
@@ -255,11 +261,11 @@
   </entry>
   
   <entry>
-    <title>LeetCode每日两题</title>
+    <title></title>
     <link href="http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/"/>
     <id>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</id>
-    <published>2020-03-13T02:58:03.000Z</published>
-    <updated>2020-04-09T08:20:24.587Z</updated>
+    <published>2020-03-13T02:58:03.932Z</published>
+    <updated>2020-04-12T15:16:56.165Z</updated>
     
     <summary type="html">
     
@@ -267,18 +273,12 @@
       
         
         
-          &lt;h1 id=&quot;每日算法-LEETCODE-PYTHON3&quot;&gt;&lt;a href=&quot;#每日算法-LEETCODE-PYTHON3&quot; class=&quot;headerlink&quot;
+          &lt;p&gt;title: LeetCode每日两题&lt;br&gt;top: false&lt;br&gt;cover: false&lt;br&gt;toc: true&lt;br&gt;mathjax: true&lt;br&gt;date: 2020-03-13 10:58:03&lt;br&gt;password:&lt;br&gt;summary:
         
       
     
     </summary>
     
-      <category term="编程算法" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
     
   </entry>
   

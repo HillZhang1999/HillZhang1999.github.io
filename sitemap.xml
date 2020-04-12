@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/</loc>
+    <loc>http://yoursite.com/2020/04/11/nlp-zi-xue-bi-ji-attention-transformer-he-bert/</loc>
     
-    <lastmod>2020-04-09T15:41:34.417Z</lastmod>
+    <lastmod>2020-04-12T16:02:30.622Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
     
-    <lastmod>2020-04-09T08:20:24.587Z</lastmod>
+    <lastmod>2020-04-12T15:16:56.165Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/</loc>
+    
+    <lastmod>2020-04-09T15:41:34.417Z</lastmod>
     
   </url>
   
@@ -26,20 +33,6 @@
     <loc>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/</loc>
     
     <lastmod>2020-04-07T16:42:06.966Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/</loc>
-    
-    <lastmod>2020-04-07T14:17:25.630Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/</loc>
-    
-    <lastmod>2020-04-07T14:17:13.936Z</lastmod>
     
   </url>
   
@@ -86,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/archives/index.html</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/archives/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     

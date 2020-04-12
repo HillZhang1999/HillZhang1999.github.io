@@ -1,6 +1,5 @@
+http://yoursite.com/2020/04/11/nlp-zi-xue-bi-ji-attention-transformer-he-bert/
 http://yoursite.com/2020/04/08/nlp-zi-xue-bi-ji-word2vec-glove-he-elmo/
-http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-cong-transformer-dao-bert/
-http://yoursite.com/2020/04/07/nlp-zi-xue-bi-ji-zhu-yi-li-ji-zhi/
 http://yoursite.com/2020/04/05/nlp-zi-xue-bi-ji-shen-jing-wang-luo-xu-lie-mo-xing/
 http://yoursite.com/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/
 http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/
