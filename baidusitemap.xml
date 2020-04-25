@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://yoursite.com/2020/04/15/shang-xia-wei-guan-xi-huo-qu-lun-wen-yue-du-bi-ji/</loc>
-    <lastmod>2020-04-15</lastmod>
+    <loc>http://yoursite.com/2020/04/22/cheng-xu-yuan-mian-shi-jin-dian-ti-jie/</loc>
+    <lastmod>2020-04-25</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
+    <lastmod>2020-04-22</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/04/15/shang-xia-wei-guan-xi-huo-qu-lun-wen-yue-du-bi-ji/</loc>
     <lastmod>2020-04-15</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/04/11/nlp-zi-xue-bi-ji-attention-transformer-he-bert/</loc>
