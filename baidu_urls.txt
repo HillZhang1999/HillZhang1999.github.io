@@ -1,3 +1,7 @@
+http://yoursite.com/2020/05/03/shell-jiao-ben-bian-cheng/
+http://yoursite.com/2020/05/02/linux-xi-tong-qi-dong-ji-chang-yong-ming-ling/
+http://yoursite.com/2020/04/30/zi-jie-tiao-dong-2019-bi-shi-ti-ti-jie/
+http://yoursite.com/2020/04/29/hua-wei-yan-fa-gong-cheng-shi-bi-shi-ti-jie/
 http://yoursite.com/2020/04/22/cheng-xu-yuan-mian-shi-jin-dian-ti-jie/
 http://yoursite.com/2020/04/15/shang-xia-wei-guan-xi-huo-qu-lun-wen-yue-du-bi-ji/
 http://yoursite.com/2020/04/11/nlp-zi-xue-bi-ji-attention-transformer-he-bert/

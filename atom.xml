@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-28T07:23:58.325Z</updated>
+  <updated>2020-05-03T15:46:15.937Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,124 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Shell脚本编程</title>
+    <link href="http://yoursite.com/2020/05/03/shell-jiao-ben-bian-cheng/"/>
+    <id>http://yoursite.com/2020/05/03/shell-jiao-ben-bian-cheng/</id>
+    <published>2020-05-03T15:08:03.000Z</published>
+    <updated>2020-05-03T15:46:15.937Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Shell脚本编程&quot;&gt;&lt;a href=&quot;#Shell脚本编程&quot; class=&quot;headerlink&quot; title=&quot;Shell脚本编程&quot;&gt;&lt;/a&gt;Shell脚本编程&lt;/h1&gt;&lt;h2 id=&quot;什么是Shell&quot;&gt;&lt;a href=&quot;#什么是Shell&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+      <category term="Shell" scheme="http://yoursite.com/categories/Linux/Shell/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="操作系统" scheme="http://yoursite.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+      <category term="编程语言" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="Shell" scheme="http://yoursite.com/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux系统启动及常用命令</title>
+    <link href="http://yoursite.com/2020/05/02/linux-xi-tong-qi-dong-ji-chang-yong-ming-ling/"/>
+    <id>http://yoursite.com/2020/05/02/linux-xi-tong-qi-dong-ji-chang-yong-ming-ling/</id>
+    <published>2020-05-02T06:09:36.000Z</published>
+    <updated>2020-05-02T06:15:51.689Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Linux系统启动及常用命令&quot;&gt;&lt;a href=&quot;#Linux系统启动及常用命令&quot; class=&quot;headerlink&quot; title=&quot;Linux系统启动及常用命令&quot;&gt;&lt;/a&gt;Linux系统启动及常用命令&lt;/h1&gt;&lt;h2 id=&quot;Linux系统启动过程&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="操作系统" scheme="http://yoursite.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>字节跳动2019笔试题题解</title>
+    <link href="http://yoursite.com/2020/04/30/zi-jie-tiao-dong-2019-bi-shi-ti-ti-jie/"/>
+    <id>http://yoursite.com/2020/04/30/zi-jie-tiao-dong-2019-bi-shi-ti-ti-jie/</id>
+    <published>2020-04-30T06:02:11.000Z</published>
+    <updated>2020-04-30T13:31:18.604Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;第一题-万万没想到之聪明的编辑&quot;&gt;&lt;a href=&quot;#第一题-万万没想到之聪明的编辑&quot; class=&quot;headerlink&quot; title=&quot;第一题  万万没想到之聪明的编辑&quot;&gt;&lt;/a&gt;第一题  万万没想到之聪明的编辑&lt;/h2&gt;&lt;h3 id=&quot;题目&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="编程算法" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>华为研发工程师笔试题解</title>
+    <link href="http://yoursite.com/2020/04/29/hua-wei-yan-fa-gong-cheng-shi-bi-shi-ti-jie/"/>
+    <id>http://yoursite.com/2020/04/29/hua-wei-yan-fa-gong-cheng-shi-bi-shi-ti-jie/</id>
+    <published>2020-04-29T02:34:14.000Z</published>
+    <updated>2020-04-30T13:31:15.709Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;第一题-汽水瓶&quot;&gt;&lt;a href=&quot;#第一题-汽水瓶&quot; class=&quot;headerlink&quot; title=&quot;第一题  汽水瓶&quot;&gt;&lt;/a&gt;第一题  汽水瓶&lt;/h2&gt;&lt;h3 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="编程算法" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="实战" scheme="http://yoursite.com/tags/%E5%AE%9E%E6%88%98/"/>
+    
+  </entry>
   
   <entry>
     <title>《程序员面试金典》题解</title>
@@ -103,11 +221,11 @@
       <category term="预训练模型" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/"/>
     
     
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
@@ -137,11 +255,11 @@
       <category term="预训练模型" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/"/>
     
     
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
@@ -169,11 +287,11 @@
       <category term="深度学习" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
     
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
@@ -201,9 +319,9 @@
       <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
@@ -259,9 +377,9 @@
       <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
@@ -289,9 +407,9 @@
       <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
@@ -328,7 +446,7 @@
     <link href="http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/"/>
     <id>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</id>
     <published>2020-03-13T02:58:03.000Z</published>
-    <updated>2020-04-22T06:03:54.726Z</updated>
+    <updated>2020-05-03T15:33:26.184Z</updated>
     
     <summary type="html">
     
@@ -356,7 +474,7 @@
     <link href="http://yoursite.com/2020/02/16/sort-algorithms/"/>
     <id>http://yoursite.com/2020/02/16/sort-algorithms/</id>
     <published>2020-02-16T07:09:23.000Z</published>
-    <updated>2020-03-13T03:45:37.100Z</updated>
+    <updated>2020-05-02T06:25:02.232Z</updated>
     
     <summary type="html">
     
