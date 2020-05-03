@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-03T15:46:15.937Z</updated>
+  <updated>2020-05-03T15:48:27.540Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2020/05/03/shell-jiao-ben-bian-cheng/"/>
     <id>http://yoursite.com/2020/05/03/shell-jiao-ben-bian-cheng/</id>
     <published>2020-05-03T15:08:03.000Z</published>
-    <updated>2020-05-03T15:46:15.937Z</updated>
+    <updated>2020-05-03T15:48:27.540Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,8 @@
       
         
         
-          &lt;h1 id=&quot;Shell脚本编程&quot;&gt;&lt;a href=&quot;#Shell脚本编程&quot; class=&quot;headerlink&quot; title=&quot;Shell脚本编程&quot;&gt;&lt;/a&gt;Shell脚本编程&lt;/h1&gt;&lt;h2 id=&quot;什么是Shell&quot;&gt;&lt;a href=&quot;#什么是Shell&quot;
+          &lt;h1 id=&quot;提示&quot;&gt;&lt;a href=&quot;#提示&quot; class=&quot;headerlink&quot; title=&quot;提示&quot;&gt;&lt;/a&gt;提示&lt;/h1&gt;&lt;p&gt;本文中由于编译的问题，将所有英文括号换成了中文括号，需要注意！&lt;/p&gt;
+&lt;h1 id=&quot;Shell脚本编程&quot;&gt;&lt;a
         
       
     
@@ -446,7 +447,7 @@
     <link href="http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/"/>
     <id>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</id>
     <published>2020-03-13T02:58:03.000Z</published>
-    <updated>2020-05-03T15:33:26.184Z</updated>
+    <updated>2020-05-03T15:50:15.458Z</updated>
     
     <summary type="html">
     

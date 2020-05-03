@@ -372,14 +372,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    50k
+                    49.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    216 分
+                    215 分
                 </div>
                 
                 
@@ -4798,62 +4798,54 @@ i<span class="token operator">=</span><span class="token number">1</span>
         Returns whether the stack is empty.
         """</span>
         <span class="token keyword">return</span> self<span class="token punctuation">.</span>queue<span class="token operator">==</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
-<h1 id="Your-MyStack-object-will-be-instantiated-and-called-as-such"><a href="#Your-MyStack-object-will-be-instantiated-and-called-as-such" class="headerlink" title="Your MyStack object will be instantiated and called as such:"></a>Your MyStack object will be instantiated and called as such:</h1><h1 id="obj-MyStack"><a href="#obj-MyStack" class="headerlink" title="obj = MyStack()"></a>obj = MyStack()</h1><h1 id="obj-push-x"><a href="#obj-push-x" class="headerlink" title="obj.push(x)"></a>obj.push(x)</h1><h1 id="param-2-obj-pop"><a href="#param-2-obj-pop" class="headerlink" title="param_2 = obj.pop()"></a>param_2 = obj.pop()</h1><h1 id="param-3-obj-top"><a href="#param-3-obj-top" class="headerlink" title="param_3 = obj.top()"></a>param_3 = obj.top()</h1><h1 id="param-4-obj-empty"><a href="#param-4-obj-empty" class="headerlink" title="param_4 = obj.empty()"></a>param_4 = obj.empty()</h1><pre><code>
+<ul>
+<li><p>为了不使用额外空间，我们可以只用主队列进行原地修改。具体的思路是这样的：</p>
+<ul>
+<li>入队操作时，先记录下当前的队列长度L，将新元素入队。</li>
+<li>接着将队首元素出队，再入队。重复L次，相当于不使用额外空间的第一种方法。</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">MyStack</span><span class="token punctuation">:</span>
 
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Initialize your data structure here.
+        """</span>
+        self<span class="token punctuation">.</span>queue <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
 
-+ 为了不使用额外空间，我们可以只用主队列进行原地修改。具体的思路是这样的：
+    <span class="token keyword">def</span> <span class="token function">push</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> x<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> None<span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Push element x onto stack.
+        """</span>
+        L <span class="token operator">=</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>queue<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+        <span class="token keyword">while</span> L<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>append<span class="token punctuation">(</span>self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            L<span class="token operator">-=</span><span class="token number">1</span>
 
-  + 入队操作时，先记录下当前的队列长度L，将新元素入队。
-  + 接着将队首元素出队，再入队。重复L次，相当于不使用额外空间的第一种方法。
+    <span class="token keyword">def</span> <span class="token function">pop</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Removes the element on top of the stack and returns that element.
+        """</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>queue<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
 
-  ```python
-  class MyStack:
+    <span class="token keyword">def</span> <span class="token function">top</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Get the top element.
+        """</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>queue<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
 
-      def __init__(self):
-          &quot;&quot;&quot;
-          Initialize your data structure here.
-          &quot;&quot;&quot;
-          self.queue = []
-
-      def push(self, x: int) -&gt; None:
-          &quot;&quot;&quot;
-          Push element x onto stack.
-          &quot;&quot;&quot;
-          L = len(self.queue)
-          self.queue.append(x)
-          while L:
-              self.queue.append(self.queue.pop(0))
-              L-=1
-
-      def pop(self) -&gt; int:
-          &quot;&quot;&quot;
-          Removes the element on top of the stack and returns that element.
-          &quot;&quot;&quot;
-          return self.queue.pop(0)
-
-      def top(self) -&gt; int:
-          &quot;&quot;&quot;
-          Get the top element.
-          &quot;&quot;&quot;
-          return self.queue[0]
-
-      def empty(self) -&gt; bool:
-          &quot;&quot;&quot;
-          Returns whether the stack is empty.
-          &quot;&quot;&quot;
-          return self.queue==[]
-
-
-  # Your MyStack object will be instantiated and called as such:
-  # obj = MyStack()
-  # obj.push(x)
-  # param_2 = obj.pop()
-  # param_3 = obj.top()
-  # param_4 = obj.empty()</code></pre><h3 id="面试题-10-01-合并排序的数组"><a href="#面试题-10-01-合并排序的数组" class="headerlink" title="面试题 10.01. 合并排序的数组"></a><a href="https://leetcode-cn.com/problems/sorted-merge-lcci/" target="_blank" rel="noopener">面试题 10.01. 合并排序的数组</a></h3><p><img src="10.1.png" alt="10.1"></p>
+    <span class="token keyword">def</span> <span class="token function">empty</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> bool<span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""
+        Returns whether the stack is empty.
+        """</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>queue<span class="token operator">==</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="面试题-10-01-合并排序的数组"><a href="#面试题-10-01-合并排序的数组" class="headerlink" title="面试题 10.01. 合并排序的数组"></a><a href="https://leetcode-cn.com/problems/sorted-merge-lcci/" target="_blank" rel="noopener">面试题 10.01. 合并排序的数组</a></h3><p><img src="10.1.png" alt="10.1"></p>
 <h4 id="思路：-76"><a href="#思路：-76" class="headerlink" title="思路："></a>思路：</h4><p>这道题因为是合并两个排序链表，我们很容易想到mergesort的mergetwolist部分。但是，这道题有一个问题就是如果使用双指针正向合并的话，会导致一些元素尚且没有被访问到即被覆盖，所以我们要进行逆向双指针法从后向前，从大到小排序。</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
     <span class="token keyword">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> A<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">,</span> m<span class="token punctuation">:</span> int<span class="token punctuation">,</span> B<span class="token punctuation">:</span> List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> None<span class="token punctuation">:</span>
@@ -5835,7 +5827,7 @@ class Solution:
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">139.5k</span>
+            <span class="white-color">139.4k</span>
             
 
             <br>
