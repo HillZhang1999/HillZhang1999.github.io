@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2020/05/05/linux-de-grep-awk-he-sed-ming-ling/</loc>
+    <lastmod>2020-05-05</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/05/05/zheng-ze-biao-da-shi-bi-ji/</loc>
+    <lastmod>2020-05-05</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
-    <lastmod>2020-05-03</lastmod>
+    <lastmod>2020-05-05</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/05/02/linux-xi-tong-qi-dong-ji-chang-yong-ming-ling/</loc>
+    <lastmod>2020-05-05</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/05/03/shell-jiao-ben-bian-cheng/</loc>
     <lastmod>2020-05-03</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/02/16/sort-algorithms/</loc>
-    <lastmod>2020-05-02</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2020/05/02/linux-xi-tong-qi-dong-ji-chang-yong-ming-ling/</loc>
     <lastmod>2020-05-02</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/04/30/zi-jie-tiao-dong-2019-bi-shi-ti-ti-jie/</loc>
