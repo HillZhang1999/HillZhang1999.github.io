@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/05/14/cao-zuo-xi-tong-quan-bu-bi-ji/</loc>
+    
+    <lastmod>2020-05-14T08:01:09.253Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/05/14/linux-wen-jian-xi-tong/</loc>
+    
+    <lastmod>2020-05-14T07:56:41.119Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/05/14/linux-zhang-hu-guan-li/</loc>
+    
+    <lastmod>2020-05-14T07:51:26.109Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
+    
+    <lastmod>2020-05-14T06:29:51.267Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/05/05/linux-de-grep-awk-he-sed-ming-ling/</loc>
     
     <lastmod>2020-05-05T15:04:44.582Z</lastmod>
@@ -12,13 +40,6 @@
     <loc>http://yoursite.com/2020/05/05/zheng-ze-biao-da-shi-bi-ji/</loc>
     
     <lastmod>2020-05-05T13:08:52.647Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
-    
-    <lastmod>2020-05-05T08:12:28.585Z</lastmod>
     
   </url>
   
@@ -135,7 +156,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
@@ -149,7 +170,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/contact/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
@@ -164,13 +192,6 @@
   
   <url>
     <loc>http://yoursite.com/friends/index.html</loc>
-    
-    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/contact/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     

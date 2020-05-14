@@ -1,3 +1,6 @@
+http://yoursite.com/2020/05/14/cao-zuo-xi-tong-quan-bu-bi-ji/
+http://yoursite.com/2020/05/14/linux-zhang-hu-guan-li/
+http://yoursite.com/2020/05/14/linux-wen-jian-xi-tong/
 http://yoursite.com/2020/05/05/linux-de-grep-awk-he-sed-ming-ling/
 http://yoursite.com/2020/05/05/zheng-ze-biao-da-shi-bi-ji/
 http://yoursite.com/2020/05/03/shell-jiao-ben-bian-cheng/
