@@ -170,13 +170,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/friends/index.html</loc>
-    
-    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
@@ -191,6 +184,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/archives/index.html</loc>
+    
+    <lastmod>2020-03-11T11:02:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/contact/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
+    <loc>http://yoursite.com/friends/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/archives/index.html</loc>
+    <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2020-03-11T11:02:24.000Z</lastmod>
     

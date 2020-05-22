@@ -459,7 +459,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"编程语言","value":1},{"name":"Linux","value":6},{"name":"编程算法","value":7},{"name":"深度学习","value":3},{"name":"机器学习","value":3},{"name":"Shell","value":1},{"name":"预训练模型","value":2},{"name":"综述","value":1},{"name":"操作系统","value":1},{"name":"计算机网络","value":1}],
+                data: [{"name":"编程算法","value":7},{"name":"编程语言","value":1},{"name":"Linux","value":6},{"name":"深度学习","value":3},{"name":"机器学习","value":3},{"name":"综述","value":1},{"name":"Shell","value":1},{"name":"预训练模型","value":2},{"name":"操作系统","value":1},{"name":"计算机网络","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -483,7 +483,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["算法","机器学习","自然语言处理","Linux","操作系统","深度学习","leetcode","实战","JavaSE","编程语言"]
+                data: ["算法","机器学习","自然语言处理","Linux","操作系统","深度学习","leetcode","实战","JavaSE","上下位关系"]
             }
         ],
         yAxis: [
@@ -635,6 +635,12 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         <div class="tag-chips center-align">
             
             
+            <a href="/tags/算法/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">算法</span>
+            </a>
+            
+            
+            
             <a href="/tags/JavaSE/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">JavaSE</span>
             </a>
@@ -649,12 +655,6 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/操作系统/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">操作系统</span>
-            </a>
-            
-            
-            
-            <a href="/tags/算法/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">算法</span>
             </a>
             
             
@@ -677,32 +677,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             
             
-            <a href="/tags/编程语言/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">编程语言</span>
-            </a>
-            
-            
-            
-            <a href="/tags/Shell/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">Shell</span>
-            </a>
-            
-            
-            
             <a href="/tags/leetcode/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">leetcode</span>
-            </a>
-            
-            
-            
-            <a href="/tags/程序员面试金典/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">程序员面试金典</span>
-            </a>
-            
-            
-            
-            <a href="/tags/实战/" target="_blank">
-                <span class="chip center-align waves-effect waves-light chip-default">实战</span>
             </a>
             
             
@@ -715,6 +691,30 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/综述/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">综述</span>
+            </a>
+            
+            
+            
+            <a href="/tags/编程语言/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">编程语言</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Shell/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">Shell</span>
+            </a>
+            
+            
+            
+            <a href="/tags/程序员面试金典/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">程序员面试金典</span>
+            </a>
+            
+            
+            
+            <a href="/tags/实战/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">实战</span>
             </a>
             
             
@@ -791,7 +791,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
-            &copy; 2017-2020 WeiYang. 版权所有
+            &copy; 2019-2020 章岳. 版权所有
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
@@ -880,7 +880,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2017, 09, 11, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t1 = Date.UTC(2020, 03, 11, 00, 00, 00); //北京时间2018-2-13 00:00:00
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);
