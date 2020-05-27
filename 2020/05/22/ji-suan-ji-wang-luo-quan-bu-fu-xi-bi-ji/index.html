@@ -212,7 +212,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -367,7 +367,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    33k
+                    33.2k
                 </div>
                 
 
@@ -2420,8 +2420,9 @@
 <li><p>GET方法和POST方法的区别：</p>
 <ol>
 <li>GET方法是在浏览器的地址栏中输入网址的方式访问网页时，浏览器采用GET方法向服务器获取资源，POST方法要求被请求服务器接受附在请求后面的数据，常用于提交表单。<strong>GET是用于获取数据的，POST一般用于将数据发给服务器之用</strong>。</li>
-<li>GET和POST的请求都能使用额外的参数，但是 GET 的参数是以<strong>查询字符串</strong>出现在 <strong>URL</strong> 中，而POST的参数<strong>存储在实体主体</strong>中。不能因为 POST 参数存储在实体主体中就认为它的安全性更高，因为照样可以通过一些抓包工具查看。 </li>
-<li>安全的HTTP方法<strong>不会改变服务器状态</strong>，也就是说它只是可读的。GET方法是安全的，而POST却不是，因为 POST 的目的是传送实体主体内容，这个内容可能是用户上传的表单数据，上传成功之后，服务器可能把这个数据存储到数据库中，因此状态也就发生了改变。 </li>
+<li>GET和POST的请求都能使用额外的参数，但是 GET 的参数是以<strong>查询字符串</strong>出现在 <strong>URL</strong> 中，而POST的参数<strong>存储在实体主体（body）</strong>中。不能因为 POST 参数存储在实体主体中就认为它的安全性更高，因为照样可以通过一些<strong>抓包工具</strong>查看。 但实际上，私密内容的传输尽量还是使用<strong>POST+Body</strong>的形式传输，毕竟这样做参数不会明文显示在URL中，如果要加强传输安全性，需要使用<strong>HTTPS</strong>协议。此外，由于浏览器的限制，URL的长度通常是<strong>限长</strong>的，这将导致GET方法的参数<strong>有限</strong>，而POST方法无限。</li>
+<li>针对<strong>服务器</strong>来说，安全的HTTP方法<strong>不会改变服务器状态</strong>，也就是说它只是<strong>可读</strong>的。GET方法是安全的，而POST却不是，因为 POST 的目的是传送实体主体内容，这个内容可能是用户上传的表单数据，上传成功之后，服务器可能把这个数据存储到数据库中，因此状态也就发生了改变。 </li>
+<li>GET方法是<strong>幂等</strong>的，而POST方法<strong>不幂等</strong>。所谓幂等指的是<strong>同一个请求方法执行多次和仅执行一次的效果完全相同。</strong> </li>
 </ol>
 </li>
 <li><p><strong>Ajax技术</strong>：<strong>不用刷新网页即可改变网页内容</strong>。<strong>XMLHttpRequest</strong>是一个 API，在Ajax中大量使用。它为客户端提供了在客户端和服务器之间传输数据的功能。<strong>它提供了一个通过URL 来获取数据的简单方式，并且不会使整个页面刷新</strong>。这使得网页只更新一部分页面而不会打扰到用户。</p>
@@ -2874,48 +2875,50 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/22/ji-suan-ji-wang-luo-quan-bu-fu-xi-bi-ji/">
+                <a href="/2020/05/26/dong-tai-gui-hua-jing-dian-wen-ti-bei-bao-jiu-jiang-zheng-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="计算机网络全部复习笔记">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="动态规划经典问题《背包九讲》整理">
                         
-                        <span class="card-title">计算机网络全部复习笔记</span>
+                        <span class="card-title">动态规划经典问题《背包九讲》整理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            计算机网络复习笔记本文是我学习谢希仁版《计算机网络》的核心部分笔记。比较全，如果要面向面试的话可以看牛客网上这篇 https://www.nowcoder.com/discuss/429605?type=0&amp;order=7&amp;
+                            背包问题——一个经典的动态规划问题
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-22
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-26
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/计算机网络/" class="post-category" target="_blank">
-                                    计算机网络
+                            <a href="/categories/编程算法/" class="post-category" target="_blank">
+                                    编程算法
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/计算机网络/" target="_blank">
-                        <span class="chip bg-color">计算机网络</span>
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                    <a href="/tags/动态规划/" target="_blank">
+                        <span class="chip bg-color">动态规划</span>
                     </a>
                     
                 </div>
@@ -2933,7 +2936,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Java SE复习笔记">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Java SE复习笔记">
                         
                         <span class="card-title">Java SE复习笔记</span>
                     </div>
@@ -3144,7 +3147,7 @@ Java的基本数据类型（8种）整型Java的整型主要有四类，分别�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">247.2k</span>
+            <span class="white-color">178.6k</span>
             
 
             <br>

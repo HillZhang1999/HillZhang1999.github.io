@@ -1,3 +1,4 @@
+http://yoursite.com/2020/05/26/dong-tai-gui-hua-jing-dian-wen-ti-bei-bao-jiu-jiang-zheng-li/
 http://yoursite.com/2020/05/22/ji-suan-ji-wang-luo-quan-bu-fu-xi-bi-ji/
 http://yoursite.com/2020/05/22/java-se-fu-xi-bi-ji/
 http://yoursite.com/2020/05/14/cao-zuo-xi-tong-quan-bu-bi-ji/
@@ -19,5 +20,4 @@ http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/
 http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/
 http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-yin-ma-er-ke-fu-mo-xing/
 http://yoursite.com/2020/03/17/kmp-suan-fa/
-http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/
 http://yoursite.com/2020/02/16/sort-algorithms/
