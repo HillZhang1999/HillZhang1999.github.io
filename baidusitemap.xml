@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yoursite.com/2020/05/29/shu-ju-ku-fu-xi-ji-yu-mysql/</loc>
+    <lastmod>2020-05-29</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/05/29/linux-wang-luo-pei-zhi-gong-ju/</loc>
+    <lastmod>2020-05-29</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/05/14/linux-zhang-hu-guan-li/</loc>
+    <lastmod>2020-05-29</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2020/05/29/shu-ju-jie-gou-fu-xi/</loc>
+    <lastmod>2020-05-29</lastmod>
+  </url>  <url>
     <loc>http://yoursite.com/2020/03/13/leetcode-ti-jie-chi-xu-geng-xin/</loc>
-    <lastmod>2020-05-27</lastmod>
+    <lastmod>2020-05-28</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/05/26/dong-tai-gui-hua-jing-dian-wen-ti-bei-bao-jiu-jiang-zheng-li/</loc>
     <lastmod>2020-05-26</lastmod>
@@ -17,9 +29,6 @@
     <lastmod>2020-05-14</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/05/14/linux-wen-jian-xi-tong/</loc>
-    <lastmod>2020-05-14</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2020/05/14/linux-zhang-hu-guan-li/</loc>
     <lastmod>2020-05-14</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2020/05/05/linux-de-grep-awk-he-sed-ming-ling/</loc>

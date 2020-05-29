@@ -8,7 +8,8 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Linux账户管理 | HillZhang的博客">
+    <meta name="description" content="Linux账户管理账户实质账户实质上就是一个用户在系统上的标识。
+系统依据账户来区分每个用户的文件、进程、任务，给每个用户提供特定的工作环境（如用户的工作目录、shell版本、以及X-Window环境的配置等），使每个用户的工作都能独立不受">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -212,7 +213,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -371,14 +372,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    3.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    12 分
                 </div>
                 
                 
@@ -389,7 +390,518 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="Linux账户管理"><a href="#Linux账户管理" class="headerlink" title="Linux账户管理"></a>Linux账户管理</h1><h2 id="账户实质"><a href="#账户实质" class="headerlink" title="账户实质"></a>账户实质</h2><p>账户实质上就是<strong>一个用户在系统上的标识</strong>。</p>
+<p>系统依据账户来<strong>区分</strong>每个用户的文件、进程、任务，给每个用户提供<strong>特定的工作环境</strong>（如用户的工作目录、shell版本、以及X-Window环境的配置等），使每个用户的工作都能<strong>独立不受干扰</strong>地进行。</p>
+<p>Linux的账户包括：</p>
+<ul>
+<li><strong>用户账户</strong></li>
+<li><strong>组账户</strong></li>
+</ul>
+<h3 id="用户账户"><a href="#用户账户" class="headerlink" title="用户账户"></a>用户账户</h3><p>Linux系统下的用户账户（简称用户）有两种：</p>
+<ul>
+<li><strong>普通用户账户</strong>：在系统上的任务是进行<strong>普通工作</strong></li>
+<li><strong>超级用户账户</strong>（或管理员账户）：在系统上的任务是<strong>对普通用户和整个系统进行管理</strong>。 </li>
+</ul>
+<p>每个用户都被分配了一个唯一的<strong>用户ID号</strong>（<strong>UID</strong>） （<strong>GID是组ID号</strong>）：</p>
+<ul>
+<li><strong>超级用户</strong>：UID=0，GID=0</li>
+<li><strong>普通用户</strong>：UID&gt;=500</li>
+<li><strong>系统用户</strong>（<strong>伪用户</strong>，不可登录）：0&lt;UID&lt;500</li>
+</ul>
+<p>用户名和 UID 被保存在 <strong>/etc/passwd</strong> 这个文件中 。</p>
+<p>当用户登录时，他们被分配了一个<strong>主目录和一个运行的程序（通常是 shell）</strong> 。若<strong>无适当权限</strong>，用户无法读取、写入或执行彼此的文件</p>
+<h3 id="组账户"><a href="#组账户" class="headerlink" title="组账户"></a>组账户</h3><p><strong>组是用户的集合</strong>。</p>
+<p>每个组都被分配了一个唯一的<strong>组ID号（GID）</strong> </p>
+<p>组和GID 被保存在 <strong>/etc/group</strong> 文件中 </p>
+<p>每个用户都有他们自己的<strong>私有组</strong> </p>
+<p>每个用户都可以被添加到其他组中来获得<strong>额外的存取权限</strong> </p>
+<p>组中的所有用户都可以<strong>共享</strong>属于该组的文件</p>
+<h4 id="标准组和私有组"><a href="#标准组和私有组" class="headerlink" title="标准组和私有组"></a>标准组和私有组</h4><ul>
+<li><strong>标准组</strong>：<ul>
+<li>标准组可以容纳<strong>多个用户</strong></li>
+<li>若使用标准组，在<strong>创建</strong>一个新的用户时就应该<strong>指定</strong>他所属于的组（如果不指定，默认会创建一个私有组）</li>
+</ul>
+</li>
+<li><strong>私有组</strong>：<ul>
+<li>私有组中只有<strong>用户自己</strong></li>
+<li>当在创建一个新用户时， 若<strong>没有指定</strong>他所属于的组，RHEL/CentOS就建立一个和该用户<strong>同名</strong>的私有组，且用户被分配到这个私有组中</li>
+<li>优点：<strong>防止新文件归 “公共” 组所有</strong> </li>
+<li>缺点：<strong>可能会鼓励创建 “任何人都可以访问” 的文件</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="用户和组的关系"><a href="#用户和组的关系" class="headerlink" title="用户和组的关系"></a>用户和组的关系</h4><p><strong>组是用户的集合。</strong></p>
+<p>一个标准组可以容纳<strong>多个</strong>用户。</p>
+<p>同一个用户可以同属于<strong>多个</strong>组，这些组可以是私有组，也可以是标准组。</p>
+<p>当一个用户同属于多个组时，将这些组分为：</p>
+<ul>
+<li><strong>主组（初始组）</strong>：用户<strong>登录</strong>系统时的组。</li>
+<li><strong>附加组</strong>：<strong>可切换</strong>的其他组。、</li>
+</ul>
+<h4 id="Red-Hat-的账户管理"><a href="#Red-Hat-的账户管理" class="headerlink" title="Red Hat 的账户管理"></a>Red Hat 的账户管理</h4><ul>
+<li>默认启用<strong>shadow passwords</strong>功能。<ul>
+<li><strong>/etc/passwd</strong>文件对任何用户<strong>均可读</strong>， 为了<strong>增加系统的安全性</strong>， 用户的口令通常用<strong>shadow passwords</strong>保护。</li>
+<li>经过shadow passwords保护的账户密码和相关设置信息保存在<strong>/etc/shadow</strong>文件里。 /etc/shadow只对<strong>root用户</strong>可读。</li>
+<li>默认使用<strong>MD5算法</strong>的用户口令。</li>
+</ul>
+</li>
+<li>一般<strong>不设置组口令</strong>。因为绝大多数应用程序不使用组口令。</li>
+<li>建议尽量使用<strong>私有组</strong>来提高系统安全性。</li>
+<li>管理工具由 <strong>shadow-utils</strong> 软件包提供。</li>
+<li>不建议管理员<strong>直接编辑修改</strong>系统账户文件来维护账户。</li>
+</ul>
+<h4 id="账户验证信息文件"><a href="#账户验证信息文件" class="headerlink" title="账户验证信息文件"></a>账户验证信息文件</h4><ul>
+<li>口令文件 <strong>/etc/passwd</strong> ：文件权限 (-rw-r–r–)</li>
+<li>影子口令文件 <strong>/etc/shadow</strong>：文件权限 (-r——–)</li>
+<li>组账号文件 <strong>/etc/group</strong>：文件权限 (-rw-r–r– )</li>
+<li>组口令文件 <strong>/etc/gshadow</strong>：文件权限 (-r——–)</li>
+</ul>
+<h4 id="口令文件-etc-passwd"><a href="#口令文件-etc-passwd" class="headerlink" title="口令文件 /etc/passwd"></a>口令文件 /etc/passwd</h4><ul>
+<li><strong>每一个用户一条记录</strong> </li>
+<li>每条记录由用分号间隔的<strong>七个字段</strong>组成。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>password</td>
+<td>在此文件中的口令是X，这表示用户的口令是被/etc/shadow文件保护的</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>用户的识别号，是一个数字。每个用户的UID都是唯一的</td>
+</tr>
+<tr>
+<td>gid</td>
+<td>用户的组的识别号，也是一个数字。每个用户账户在建立好后都会有一个主组。主组相同的账户其GID相同。</td>
+</tr>
+<tr>
+<td>description</td>
+<td>用户的个人资料，包括地址、电话等信息</td>
+</tr>
+<tr>
+<td>home</td>
+<td>用户的主目录，通常在/home下，目录名和账户名相同</td>
+</tr>
+<tr>
+<td>shell</td>
+<td>用户登录后启动的shell，默认是/bin/bash</td>
+</tr>
+</tbody></table>
+<h4 id="影子口令文件-etc-shadow"><a href="#影子口令文件-etc-shadow" class="headerlink" title="影子口令文件 /etc/shadow"></a>影子口令文件 /etc/shadow</h4><ul>
+<li><strong>每一个用户一条记录</strong> </li>
+<li>每条记录由用分号间隔的<strong>九个字段</strong>组成。 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户名</td>
+<td>用户登录名</td>
+</tr>
+<tr>
+<td>口令</td>
+<td>用户的密码，是加密过的（MD5）</td>
+</tr>
+<tr>
+<td>最后一次修改的时间</td>
+<td>从1970年1月1日起，到用户最后一次更改密码的天数</td>
+</tr>
+<tr>
+<td>最小时间间隔</td>
+<td>从1970年1月1日起，到用户应该更改密码的天数</td>
+</tr>
+<tr>
+<td>最大时间间隔</td>
+<td>从1970年1月1日起，到用户必须更改密码的天数</td>
+</tr>
+<tr>
+<td>警告时间</td>
+<td>在用户密码过期之前多少天提醒用户更新</td>
+</tr>
+<tr>
+<td>不活动时间</td>
+<td>在用户密码过期之后到禁用账户的天数</td>
+</tr>
+<tr>
+<td>失效时间</td>
+<td>从1970年1月1日起，到账户被禁用的天数</td>
+</tr>
+<tr>
+<td>标志</td>
+<td>保留位</td>
+</tr>
+</tbody></table>
+<h4 id="组账号文件-etc-group"><a href="#组账号文件-etc-group" class="headerlink" title="组账号文件 /etc/group"></a>组账号文件 /etc/group</h4><ul>
+<li><strong>每一个组一条记录</strong> </li>
+<li>每条记录由用分号间隔的<strong>四个字段</strong>组成</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组名</td>
+<td>这是用户登录系统时的默认组名，它在系统中是唯一的</td>
+</tr>
+<tr>
+<td>口令</td>
+<td>组口令，由于安全性原因，已不使用该字段保存口令，用“x”占位</td>
+</tr>
+<tr>
+<td>组ID</td>
+<td>是一个整数，系统内部用它来标识组</td>
+</tr>
+<tr>
+<td>组内用户列表</td>
+<td>属于该组的所有用户名表，列表中多个用户间用“,”分隔</td>
+</tr>
+</tbody></table>
+<h4 id="组口令文件-etc-gshadow"><a href="#组口令文件-etc-gshadow" class="headerlink" title="组口令文件 /etc/gshadow"></a>组口令文件 /etc/gshadow</h4><ul>
+<li><strong>每一个组一条记录</strong> </li>
+<li>每条记录由用分号间隔的<strong>四个字段</strong>组成。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组名</td>
+<td>组名称，该字段与group文件中的组名称对应</td>
+</tr>
+<tr>
+<td>加密的组口令</td>
+<td>用于保存已加密的口令</td>
+</tr>
+<tr>
+<td>组的管理员账号</td>
+<td>管理员有权对该组添加删除账号</td>
+</tr>
+<tr>
+<td>组内用户列表</td>
+<td>属于该组的用户成员列表，列表中多个用户间用“,”分隔</td>
+</tr>
+</tbody></table>
+<h3 id="用户默认环境配置及模板"><a href="#用户默认环境配置及模板" class="headerlink" title="用户默认环境配置及模板"></a>用户默认环境配置及模板</h3><p>用户默认配置文件 </p>
+<ul>
+<li><strong>/etc/login.defs</strong> </li>
+<li><strong>/etc/default/useradd</strong> </li>
+</ul>
+<p>新用户基本信息 </p>
+<ul>
+<li><strong>/etc/skel</strong> </li>
+<li>如果手工创建用户，则需复制该目录到用户主目录</li>
+</ul>
+<h2 id="用户和组管理工具"><a href="#用户和组管理工具" class="headerlink" title="用户和组管理工具"></a>用户和组管理工具</h2><p>本质上这些工具是在帮忙修改用户的配置文件。</p>
+<h3 id="添加用户账号（useradd）"><a href="#添加用户账号（useradd）" class="headerlink" title="添加用户账号（useradd）"></a>添加用户账号（useradd）</h3><p>格式：</p>
+<blockquote>
+<p>useradd [ &lt; 选项 &gt; ] &lt; 用户名 &gt;</p>
+</blockquote>
+<p>常用选项:</p>
+<table>
+<thead>
+<tr>
+<th>-g group</th>
+<th>指定新用户的主（私有）组。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-G group</td>
+<td>指定新用户的附加组。</td>
+</tr>
+<tr>
+<td>-d directory</td>
+<td>指定新用户的自家目录。</td>
+</tr>
+<tr>
+<td>-s shell</td>
+<td>指定新用户使用的Shell，默认为bash。</td>
+</tr>
+<tr>
+<td>-e expire</td>
+<td>指定用户的登录失效时间，例如：08/10/2001</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>不建立新用户的自家目录。</td>
+</tr>
+</tbody></table>
+<p>流程：</p>
+<ol>
+<li>编辑<strong>账户验证信息文件</strong><ol>
+<li>/etc/passwd, /etc/shadow</li>
+<li>/etc/group, /etc/gshadow </li>
+</ol>
+</li>
+<li>创建<strong>主目录</strong> /home/&lt; username &gt;<ol>
+<li>根据骨架目录（Skeleton Directory） /etc/skel/ 的内容填充用户主目录 </li>
+<li>设置权限和拥有者 </li>
+</ol>
+</li>
+</ol>
+<p>显示 useradd 命令参数的<strong>默认值</strong> ：从文件 <strong>/etc/default/useradd</strong> 中读取 </p>
+<blockquote>
+<p>useradd -D </p>
+</blockquote>
+<p>可以使用 -D 选项修改默认参数：</p>
+<blockquote>
+<p> useradd -D [-g group] [-b base] [-s shell]  [-e expire ] </p>
+</blockquote>
+<h4 id="设置用户口令（passwd）"><a href="#设置用户口令（passwd）" class="headerlink" title="设置用户口令（passwd）"></a>设置用户口令（passwd）</h4><p>格式：</p>
+<blockquote>
+<p>passwd [ &lt; 用户账号名 &gt; ]</p>
+</blockquote>
+<p>使用举例</p>
+<ul>
+<li><p>设置用户自己的口令</p>
+<blockquote>
+<p>$ passwd</p>
+</blockquote>
+</li>
+<li><p>root 用户设置他人的口令（<strong>必须是超级管理员用户</strong>）</p>
+<blockquote>
+<p>passwd user1</p>
+</blockquote>
+</li>
+</ul>
+<p>实例：</p>
+<blockquote>
+<p>useradd -g group1 -e 12/31/2011 user1（添加一个主用户组为group1，登录失效时间为2011年12月31日的user1用户</p>
+<p>passwd user1（修改user1的密码口令）</p>
+<p>useradd -G ftpgrp -d /var/ftp2 -s /sbin/nologin -M ftp1（添加一个附加组为ftpgrp，主目录为 /var/ftp2，主Shell为/sbin/nologin，不新建自家用户的ftp1用户）</p>
+</blockquote>
+<h3 id="修改用户账号（usermod）"><a href="#修改用户账号（usermod）" class="headerlink" title="修改用户账号（usermod）"></a>修改用户账号（usermod）</h3><p>格式：</p>
+<blockquote>
+<p>usermod [ &lt; 选项 &gt; ] &lt; 用户名 &gt;</p>
+</blockquote>
+<p>选项与<strong>useradd命令</strong>基本相同</p>
+<p>举例：</p>
+<blockquote>
+<p>usermod -l user2 user1 </p>
+<p>usermod -G softgroup jjh</p>
+<p>usermod -L user1 </p>
+<p>usermod -U user1 </p>
+</blockquote>
+<h3 id="删除用户账号（userdel）"><a href="#删除用户账号（userdel）" class="headerlink" title="删除用户账号（userdel）"></a>删除用户账号（userdel）</h3><p>格式：</p>
+<blockquote>
+<p>userdel [ &lt; -r &gt; ] &lt; 用户名 &gt;</p>
+</blockquote>
+<p>选项-r用于<strong>删除用户的宿主目录</strong></p>
+<p>举例：</p>
+<blockquote>
+<p>userdel ftp1 </p>
+<p>userdel –r user1</p>
+</blockquote>
+<h3 id="添加组账号（-groupadd-）"><a href="#添加组账号（-groupadd-）" class="headerlink" title="添加组账号（ groupadd ）"></a>添加组账号（ groupadd ）</h3><p>格式：</p>
+<blockquote>
+<p>groupadd [ &lt; 参数 &gt; ] &lt; 组账号名 &gt;</p>
+</blockquote>
+<p>常用参数</p>
+<ul>
+<li>参数-r用于创建<strong>系统组账号</strong>（GID小于500 ）</li>
+<li>参数-g用于指定<strong>GID</strong></li>
+</ul>
+<blockquote>
+<p>groupadd mygroup </p>
+<p>groupadd -r sysgroup</p>
+<p>groupadd -g 888 group2</p>
+</blockquote>
+<h3 id="修改组账号（-groupmod-）"><a href="#修改组账号（-groupmod-）" class="headerlink" title="修改组账号（ groupmod ）"></a>修改组账号（ groupmod ）</h3><p>格式:</p>
+<blockquote>
+<p>groupmod [ &lt; 参数 &gt; ] &lt; 组账号名 &gt;</p>
+</blockquote>
+<p>常用参数：</p>
+<ul>
+<li>参数-g改变组账号的GID ，组账号名保持不变。 </li>
+<li>参数-n改变组账号名 </li>
+</ul>
+<blockquote>
+<p>groupmod -g 503 mygroup </p>
+<p>groupmod –n newgroup mygroup</p>
+</blockquote>
+<h4 id="删除组账号（-groupdel-）"><a href="#删除组账号（-groupdel-）" class="headerlink" title="删除组账号（ groupdel ）"></a>删除组账号（ groupdel ）</h4><p>格式：</p>
+<blockquote>
+<p>groupdel &lt; 组账号名 &gt;</p>
+</blockquote>
+<p>举例：</p>
+<blockquote>
+<p>groupdel  mygroup </p>
+</blockquote>
+<p>注意：</p>
+<blockquote>
+<p>被删除的组账号<strong>必须存在</strong> </p>
+<p>当有用户使用组账号作为<strong>私有组</strong>时不能删除</p>
+<p>与用户名同名的私有组账号在使用<strong>userdel命令</strong>删除用户时被<strong>同时删除</strong>，无需使用<strong>groupdel命令</strong> </p>
+</blockquote>
+<h3 id="组成员管理"><a href="#组成员管理" class="headerlink" title="组成员管理"></a>组成员管理</h3><p>向标准组中添加用户 :</p>
+<blockquote>
+<p>gpasswd -a &lt; 用户账号名&gt; &lt; 组账号名 &gt; </p>
+<p>usermod -G &lt; 组账号名 &gt; &lt; 用户账号名 &gt; </p>
+</blockquote>
+<p>从标准组中删除用户 ：</p>
+<blockquote>
+<p>gpasswd -d &lt; 用户账号名 &gt; &lt; 组账号名 &gt; </p>
+</blockquote>
+<h2 id="批量用户管理"><a href="#批量用户管理" class="headerlink" title="批量用户管理"></a>批量用户管理</h2><h3 id="newusers命令"><a href="#newusers命令" class="headerlink" title="newusers命令"></a>newusers命令</h3><p>格式：</p>
+<blockquote>
+<p>newusers  &lt; filename &gt;</p>
+</blockquote>
+<p>新建一个文件，其内容格式与 <strong>/etc/passwd</strong> 一致，调用newusers指令可以将该文件内容追加到/etc/passwd中。</p>
+<h3 id="chpasswd命令"><a href="#chpasswd命令" class="headerlink" title="chpasswd命令"></a>chpasswd命令</h3><p>格式：</p>
+<blockquote>
+<p>chpasswd  &lt; &lt; filename &gt;</p>
+</blockquote>
+<p>filename每一行的格式：</p>
+<ul>
+<li>username : password，username必须是系统上已存在的用户</li>
+</ul>
+<h3 id="pwgen命令"><a href="#pwgen命令" class="headerlink" title="pwgen命令"></a>pwgen命令</h3><p>格式：</p>
+<blockquote>
+<p>pwgen [选项] [口令长度] [口令个数]</p>
+</blockquote>
+<ul>
+<li>默认的口令长度为 <strong>8</strong></li>
+<li>默认生成的口令个数为 <strong>8*20</strong></li>
+<li>选项：<ul>
+<li>-c：至少包含一个<strong>大写字母</strong></li>
+<li>-n：至少包含一个<strong>数字</strong></li>
+<li>-y：至少包含一个<strong>非字母和数字的特殊字符</strong></li>
+<li>-s：生成<strong>完全随机的安全口令</strong></li>
+<li>-1：每行显示<strong>一个</strong>口令</li>
+</ul>
+</li>
+</ul>
+<p>使用pwgen命令生成chpasswd命令所需的口令文件：</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># cat userfile.txt
+user1:x:1001:1001::/home/user1:/bin/bash
+user2:x:1002:1002::/home/user2:/bin/bash
+ftpuser1:x:2001:2001::/home/ftpuser1:/sbin/nologin
+ftpuser2:x:2002:2002::/home/ftpuser2:/sbin/nologin
+
+# cut -d\: -f 1 userfile.txt> pwdtemp1（只取用户名）
+# pwgen -cn1 8 $(wc -l < userfile.txt) > pwdtemp2（生成密码）
+# paste -d \: pwdtemp1 pwdtemp2 > userpwdfile.txt（粘贴，以冒号为分隔符合并）
+# chmod 600 userpwdfile.txt; rm -f pwdtemp{1,2}（修改权限，删除临时文件）
+# chpasswd < userpwdfile.txt（执行chpasswd命令）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="口令维护和口令时效"><a href="#口令维护和口令时效" class="headerlink" title="口令维护和口令时效"></a>口令维护和口令时效</h2><h3 id="口令维护"><a href="#口令维护" class="headerlink" title="口令维护"></a>口令维护</h3><p><strong>禁用</strong>用户账户口令 ：</p>
+<blockquote>
+<p>passwd -l &lt; 用户账号名 &gt;</p>
+</blockquote>
+<p><strong>查看</strong>用户账户口令状态 ：</p>
+<blockquote>
+<p>passwd -S &lt; 用户账号名 &gt;</p>
+</blockquote>
+<p><strong>恢复</strong>用户账户口令：</p>
+<blockquote>
+<p>passwd -u &lt; 用户账号名 &gt;</p>
+</blockquote>
+<p><strong>清除</strong>用户账户口令 ：</p>
+<blockquote>
+<p> passwd -d &lt; 用户账号名 &gt;</p>
+</blockquote>
+<h3 id="口令时效"><a href="#口令时效" class="headerlink" title="口令时效"></a>口令时效</h3><p>口令时效是系统管理员用来防止机构内<strong>不良口令</strong>的一种技术。</p>
+<p>防止口令被攻击的方法就是要<strong>经常地改变口令</strong>。</p>
+<p>强制用户在一段时间之后更改口令的机制称为<strong>口令时效。</strong></p>
+<p>在默认状况下，<strong>口令不会过期</strong>。强制口令失效是强大安全策略的一部分。</p>
+<h3 id="设置新添用户的口令时效"><a href="#设置新添用户的口令时效" class="headerlink" title="设置新添用户的口令时效"></a>设置新添用户的口令时效</h3><p>修改 <strong>/etc/login.defs</strong> 的相关配置参数</p>
+<table>
+<thead>
+<tr>
+<th>PASS_MAX_DAYS</th>
+<th>设定在多少天后要求用户修改口令。默认口令时效的天数为99999，即关闭了口令时效。明智的设定一般是60天（2个月）强制更改一次口令。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PASS_MIN_DAYS</td>
+<td>设定在本次口令修改后，至少要经过多少天后才允许更改口令。</td>
+</tr>
+<tr>
+<td>PASS_MIN_LEN</td>
+<td>设定口令的最小字符数。</td>
+</tr>
+<tr>
+<td>PASS_WARN_AGE</td>
+<td>设定在口令失效前多少天开始通知用户更改口令（一般在用户刚刚登录系统时就会收到警告通知）。</td>
+</tr>
+</tbody></table>
+<h3 id="设置已存在用户的口令时效"><a href="#设置已存在用户的口令时效" class="headerlink" title="设置已存在用户的口令时效"></a>设置已存在用户的口令时效</h3><p><strong>chage命令</strong></p>
+<p>格式：</p>
+<blockquote>
+<p>chage [选项] [用户登录名]</p>
+</blockquote>
+<p>举例：</p>
+<ul>
+<li><p>查看用户jason当前的口令时效信息：</p>
+<blockquote>
+<p>chage -l jason</p>
+</blockquote>
+</li>
+<li><p>使用户jason下次登录之后修改口令</p>
+<blockquote>
+<p>chage -d 0 jason</p>
+</blockquote>
+</li>
+<li><p>用户 jason 两天内不能更改口令，且口令最长的存活期为 30 天，并在口令过期前 5 天通知用户</p>
+<blockquote>
+<p>chage -m 2 -M 30 -W 5 jason</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="用户切换命令"><a href="#用户切换命令" class="headerlink" title="用户切换命令"></a>用户切换命令</h3><p><strong>su</strong>（系统中单个超级用户）：</p>
+<ul>
+<li>直接切换为<strong>超级用户（super）</strong></li>
+<li>普通用户要切换为超级用户必须<strong>知道超级用户的口令</strong></li>
+<li>适用于系统中只有<strong>单个系统管理员</strong>的情况</li>
+</ul>
+<p><strong>sudo</strong>（系统中多个超级用户）：</p>
+<ul>
+<li>直接使用 <strong>sudo 命令前缀</strong>执行系统管理命令</li>
+<li>执行系统管理命令时<strong>无需知道超级用户的口令</strong>，使用普通用户自己的口令即可</li>
+<li>由于执行系统管理命令时无需知晓超级用户口令，所以适用于<strong>系统中有多个系统管理员的</strong>情况，因为这样不会泄露超级用户口令。当然系统只有单个系统管理员时也可以使用。</li>
+</ul>
+<h3 id="账户相关命令"><a href="#账户相关命令" class="headerlink" title="账户相关命令"></a>账户相关命令</h3><table>
+<thead>
+<tr>
+<th>id</th>
+<th>显示用户当前的uid、gid和用户所属的组列表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>groups</td>
+<td>显示指定用户所属的组列表</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>显示当前用户的名称</td>
+</tr>
+<tr>
+<td>w/who</td>
+<td>显示登录用户及相关信息</td>
+</tr>
+<tr>
+<td>newgrp</td>
+<td>用于转换用户的当前组到指定的组账号，用户必须属于该组才可以正确执行该命令</td>
+</tr>
+</tbody></table>
+
             </div>
             <hr />
 
@@ -735,7 +1247,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="操作系统全部笔记">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="操作系统全部笔记">
                         
                         <span class="card-title">操作系统全部笔记</span>
                     </div>
@@ -788,7 +1300,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Linux文件系统">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Linux文件系统">
                         
                         <span class="card-title">Linux文件系统</span>
                     </div>
@@ -1000,7 +1512,7 @@ Linux文件系统标准（Linux File System Standard，FSSTND）
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">258k</span>
+            <span class="white-color">291.1k</span>
             
 
             <br>

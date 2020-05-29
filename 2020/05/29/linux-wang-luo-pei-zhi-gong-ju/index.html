@@ -1,0 +1,1704 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux网络配置工具, 章岳 学习笔记 计算机 算法 程序">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
+    <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
+    <meta name="description" content="Linux网络配置与网络工具Linux网络简介Linux的网络支持Linux支持各种协议类型的网络：
+
+TCP/IP、NetBIOS/NetBEUI、IPX/SPX、AppleTake等
+在网络底层也支持Ethernet、Token Rin">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Linux网络配置工具 | HillZhang的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+    <script>
+        (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">HillZhang的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">HillZhang的博客</div>
+        <div class="logo-desc">
+            
+            苏州大学 | 计算机科学与技术学院 | 软件工程
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Linux网络配置工具
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/Linux/" target="_blank">
+                            <span class="chip bg-color">Linux</span>
+                        </a>
+                        
+                        <a href="/tags/操作系统/" target="_blank">
+                            <span class="chip bg-color">操作系统</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/Linux/" class="post-category" target="_blank">
+                            Linux
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-05-29
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    HillZhang
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Linux网络配置与网络工具"><a href="#Linux网络配置与网络工具" class="headerlink" title="Linux网络配置与网络工具"></a>Linux网络配置与网络工具</h1><h2 id="Linux网络简介"><a href="#Linux网络简介" class="headerlink" title="Linux网络简介"></a>Linux网络简介</h2><h3 id="Linux的网络支持"><a href="#Linux的网络支持" class="headerlink" title="Linux的网络支持"></a>Linux的网络支持</h3><p>Linux支持各种协议类型的网络：</p>
+<ul>
+<li><strong>TCP/IP、NetBIOS/NetBEUI、IPX/SPX、AppleTake</strong>等</li>
+<li>在网络底层也支持<strong>Ethernet、Token Ring、ATM、PPP（PPPoE）、FDDI、Frame Relay</strong>等网络协议。</li>
+</ul>
+<p>这些网络协议是<strong>Linux内核</strong>提供的功能，具体的支持情况由<strong>内核编译参数</strong>决定。</p>
+<p><strong>RHEL/CentOS</strong>的Linux内核默认支持上述的网络协议。</p>
+<h3 id="Linux的网络接口"><a href="#Linux的网络接口" class="headerlink" title="Linux的网络接口"></a>Linux的网络接口</h3><p>Linux支持众多类型的网络接口</p>
+<ul>
+<li>每一个<strong>网络接口设备</strong>在Linux的内核中都有相应的<strong>设备名称</strong></li>
+</ul>
+<p>每一种网络接口设备（网络适配器）都需要相应的<strong>设备驱动程序</strong></p>
+<ul>
+<li>网络接口设备的驱动程序被编译在<strong>系统内核</strong>中</li>
+<li>或者被编译<strong>为系统内核模块</strong>以便让系统内核进行调用</li>
+</ul>
+<p>RHEL/CentOS默认是采用<strong>内核模块</strong>（Module）的方式在系统引导时驱动网络接口的</p>
+<ul>
+<li>在<strong>/lib/modules/$(uname -r)/kernel/drivers/net</strong>目录下可以找到可加载的驱动可以从系统内核模块配置文件/etc/modprobe.conf中查看系统加载的网卡驱动模块</li>
+<li>可以从系统内核模块配置文件<strong>/etc/modprobe.conf</strong>中查看系统加载的网卡驱动模块</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>接口类型</strong></th>
+<th><strong>接口名称</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>以太网接口</td>
+<td>ethX</td>
+<td>是最常用的网络接口</td>
+</tr>
+<tr>
+<td>令牌环接口</td>
+<td>trX</td>
+<td>只出现在少数纯IBM环境的网络中</td>
+</tr>
+<tr>
+<td>光纤分布式数据接口</td>
+<td>fddiX</td>
+<td>FDDI接口设备昂贵，通常用于核心网或高速网络中</td>
+</tr>
+<tr>
+<td>点对点协议接口</td>
+<td>pppX</td>
+<td>用于Modem/ADSL拨号网络或基于PPTP协议的VPN等</td>
+</tr>
+<tr>
+<td>本地回环接口</td>
+<td>lo</td>
+<td>用于支持UNIX Domain Socket技术的进程相互通信（IPC）</td>
+</tr>
+</tbody></table>
+<p><strong>X是从0开始的整数。</strong>如：eth0代表第一块以太网卡，eth1代表第二块以太网卡等。</p>
+<h3 id="Linux的网络服务应用"><a href="#Linux的网络服务应用" class="headerlink" title="Linux的网络服务应用"></a>Linux的网络服务应用</h3><p>Linux几乎支持Internet世界里所有的网络服务</p>
+<ul>
+<li><strong>WWW服务</strong>： Apache、Ngnix、Lighttpd</li>
+<li><strong>Email服务</strong>： Postfix、Qmail、Sendmail、Exim</li>
+<li><strong>Dovecot IMAP</strong>、Cyrus IMAP、Courier IMAP</li>
+<li><strong>FTP服务</strong>： Vsftpd、pure-ftpd、Proftpd 、Wu-ftpd</li>
+<li><strong>文件共享服务</strong>：Samba、NFS</li>
+<li><strong>DNS服务</strong>：BIND</li>
+<li><strong>目录服务</strong>：OpenLDAP</li>
+<li><strong>数据库服务</strong>： PostgreSQL、MySQL、 Oracle</li>
+<li><strong>远程登录与管理</strong>：OpenSSH、VNC</li>
+</ul>
+<h2 id="临时性配置网络参数"><a href="#临时性配置网络参数" class="headerlink" title="临时性配置网络参数"></a>临时性配置网络参数</h2><h3 id="配置网络参数的方法"><a href="#配置网络参数的方法" class="headerlink" title="配置网络参数的方法"></a>配置网络参数的方法</h3><p><strong>临时性</strong>网络配置</p>
+<ul>
+<li>通过<strong>命令</strong>修改当前内核中的网络相关参数实现<ul>
+<li>Ifconfig/ip、route、hostname、 sysctl -w</li>
+</ul>
+</li>
+<li><strong>配置后立即生效重新开机后失效</strong></li>
+</ul>
+<p><strong>永久性</strong>网络配置</p>
+<ul>
+<li>通过直接修改网络相关的<strong>配置文件</strong>实现</li>
+<li>修改配置文件后，为了使之立即生效<ul>
+<li>通过重新启动网络服务或指定的网络接口设备实现</li>
+<li>重新开机后保留所有配置</li>
+</ul>
+</li>
+</ul>
+<h3 id="管理以太网接口"><a href="#管理以太网接口" class="headerlink" title="管理以太网接口"></a>管理以太网接口</h3><p><strong>网络接口命名</strong>：eth0、eth1 等等</p>
+<ul>
+<li>使用别名（aliases），单个设备可具备多个地址 </li>
+<li>别名被标识为（eth0:1，eth0:2）等等</li>
+<li>别名被当作单独的接口对待</li>
+<li>基于一块物理网卡的多个别名（包括物理网卡自身）只能有一个接口使用DHCP动态分配网络参数</li>
+</ul>
+<p>查看<strong>网络接口配置</strong></p>
+<ul>
+<li><strong>ifconfig [ethX]</strong></li>
+</ul>
+<p>网络接口的启用与停用</p>
+<ul>
+<li>使用 <strong>ifup ethX</strong> 命令来启用指定的接口 </li>
+<li>使用 <strong>ifdown ethX</strong> 命令来禁用指定的接口</li>
+</ul>
+<h3 id="ifconfig-命令"><a href="#ifconfig-命令" class="headerlink" title="ifconfig 命令"></a>ifconfig 命令</h3><p>ifconfig命令可以<strong>临时地设置网络接口的IP参数</strong></p>
+<p>格式：</p>
+<blockquote>
+<p>ifconfig &lt;网络接口&gt; &lt;IP地址&gt;<br>[Mask &lt;子网掩码&gt;] [Broadcast &lt;广播地址&gt;]</p>
+</blockquote>
+<p>当IP地址使用标准A、B、C类地址时，广播地址和子网掩码可以省略。</p>
+<p>举例：</p>
+<blockquote>
+<p>ifconfig eth0 10.0.0.10 Mask 255.255.255.0 Broadcast 10.0.0.255<br>ifconfig eth0 192.168.0.10<br>ifconfig eth0:0 192.168.1.10</p>
+</blockquote>
+<h3 id="查看Linux内核路由表"><a href="#查看Linux内核路由表" class="headerlink" title="查看Linux内核路由表"></a>查看Linux内核路由表</h3><p>使用route命令，查看路由表。路由表可以包含：<strong>到主机的路由、到网络的路由、默认网关的路由。</strong></p>
+<blockquote>
+<p>route<br>Kernel IP routing table<br>Destination  Gateway      Genmask         Flags Metric Ref Use Iface<br>192.168.0.0  <em>            255.255.255.0   U     0      0     0 eth0<br>192.168.1.0  </em>            255.255.255.0   U     0      0     0 eth1<br>192.19.12    192.168.1.1  255.255.255.0   U     0      0     0 eth1<br>default      localhost    0.0.0.0         UG    0      0     0 eth0</p>
+</blockquote>
+<h3 id="route命令"><a href="#route命令" class="headerlink" title="route命令"></a>route命令</h3><p>route命令可以<strong>临时地设置内核路由表</strong>。</p>
+<p>格式：</p>
+<blockquote>
+<p>route add|del [-net|-host] &lt;target [netmask Netmask]&gt;<br>        [gw Gateway] [[dev] Interface]</p>
+</blockquote>
+<p>选项：</p>
+<ul>
+<li>add或del：表示添加或删除路由</li>
+<li>-net或-host：表示添加到主机或网络的路由</li>
+<li>target：指定目标主机或网络地址，若目标为网络地址时，需使用 netmask 指定子网掩码</li>
+<li>gw：用于指定网关的IP地址</li>
+<li>dev：用于指定路由的网络接口（dev关键字可省略）</li>
+</ul>
+<p>举例：</p>
+<blockquote>
+<p>添加到主机的路由<br>route add -host 192.168.1.2 dev eth0:0<br>route add -host 10.20.30.148 gw 10.20.30.40<br>添加到网络的路由<br>route add -net 10.20.30.40 netmask 255.255.255.248 eth0<br>route add -net 10.20.30.48 netmask 255.255.255.248 gw 10.20.30.41<br>route add -net 192.168.1.0/24 eth1<br>添加默认网关路由<br>route add default gw 192.168.1.1</p>
+<p>删除到主机的路由<br>route del -host 192.168.1.2 dev eth0:0<br>route del -host 10.20.30.148 gw 10.20.30.40<br>删除到网络的路由<br>route del -net 10.20.30.40 netmask 255.255.255.248 eth0<br>route del -net 10.20.30.48 netmask 255.255.255.248 gw 10.20.30.41<br>route del -net 192.168.1.0/24 eth1<br>删除默认网关路由<br>route del default gw 192.168.1.1</p>
+</blockquote>
+<h3 id="设置主机名和包转发"><a href="#设置主机名和包转发" class="headerlink" title="设置主机名和包转发"></a>设置主机名和包转发</h3><p><strong>使用hostname命令可以临时地修改主机名</strong></p>
+<p>格式：</p>
+<blockquote>
+<p>hostname &lt;主机名&gt;</p>
+</blockquote>
+<p>例如：</p>
+<blockquote>
+<p>hostname centos1.ls-al.loc</p>
+</blockquote>
+<p><strong>使用sysctl命令可以临时地开启内核的包转发</strong></p>
+<p>sysctl命令用于<strong>临时调整</strong>内核参数</p>
+<p>开启内核的包转发功能使用如下命令</p>
+<blockquote>
+<p>sysctl -w net.ipv4.ip_forward=1</p>
+<p>或</p>
+<p>echo “1” &gt; /proc/sys/net/ipv4/ip_forward</p>
+</blockquote>
+<h3 id="网络设置-ip"><a href="#网络设置-ip" class="headerlink" title="网络设置-ip"></a>网络设置-ip</h3><h4 id="iproute2包，代替传统的net-tools"><a href="#iproute2包，代替传统的net-tools" class="headerlink" title="iproute2包，代替传统的net-tools"></a>iproute2包，代替传统的net-tools</h4><p>格式：</p>
+<blockquote>
+<p>ip [ OPTIONS ] OBJECT { COMMAND | help }</p>
+</blockquote>
+<p>对象OBJECT={ link | addr | addrlabel | route | rule | neigh | ntable | tunnel | maddr | mroute | mrule | monitor | xfrm | token }</p>
+<p>选项OPTIONS={ -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] | -h[uman-readable] | -iec | -f[amily] { inet | inet6 | ipx | dnet | link } | -o[neline] | -t[imestamp] | -b[atch] [filename] | -rc[vbuf] [size] }</p>
+<p>例子：</p>
+<blockquote>
+<p>ip a/addr/address sh/show dev eth1查看指定IP地址</p>
+</blockquote>
+<h4 id="ip命令"><a href="#ip命令" class="headerlink" title="ip命令"></a>ip命令</h4><p>ip是<strong>iproute2软件包</strong>里面的一个强大的网络配置工具</p>
+<p>用来<strong>显示或操作路由、网络设备、策略路由和隧道</strong></p>
+<p>它能够<strong>替代</strong>一些传统的网络管理工具，例如<strong>ifconfig、route</strong>等。</p>
+<p>用ip配置的设备信息，大部分会在设备重启后还原。如果想永久保留配置，需进入<strong>配置文件</strong>修改。</p>
+<h5 id="设置和删除ip地址"><a href="#设置和删除ip地址" class="headerlink" title="设置和删除ip地址"></a>设置和删除ip地址</h5><p>设置一个IP地址，可以使用下列ip命令：</p>
+<blockquote>
+<p> ip addr add 192.168.0.193/24 dev wlan0</p>
+</blockquote>
+<p> 请注意IP地址要有一个后缀，比如<strong>/24</strong>。这种用法用于在<strong>无类域内路由选择（CIDR）中来显示所用的子网掩码</strong>。在这个例子中，子网掩码是<strong>255.255.255.0</strong>。（表示子网掩码前24位为1）</p>
+<h5 id="查看IP地址"><a href="#查看IP地址" class="headerlink" title="查看IP地址"></a>查看IP地址</h5><p>查看一个IP地址，可以使用下列ip命令：</p>
+<blockquote>
+<p> ip addr show wlan0</p>
+</blockquote>
+<h5 id="删除IP地址"><a href="#删除IP地址" class="headerlink" title="删除IP地址"></a>删除IP地址</h5><p>删除一个IP地址，可以使用下列ip命令：</p>
+<blockquote>
+<p> ip addr del 192.168.0.193/24 dev wlan0</p>
+</blockquote>
+<h5 id="路由功能"><a href="#路由功能" class="headerlink" title="路由功能"></a>路由功能</h5><p>列出路由表条目</p>
+<blockquote>
+<p>ip route show</p>
+</blockquote>
+<p>查看路由表</p>
+<blockquote>
+<p>ip route get 119.75.216.20</p>
+</blockquote>
+<p>添加默认路由</p>
+<blockquote>
+<p>ip route add default via 192.168.202.254</p>
+</blockquote>
+<p>添加网络路由</p>
+<blockquote>
+<p>ip route add 192.168.4.0/24 via 192.168.4.1</p>
+</blockquote>
+<p>修改网络路由</p>
+<blockquote>
+<p>ip route change 192.168.4.0/24 dev eth1</p>
+</blockquote>
+<p>设置NAT路由</p>
+<blockquote>
+<p>ip route add nat 192.168.1.100 via 192.168.1.1 </p>
+</blockquote>
+<p>查看某个路由表信息</p>
+<blockquote>
+<p>ip route show table main<br>ip route show table local<br>ip route show table all </p>
+</blockquote>
+<p>擦除路由表</p>
+<ul>
+<li><p>擦除所有路由表</p>
+<blockquote>
+<p>ip route flush</p>
+</blockquote>
+</li>
+<li><p>擦除路由表的缓存</p>
+<blockquote>
+<p>ip route flush cach</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="永久性配置网络参数"><a href="#永久性配置网络参数" class="headerlink" title="永久性配置网络参数"></a>永久性配置网络参数</h2><h3 id="RHEL-CentOS中的TCP-IP配置文件"><a href="#RHEL-CentOS中的TCP-IP配置文件" class="headerlink" title="RHEL/CentOS中的TCP/IP配置文件"></a>RHEL/CentOS中的TCP/IP配置文件</h3><table>
+<thead>
+<tr>
+<th><strong>配置文件</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/etc/sysconfig/network</td>
+<td><strong>系统网络配置文件</strong>，包含了主机最基本的网络信息用于系统启动</td>
+</tr>
+<tr>
+<td>/etc/sysconfig/network-scripts/ifcfg-ethX</td>
+<td><strong>以太网接口配置文件</strong></td>
+</tr>
+<tr>
+<td>/etc/sysconfig/network-scripts/route-ethX</td>
+<td>以太网接口的<strong>静态路由</strong>配置文件</td>
+</tr>
+<tr>
+<td>/etc/hosts</td>
+<td>完成主机名映射为IP地址的<strong>静态解析功能</strong></td>
+</tr>
+<tr>
+<td>/etc/resolv.conf</td>
+<td>配置域名服务客户端的配置文件，用于指定<strong>域名服务器的位置</strong></td>
+</tr>
+<tr>
+<td>/etc/host.conf</td>
+<td>配置<strong>域名服务客户端</strong>的控制文件</td>
+</tr>
+</tbody></table>
+<h3 id="网络接口配置文件"><a href="#网络接口配置文件" class="headerlink" title="网络接口配置文件"></a>网络接口配置文件</h3><p><strong>网络设备的配置</strong>被保存在文本文件中 <strong>/etc/sysconfig/network-scripts/ifcfg-ethX</strong></p>
+<p>配置文件的语法和完整选项列表参见 <strong>/usr/share/doc/initscripts-*/sysconfig.txt</strong></p>
+<p>常用选项:</p>
+<table>
+<thead>
+<tr>
+<th><strong>选项</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>选项</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type</td>
+<td>指定网络接口类型</td>
+<td>IPADDR</td>
+<td>指定静态IP地址</td>
+</tr>
+<tr>
+<td>DEVICE</td>
+<td>指定设备名</td>
+<td>NETMASK</td>
+<td>指定子网掩码</td>
+</tr>
+<tr>
+<td>HWADDR</td>
+<td>指定网卡的MAC地址</td>
+<td>BROADCAST</td>
+<td>指定广播地址</td>
+</tr>
+<tr>
+<td>BOOTPROTO</td>
+<td>指定获取网络参数的方式</td>
+<td>GATEWAY</td>
+<td>指定设备的网关</td>
+</tr>
+<tr>
+<td>ONBOOT</td>
+<td>指定是否在启动时启用设备</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<pre class="line-numbers language-shell"><code class="language-shell"># vim /etc/sysconfig/network-scripts/ifcfg-eth0
+Type=Ethernet
+DEVICE=eth0
+HWADDR=00:02:8A:A6:30:45
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=192.168.0.123
+NETMASK=255.255.255.0
+BROADCAST=192.168.0.255
+GATEWAY=192.168.0.1
+#静态配置
+
+# vim /etc/sysconfig/network-scripts/ifcfg-eth0    
+Type=Ethernet
+DEVICE=eth0
+HWADDR=00:02:8A:A6:30:45
+BOOTPROTO=dhcp
+ONBOOT=yes
+# 动态配置（DHCP)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="系统网络配置文件"><a href="#系统网络配置文件" class="headerlink" title="系统网络配置文件"></a>系统网络配置文件</h3><p>系统网络配置文件为<strong>/etc/sysconfig/network</strong>,用于永久性配置<strong>主机名和默认网关</strong>等</p>
+<p>例如：</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># vim /etc/sysconfig/network
+NETWORKING=yes
+HOSTNAME=centos1.ls-al.loc
+GATEWAY=192.168.1.254<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="网络接口的静态路由配置文件"><a href="#网络接口的静态路由配置文件" class="headerlink" title="网络接口的静态路由配置文件"></a>网络接口的静态路由配置文件</h3><p>每个网络接口均可有其静态路由配置文件，如<strong>/etc/sysconfig/network-scripts/route-ethX</strong></p>
+<p>配置网络接口eth0的静态路由：</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># vim /etc/sysconfig/network-scripts/route-eth0
+192.168.2.0/24  via  172.16.10.88<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="本地域名解析配置文件"><a href="#本地域名解析配置文件" class="headerlink" title="本地域名解析配置文件"></a>本地域名解析配置文件</h3><p>本地域名解析数据库文件为 <strong>/etc/hosts</strong></p>
+<p>例如：</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># vim /etc/hosts
+127.0.0.1    localhost.localdomain   localhost
+::1          localhost6.localdomain6 localhost6
+
+192.168.1.200    centos1.ls-al.loc   centos1
+192.168.0.200    soho.mylabs.me      soho<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="配置远程域名解析器"><a href="#配置远程域名解析器" class="headerlink" title="配置远程域名解析器"></a>配置远程域名解析器</h3><p>设置Linux的DNS客户，可以编辑<strong>/etc/resolv.conf</strong>文件</p>
+<p>举例：</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># vim /etc/resolv.conf
+nameserver  192.168.1.1
+nameverver  208.67.222.222
+nameverver  208.67.220.220
+domain     sinolido.org        # 指定本机所在的域
+search      sinolido.org        # 指定默认搜索域<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="配置域名解析顺序"><a href="#配置域名解析顺序" class="headerlink" title="配置域名解析顺序"></a>配置域名解析顺序</h3><p>域名解析的优先顺序，由配置文件<strong>/etc/host.conf</strong>决定</p>
+<p>例如</p>
+<ul>
+<li>首先查找 /etc/hosts 文件进行域名解析</li>
+<li>然后使用/etc/resolv.conf文件中指定的域名服务器进行域名解析</li>
+</ul>
+<pre class="line-numbers language-shell"><code class="language-shell"># vim /etc/host.conf
+order hosts,bind<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="网络测试工具"><a href="#网络测试工具" class="headerlink" title="网络测试工具"></a>网络测试工具</h2><h3 id="网络检测的常用工具"><a href="#网络检测的常用工具" class="headerlink" title="网络检测的常用工具"></a>网络检测的常用工具</h3><table>
+<thead>
+<tr>
+<th><strong>命令工具</strong></th>
+<th><strong>功能说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ifconfig</strong></td>
+<td><strong>检测网络接口配置</strong></td>
+</tr>
+<tr>
+<td><strong>route</strong></td>
+<td><strong>检测路由配置</strong></td>
+</tr>
+<tr>
+<td><strong>ping</strong></td>
+<td><strong>检测网络连通性</strong></td>
+</tr>
+<tr>
+<td><strong>netstat</strong></td>
+<td><strong>查看网络状态</strong></td>
+</tr>
+<tr>
+<td><strong>lsof</strong></td>
+<td><strong>查看指定IP 和/或 端口的进程的当前运行情况</strong></td>
+</tr>
+<tr>
+<td><strong>host/dig/nslookup</strong></td>
+<td><strong>检测DNS解析</strong></td>
+</tr>
+<tr>
+<td><strong>traceroute</strong></td>
+<td><strong>检测到目的主机所经过的路由器</strong></td>
+</tr>
+<tr>
+<td><strong>tcpdump</strong></td>
+<td><strong>显示本机网络流量的状态</strong></td>
+</tr>
+</tbody></table>
+<h3 id="ping和traceroute（网络层，ICMP协议）"><a href="#ping和traceroute（网络层，ICMP协议）" class="headerlink" title="ping和traceroute（网络层，ICMP协议）"></a>ping和traceroute（网络层，ICMP协议）</h3><h4 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h4><p>测试网络的<strong>连通性</strong></p>
+<p>例如：</p>
+<blockquote>
+<p>ping <a href="http://www.sina.con.cn" target="_blank" rel="noopener">www.sina.con.cn</a><br>ping -c 4 192.168.1.12</p>
+</blockquote>
+<h4 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h4><p>显示数据包到达目的主机所<strong>经过的路由</strong></p>
+<p>例如：</p>
+<blockquote>
+<p>traceroute  <a href="http://www.sina.com.cn" target="_blank" rel="noopener">www.sina.com.cn</a></p>
+</blockquote>
+<h3 id="查看网络端口的使用情况"><a href="#查看网络端口的使用情况" class="headerlink" title="查看网络端口的使用情况"></a>查看网络端口的使用情况</h3><h4 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h4><p>查看<strong>网络端口</strong> </p>
+<blockquote>
+<p>netstat -an<br>netstat -lunpt</p>
+</blockquote>
+<h4 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h4><p> 查看在<strong>指定IP 和/或 端口上打开的进程</strong></p>
+<blockquote>
+<p>lsof -i @192.168.0.200</p>
+<p>lsof -n -i <a href="mailto:UDP@192.168.0.200" target="_blank" rel="noopener">UDP@192.168.0.200</a></p>
+</blockquote>
+<p>查看<strong>指定端口运行的程序</strong></p>
+<blockquote>
+<p>lsof -i :ssh<br>lsof -i :22</p>
+</blockquote>
+<h4 id="nmap"><a href="#nmap" class="headerlink" title="nmap"></a>nmap</h4><p>端口扫描 </p>
+<h2 id="网络客户工具"><a href="#网络客户工具" class="headerlink" title="网络客户工具"></a>网络客户工具</h2><h3 id="图形界面网络客户工具"><a href="#图形界面网络客户工具" class="headerlink" title="图形界面网络客户工具"></a>图形界面网络客户工具</h3><p>图形界面浏览器：Firefox、Mozilla</p>
+<p>图形界面E-mail客户端：Thunderbird、Evolution</p>
+<p>图形界面FTP客户端：Gftp、Konqueror</p>
+<p>图形界面下载工具：WebDownloader for X、Httrack、Getleft</p>
+<h3 id="字符界面网络工具"><a href="#字符界面网络工具" class="headerlink" title="字符界面网络工具"></a>字符界面网络工具</h3><table>
+<thead>
+<tr>
+<th><strong>命令</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>telnet</strong></td>
+<td>远程登录</td>
+</tr>
+<tr>
+<td><strong>ftp /</strong> <strong>lftp</strong> <strong>/</strong> <strong>ncftp</strong></td>
+<td>FTP工具</td>
+</tr>
+<tr>
+<td><strong>smbclient</strong></td>
+<td>存取 SMB/CIFS 共享资源（类似于ftp）</td>
+</tr>
+<tr>
+<td><strong>wget</strong></td>
+<td>下载文件、镜像 WEB站点</td>
+</tr>
+<tr>
+<td><strong>rsync</strong></td>
+<td>远程文件同步</td>
+</tr>
+<tr>
+<td><strong>links / w3m / lynx</strong></td>
+<td>浏览器</td>
+</tr>
+<tr>
+<td><strong>mutt / mail</strong></td>
+<td>邮件客户</td>
+</tr>
+<tr>
+<td><strong>ssh</strong> <strong>/</strong> <strong>scp</strong> <strong>/</strong> <strong>sftp</strong></td>
+<td>基于安全协议的 远程登录/远程复制/远程FTP</td>
+</tr>
+</tbody></table>
+<h4 id="传统的ftp命令"><a href="#传统的ftp命令" class="headerlink" title="传统的ftp命令"></a>传统的ftp命令</h4><p>只支持<strong>交互式</strong>使用方式</p>
+<blockquote>
+<p>$ ftp [ &lt; hostname or IPAddress &gt; ]</p>
+</blockquote>
+<p>常用的交互子命令</p>
+<table>
+<thead>
+<tr>
+<th><strong>子命令</strong></th>
+<th><strong>功能</strong></th>
+<th><strong>子命令</strong></th>
+<th><strong>功能</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>?</td>
+<td>获得命令帮助</td>
+<td>lcd</td>
+<td>切换本地目录</td>
+</tr>
+<tr>
+<td>!&lt; CMD &gt;</td>
+<td>执行本地Shell命令</td>
+<td>!ls</td>
+<td>显示本地目录列表</td>
+</tr>
+<tr>
+<td>open/close</td>
+<td>开启/关闭连接会话</td>
+<td>bye/quit</td>
+<td>退出ftp交互</td>
+</tr>
+<tr>
+<td>bin/asc</td>
+<td>指定二进制/文本传输</td>
+<td>get/put</td>
+<td>单文件上传、下载</td>
+</tr>
+<tr>
+<td>pwd、ls、cd、mkdir、rmdir</td>
+<td>远程目录管理</td>
+<td>mget、mput</td>
+<td>多文件上传、下载（支持通配符）</td>
+</tr>
+</tbody></table>
+<h4 id="lftp简介"><a href="#lftp简介" class="headerlink" title="lftp简介"></a>lftp简介</h4><p>lftp是个功能强大的<strong>字符界面文件传输工具</strong></p>
+<p>功能：</p>
+<ul>
+<li>支持交互式和命令行两种工作模式</li>
+<li>支持ftp、ftps、http、https、hftp、fish等传输协议</li>
+<li>支持FXP【File eXchange Protocol】（在两个FTP服务器之间传输文件）</li>
+<li>支持代理、支持多线程传输、支持断点续传</li>
+<li>支持传输队列（queue)、支持书签（bookmark）</li>
+<li>支持镜像（mirror）</li>
+<li>类似bash，提供后台命令、nohop模式、命令历史、命令别名、命令补齐、作业控制、lftp环境设置等支持。</li>
+<li>使用 lftpget 来实现自动化传输</li>
+</ul>
+<h2 id="安全的网络客户工具"><a href="#安全的网络客户工具" class="headerlink" title="安全的网络客户工具"></a>安全的网络客户工具</h2><h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>SSH 的英文全称为 <strong>Secure SHell</strong></p>
+<p>SSH 是IETF 的<strong>网络工作组</strong>所制定的协议</p>
+<p>SSH 是建立在<strong>应用层和传输层</strong>基础上的安全协议</p>
+<p>SSH（Secure SHell）协议是 C/S 模式协议，分为 SSH 的客户端和服务器端，一次成功的 SSH 会话需要两端通力合作来完成。</p>
+<p>SSH 目的是要在<strong>非安全网络</strong>上提供<strong>安全的远程登录和其他安全服务</strong></p>
+<p>所有使用 SSH 协议的通信，包括口令，都会<strong>被加密传输</strong></p>
+<p>用于替代传统的 <strong>telnet、ftp、r族命令</strong>（rlogin、rsh、rcp）</p>
+<blockquote>
+<p>ssh [user@]hostname<br>ssh [user@]hostname command </p>
+</blockquote>
+<h3 id="OpenSSH"><a href="#OpenSSH" class="headerlink" title="OpenSSH"></a>OpenSSH</h3><p>OpenSSH 是 SSH 协议的<strong>免费开源实现</strong></p>
+<ul>
+<li>安全、加密的网络连接工具（ssh、scp、sftp）</li>
+<li>代替了 telnet、 rlogin、rsh、rcp 和 ftp 等工具</li>
+</ul>
+<p>OpenSSH 支持 SSH 协议的版本 1和 2。</p>
+<ul>
+<li>自从 OpenSSH 的版本 2.9 以来，默认的协议是版本 2</li>
+<li>版本 2的协议支持 RSA 和 DSA，默认使用 RSA 密钥</li>
+</ul>
+<p>OpenSSH 支持的用户认证方式</p>
+<ul>
+<li>支持基于 PAM 的用户口令认证</li>
+<li>支持用户密钥认证 </li>
+</ul>
+
+            </div>
+            <hr />
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《Linux网络配置工具》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/05/29/linux-wang-luo-pei-zhi-gong-ju/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                HillZhang
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+    <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<!-- <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script> -->
+
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'uCuovwWUzxnygDdXy6SPs97E-gzGzoHsz',
+        appKey: 'oroAoITTPFXepwWrR1qGq7b7',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'false' === 'true',
+        avatar: 'wavatar',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '欢迎和我一起交流！'
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/05/29/linux-wang-luo-pei-zhi-gong-ju/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Linux网络配置工具">
+                        
+                        <span class="card-title">Linux网络配置工具</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Linux网络配置与网络工具Linux网络简介Linux的网络支持Linux支持各种协议类型的网络：
+
+TCP/IP、NetBIOS/NetBEUI、IPX/SPX、AppleTake等
+在网络底层也支持Ethernet、Token Rin
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category" target="_blank">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/" target="_blank">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                    <a href="/tags/操作系统/" target="_blank">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/29/shu-ju-ku-fu-xi-ji-yu-mysql/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="数据库复习——基于MySQL">
+                        
+                        <span class="card-title">数据库复习——基于MySQL</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            数据库复习笔记本文是我复习数据库所做的知识总结，选用的数据库主要为：MySQL。更详细的内容可以看牛客网上这篇https://www.nowcoder.com/discuss/150059?type=0&amp;order=7&amp;po
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/数据库/" target="_blank">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                    <a href="/tags/mysql/" target="_blank">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: HillZhang的博客<br />'
+            + '作者: HillZhang<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<!-- 代码语言 -->
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+<!-- 代码块复制 -->
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+<!-- 代码块收缩 -->
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script> 
+<!-- 代码块折行 -->
+<style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2019-2020 章岳. 版权所有
+
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">291.1k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/HillZhang1999" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:471791641@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=471791641&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的知乎" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 50);
+        var pvcountOffset = 80000;
+        var uvcountOffset = 20000;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int);
+            }
+        }
+    });
+</script>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2020, 03, 11, 00, 00, 00); //北京时间2018-2-13 00:00:00
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) })
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    
+    <script src="/libs/others/clicklove.js"></script>
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+</body>
+
+</html>

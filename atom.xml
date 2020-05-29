@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-26T14:58:02.580Z</updated>
+  <updated>2020-05-29T05:27:47.337Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,76 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux网络配置工具</title>
+    <link href="http://yoursite.com/2020/05/29/linux-wang-luo-pei-zhi-gong-ju/"/>
+    <id>http://yoursite.com/2020/05/29/linux-wang-luo-pei-zhi-gong-ju/</id>
+    <published>2020-05-29T04:46:58.000Z</published>
+    <updated>2020-05-29T05:27:47.337Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Linux网络配置与网络工具&quot;&gt;&lt;a href=&quot;#Linux网络配置与网络工具&quot; class=&quot;headerlink&quot; title=&quot;Linux网络配置与网络工具&quot;&gt;&lt;/a&gt;Linux网络配置与网络工具&lt;/h1&gt;&lt;h2 id=&quot;Linux网络简介&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+      <category term="操作系统" scheme="http://yoursite.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库复习——基于MySQL</title>
+    <link href="http://yoursite.com/2020/05/29/shu-ju-ku-fu-xi-ji-yu-mysql/"/>
+    <id>http://yoursite.com/2020/05/29/shu-ju-ku-fu-xi-ji-yu-mysql/</id>
+    <published>2020-05-29T04:36:30.000Z</published>
+    <updated>2020-05-29T05:30:57.153Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;数据库复习笔记&quot;&gt;&lt;a href=&quot;#数据库复习笔记&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构复习</title>
+    <link href="http://yoursite.com/2020/05/29/shu-ju-jie-gou-fu-xi/"/>
+    <id>http://yoursite.com/2020/05/29/shu-ju-jie-gou-fu-xi/</id>
+    <published>2020-05-29T04:35:39.000Z</published>
+    <updated>2020-05-29T04:35:39.915Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>动态规划经典问题《背包九讲》整理</title>
@@ -128,9 +198,17 @@
     <link href="http://yoursite.com/2020/05/14/linux-zhang-hu-guan-li/"/>
     <id>http://yoursite.com/2020/05/14/linux-zhang-hu-guan-li/</id>
     <published>2020-05-14T07:45:15.000Z</published>
-    <updated>2020-05-14T07:51:26.109Z</updated>
+    <updated>2020-05-29T04:42:29.587Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Linux账户管理&quot;&gt;&lt;a href=&quot;#Linux账户管理&quot; class=&quot;headerlink&quot; title=&quot;Linux账户管理&quot;&gt;&lt;/a&gt;Linux账户管理&lt;/h1&gt;&lt;h2 id=&quot;账户实质&quot;&gt;&lt;a href=&quot;#账户实质&quot;
+        
+      
     
     </summary>
     
@@ -504,94 +582,6 @@
       <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NLP自学笔记：条件随机场模型</title>
-    <link href="http://yoursite.com/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/"/>
-    <id>http://yoursite.com/2020/04/04/nlp-zi-xue-bi-ji-tiao-jian-sui-ji-chang-mo-xing/</id>
-    <published>2020-04-04T07:40:45.000Z</published>
-    <updated>2020-04-06T16:38:30.725Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文是我在学习苏州大学李正华老师的中文信息处理课程（&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指Offer题解</title>
-    <link href="http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/"/>
-    <id>http://yoursite.com/2020/03/21/jian-zhi-offer-ti-jie/</id>
-    <published>2020-03-21T07:01:21.000Z</published>
-    <updated>2020-04-05T06:49:43.799Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="编程算法" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="剑指Offer" scheme="http://yoursite.com/tags/%E5%89%91%E6%8C%87Offer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NLP自学笔记：线性模型和对数线性模型</title>
-    <link href="http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/"/>
-    <id>http://yoursite.com/2020/03/17/nlp-zi-xue-bi-ji-xian-xing-mo-xing-he-dui-shu-xian-xing-mo-xing/</id>
-    <published>2020-03-17T13:58:39.000Z</published>
-    <updated>2020-04-07T16:42:06.966Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;本文是我在学习苏州大学李正华老师的中文信息处理课程（&lt;a
-        
-      
-    
-    </summary>
-    
-      <category term="机器学习" scheme="http://yoursite.com/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="自然语言处理" scheme="http://yoursite.com/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
